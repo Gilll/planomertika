@@ -1,11 +1,11 @@
 {
-  "main.js": "/planometrika/static/js/main.5a2bfd12.chunk.js",
-  "main.js.map": "/planometrika/static/js/main.5a2bfd12.chunk.js.map",
-  "static/js/1.ccfaed37.chunk.js": "/planometrika/static/js/1.ccfaed37.chunk.js",
-  "static/js/1.ccfaed37.chunk.js.map": "/planometrika/static/js/1.ccfaed37.chunk.js.map",
-  "runtime~main.js": "/planometrika/static/js/runtime~main.0de36c90.js",
-  "runtime~main.js.map": "/planometrika/static/js/runtime~main.0de36c90.js.map",
-  "index.html": "/planometrika/index.html",
-  "precache-manifest.d439c159a4ffae7fdefa9168b74e421d.js": "/planometrika/precache-manifest.d439c159a4ffae7fdefa9168b74e421d.js",
-  "service-worker.js": "/planometrika/service-worker.js"
+  "main.js": "/planomertika/static/js/main.5a2bfd12.chunk.js",
+  "main.js.map": "/planomertika/static/js/main.5a2bfd12.chunk.js.map",
+  "static/js/1.ccfaed37.chunk.js": "/planomertika/static/js/1.ccfaed37.chunk.js",
+  "static/js/1.ccfaed37.chunk.js.map": "/planomertika/static/js/1.ccfaed37.chunk.js.map",
+  "runtime~main.js": "/planomertika/static/js/runtime~main.2531bf0d.js",
+  "runtime~main.js.map": "/planomertika/static/js/runtime~main.2531bf0d.js.map",
+  "index.html": "/planomertika/index.html",
+  "precache-manifest.ab6e9fb89e723187a5032f43b38c60bc.js": "/planomertika/precache-manifest.ab6e9fb89e723187a5032f43b38c60bc.js",
+  "service-worker.js": "/planomertika/service-worker.js"
 }
