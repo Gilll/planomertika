@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/planometrika/precache-manifest.aaa0df1a17feab63fe8a8d84b909edef.js"
+  "/planometrika/precache-manifest.d439c159a4ffae7fdefa9168b74e421d.js"
 );
 
 workbox.clientsClaim();
