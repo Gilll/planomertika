@@ -1,11 +1,18 @@
 {
-  "main.js": "/planomertika/static/js/main.5a2bfd12.chunk.js",
-  "main.js.map": "/planomertika/static/js/main.5a2bfd12.chunk.js.map",
-  "static/js/1.ccfaed37.chunk.js": "/planomertika/static/js/1.ccfaed37.chunk.js",
-  "static/js/1.ccfaed37.chunk.js.map": "/planomertika/static/js/1.ccfaed37.chunk.js.map",
-  "runtime~main.js": "/planomertika/static/js/runtime~main.2531bf0d.js",
-  "runtime~main.js.map": "/planomertika/static/js/runtime~main.2531bf0d.js.map",
-  "index.html": "/planomertika/index.html",
-  "precache-manifest.ab6e9fb89e723187a5032f43b38c60bc.js": "/planomertika/precache-manifest.ab6e9fb89e723187a5032f43b38c60bc.js",
-  "service-worker.js": "/planomertika/service-worker.js"
+  "files": {
+    "main.css": "/planomertika/static/css/main.64b0b346.css",
+    "main.js": "/planomertika/static/js/main.9e087370.js",
+    "static/media/img.jpg": "/planomertika/static/media/img.22379b23b83a051b4504.jpg",
+    "static/media/slick.svg": "/planomertika/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/planomertika/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/planomertika/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/planomertika/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/planomertika/index.html",
+    "main.64b0b346.css.map": "/planomertika/static/css/main.64b0b346.css.map",
+    "main.9e087370.js.map": "/planomertika/static/js/main.9e087370.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.64b0b346.css",
+    "static/js/main.9e087370.js"
+  ]
 }
