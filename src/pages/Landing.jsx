@@ -5,7 +5,7 @@ import {Button} from "antd";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import img from "../styles/img/img.jpg" //пример импорта картинки напрямую
+import img from "../styles/img/img.jpg";//пример импорта картинки напрямую
 
 const Landing = () => {
     const sliderSettings = {
@@ -18,7 +18,7 @@ const Landing = () => {
     };
 
     return (
-        <div className='intro-page'>
+        <div className='main'>
             <h1>Landing</h1>
             <Link to={RouteNames.REQUEST}>
                 <Button type="primary">Request page</Button>

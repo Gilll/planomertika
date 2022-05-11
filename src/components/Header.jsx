@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Header.module.scss';
 import {RouteNames} from "../router/routeNames";
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 // import {Button} from "antd";
 
 
@@ -9,6 +9,7 @@ import {Link, NavLink} from "react-router-dom";
 const Header = () => {
     return (
         <header className={s.header}>
+            <div className="container">
             <div className={s.header__inner}>
                 <Link className={s.header__logo} to={RouteNames.LANDING}>
                     {/* <Button type="primary">back to main page</Button> */}
@@ -17,22 +18,22 @@ const Header = () => {
                 <nav className={s.header__nav}>
                     <ul className={s.header__list}>
                         <li className={s.header__item}>
-                            <a href="">О проекте</a>
+                            <a href="#">О проекте</a>
                         </li>
                         <li className={s.header__item}>
-                            <a href="">Отзывы</a>
+                            <a href="#">Отзывы</a>
                         </li>
                         <li className={s.header__item}>
-                            <a href="">Вопросы и ответы</a>
+                            <a href="#">Вопросы и ответы</a>
                         </li>
                         <li className={s.header__item}>
-                            <a href="">Контакты</a>
+                            <a href="#">Контакты</a>
                         </li>
                         <li className={s.header__itemUser}>
                             <div className={s.header__itemImg}>
                                 <img src={process.env.PUBLIC_URL + "/img/user.svg"} alt="" />
                             </div>
-                            <a href="">Личный кабинет</a>
+                            <a href="#">Личный кабинет</a>
                         </li>
                     </ul>
                 </nav>
@@ -50,6 +51,7 @@ const Header = () => {
                         </a>
                     </div>
                 </div>
+            </div>
             </div>
         </header>
     );

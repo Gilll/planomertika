@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 html {
-  font-family: sans-serif; // шрифт по умолчанию по сайту
+  font-family: "Gilroy", sans-serif; // шрифт по умолчанию по сайту
   font-size: 0.520835vw; // на разрешении 1920 0.520835vw === 10px
   font-style: normal;
   font-weight: normal;
@@ -90,7 +90,8 @@ ul li {
 }
 
 .container {
-  font-size: 1.8rem;
+  width: 144rem;
+  margin: 0 auto;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

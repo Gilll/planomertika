@@ -1,4 +1,5 @@
 @import "set.scss";
+@import "fonts.css"; 
 
 body h1 {
   font-size: 5rem;
@@ -6,25 +7,17 @@ body h1 {
   line-height: 10rem;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid #eee;
-}
+
 
 footer {
-  border: 1px solid #eee;
 }
 
-.App {
-  margin: 0 20rem;
-}
+// .App {
+//   margin: 0 20rem;
+// }
 
 .intro-page {
-  min-height: 50rem;
-  border-left: 1px solid #eee;
-  border-right: 1px solid #eee;
+  
 }
 
 .custom-slider {
