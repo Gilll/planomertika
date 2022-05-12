@@ -1,36 +1,44 @@
-// import { Button } from 'antd';
-import React from 'react';
-import AccentButton from '../button/AccentButton';
-import s from './Banner.module.scss';
+import React from "react";
+import MyBtn from "../myBtn/MyBtn";
+import s from "./Banner.module.scss";
 
 
 
 
-function Banner() {
-    
+
+
+
+const Banner = () => {
+
     const data = {
         title: "Заполнить анкету",
     }
 
     return (
-        <section className={s.Banner}>
-            <img className={s.bannerImg} src={process.env.PUBLIC_URL + "/img/banner-img.png"} alt="" />
+        <section className={s.banner}>
+            <img className={s.banner__img} src={process.env.PUBLIC_URL + "/img/banner-img.png"} alt="" />
             <div className="container">
-                <button className={s.bannerPlay}>
+                <div className={s.banner__inner}>
+                <button className={s.banner__btnVideo}>
                     <img src={process.env.PUBLIC_URL + "/img/play.png"} alt="" />
-                    <span>Смотреть видео</span>
+                    <span className={s.banner__btnVideoName}>Смотреть видео</span>
                 </button>
-                <div className={s.titleBlock}>
-                    <div className={s.description}></div>
-                    <div className={s.title}></div>
-                    <div className={s.subtitle}></div>
-                    <div className={s.bottom}>
-                    <AccentButton title={data.title}/>
+                <div className={s.banner__content}>
+                    <div className={s.banner__description}>От профессиональных архитекторов</div>
+                    <div className={s.banner__title}>Planometrika</div>
+                    <div className={s.banner__subtitle}>Планировочное решение вашей квартиры</div>
+                    <div className={s.banner__contentBottom}>
+                    <MyBtn title={data.title}/>
+                    <div className={s.banner__price}>
+                        <span>3 500 р.</span>/24 часа
                     </div>
+                </div>
+                </div>
                 </div>
             </div>
         </section>
     );
-}
+};
+
 
 export default Banner;

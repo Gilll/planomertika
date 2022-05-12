@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import img from "../styles/img/img.jpg";//пример импорта картинки напрямую
+import Banner from '../components/banner/Banner';
 
 const Landing = () => {
     const sliderSettings = {
@@ -19,6 +20,8 @@ const Landing = () => {
 
     return (
         <div className='main'>
+            <Banner/>
+            <div className="container">
             <h1>Landing</h1>
             <Link to={RouteNames.REQUEST}>
                 <Button type="primary">Request page</Button>
@@ -49,6 +52,7 @@ const Landing = () => {
             <img src={process.env.PUBLIC_URL + "/img/img.jpg"} alt=""/>
             <div>фон блока</div>
             <div className="img-bg"/>
+            </div>
         </div>
     );
 };
