@@ -1,5 +1,6 @@
 @import "set.scss";
 @import "fonts.css"; 
+@import "./../components/faqSection/FaqSection.module.scss";
 
 body h1 {
   font-size: 5rem;
@@ -36,3 +37,4 @@ footer {
   height: 20rem;
   background: url("img/img.jpg") no-repeat;
 }
+

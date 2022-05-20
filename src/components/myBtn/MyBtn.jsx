@@ -7,7 +7,7 @@ import s from "./MyBtn.module.scss";
 
 const MyBtn = (props) => {
     return (
-        <button className={s.myBtn}>
+        <button className={s.myBtn} {...props}>
             {props.title}
         </button>
     );

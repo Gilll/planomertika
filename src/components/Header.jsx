@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Header.module.scss';
 import {RouteNames} from "../router/routeNames";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 // import {Button} from "antd";
 
 
@@ -18,22 +18,23 @@ const Header = () => {
                 <nav className={s.header__nav}>
                     <ul className={s.header__list}>
                         <li className={s.header__item}>
-                            <a href="#">О проекте</a>
+
+                            <NavLink to={RouteNames.ABOUT} className={s.header__link}>О проекте</NavLink>
                         </li>
                         <li className={s.header__item}>
-                            <a href="#">Отзывы</a>
+                            <NavLink to={RouteNames.REVIEWS} className={s.header__link}>Отзывы</NavLink>
                         </li>
                         <li className={s.header__item}>
-                            <a href="#">Вопросы и ответы</a>
+                            <NavLink to={RouteNames.FAQPage} className={s.header__link}>Вопросы и ответы</NavLink>
                         </li>
                         <li className={s.header__item}>
-                            <a href="#">Контакты</a>
+                            <NavLink to={RouteNames.CONTACTS} className={s.header__link}>Контакты</NavLink>
                         </li>
                         <li className={s.header__itemUser}>
                             <div className={s.header__itemImg}>
                                 <img src={process.env.PUBLIC_URL + "/img/user.svg"} alt="" />
                             </div>
-                            <a href="#">Личный кабинет</a>
+                            <NavLink to={RouteNames.MYACCOUNT} className={s.header__link}>Личный кабинет</NavLink>
                         </li>
                     </ul>
                 </nav>
