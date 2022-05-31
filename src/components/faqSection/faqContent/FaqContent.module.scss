@@ -1,1 +1,15 @@
+.content {
 
+    &__title {
+        font-size: 3rem;
+        font-weight: 700;
+        width: 40rem;
+        margin-bottom: 2rem;
+        line-height: 1.2;
+    }
+
+    &__text {
+        font-size: 1.6rem;
+        font-weight: 500;
+    }
+}

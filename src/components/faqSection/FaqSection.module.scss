@@ -3,22 +3,95 @@
     color: rgba(255, 255, 255, 1);
 
     &__inner {
-        padding: 6.4rem 0 5.8rem 0;
+        padding: 2.2rem 0 21.8rem 0;
     }
 
     &__tabs {
         display: flex;
+        justify-content: space-between;
+        width: 108.6rem;
+        margin: 0 auto;
+        // padding: 4.4rem 0 7.8rem 0;
+        border: 0.23rem solid #FFFFFF;
     }
+
+    &__tabsContentLeft {
+        margin-top: 6.4rem;
+        padding-bottom: 7.8rem;
+        position: relative;
+        width: 100%;
+
+
+        &::before {
+            content: "";
+            width: 40%;
+            height: 13.8rem;
+            border-left: 0.23rem solid #FFFFFF;
+            border-bottom: 0.23rem solid #FFFFFF;
+            border-right: 0.23rem solid #FFFFFF;
+
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform: translateY(100%);
+        }
+
+        &::after {
+            content: "";
+            width: 60%;
+            height: 13.8rem;
+            border-right: 0.23rem solid #FFFFFF;
+            border-bottom: 0.23rem solid #FFFFFF;
+
+            background: repeating-linear-gradient(
+                -45deg,
+                #FFC443 1rem,
+                #ffffff 0.1rem,
+                #FFC443 1.5rem,
+                #FFC443 5rem
+              );
+
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            transform: translateY(100%);
+        }
+    }
+
 
     &__tabsContent {
-        width: 86rem;
+        width: 45.1rem;
+        margin-left: 16.8rem;
     }
 
-    &__tabBtn {
+
+    &__logo {
+        width: 14.4rem;
+        height: 6.5rem;
+        background:#FFC443;
+        padding: 1.4rem 0 1.4rem 0;
+        margin-bottom: 6.6rem;
+
+        display: flex;
+        align-items: center;
+
+        position: relative;
+        transform: translateX(-0.4rem);
+
+        img {
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &__tabBtns {
+        padding-top: 2.2rem;
+        padding-right: 1rem;
         display: flex;
         flex-direction: column;
         width: 22.7rem;
         align-items: flex-end;
+        border-left: 0.24rem solid #FFFFFF;
     }
 }
 
@@ -48,7 +121,6 @@
             top: 50%;
             right: -2rem;
             transform: translateY(-50%);
-
         }
     }
-  }
+}
