@@ -1,0 +1,37 @@
+.stepItem {
+    width: 20%;
+
+
+    &__img {
+        width: 7rem;
+        height: 7rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 0.1rem dashed #C4C4C4;
+        background: #ffffff;
+        border-radius: 0px 0px 1.5rem 0;
+        margin-bottom: 2rem;
+
+        img {
+            width: 2.7rem;
+            height: 2.7rem;
+            object-fit: contain;
+        }
+    }
+
+    &__title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1D1D1D;
+        margin-bottom: 1rem;
+    }
+
+    &__subtitle {
+        font-size: 1.6rem;
+        font-weight: 300;
+        color: #1D1D1D;
+    }
+}

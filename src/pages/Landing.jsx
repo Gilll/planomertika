@@ -8,6 +8,7 @@ import Slider from "react-slick";
 import img from "../styles/img/img.jpg";//пример импорта картинки напрямую
 import Banner from '../components/banner/Banner';
 import FaqSection from '../components/faqSection/FaqSection';
+import StepSection from '../components/stepsSection/StepSection';
 
 
 
@@ -29,6 +30,7 @@ const Landing = () => {
     return (
         <div className='main'>
             <Banner/>
+            <StepSection/>
             <FaqSection/>
             <div className="container">
             <h1>Landing</h1>

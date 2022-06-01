@@ -3,7 +3,7 @@
     color: rgba(255, 255, 255, 1);
 
     &__inner {
-        padding: 2.2rem 0 21.8rem 0;
+        padding: 6.4rem 0 21.8rem 0;
     }
 
     &__tabs {
@@ -11,7 +11,6 @@
         justify-content: space-between;
         width: 108.6rem;
         margin: 0 auto;
-        // padding: 4.4rem 0 7.8rem 0;
         border: 0.23rem solid #FFFFFF;
     }
 
@@ -32,38 +31,37 @@
 
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: -0.23rem;
             transform: translateY(100%);
         }
 
         &::after {
             content: "";
-            width: 60%;
+            width: 60.5%;
             height: 13.8rem;
             border-right: 0.23rem solid #FFFFFF;
             border-bottom: 0.23rem solid #FFFFFF;
+            border-top: 0.23rem solid #FFFFFF;
 
-            background: repeating-linear-gradient(
-                -45deg,
-                #FFC443 1rem,
-                #ffffff 0.1rem,
-                #FFC443 1.5rem,
-                #FFC443 5rem
-              );
+            background: repeating-linear-gradient(-45deg,
+            #FFC443,
+            #FFC443 15px,
+            #ffffff 15.8px,
+            #FFC443 16.8px);
 
             position: absolute;
             bottom: 0;
-            right: 0;
+            right: -0.2rem;
             transform: translateY(100%);
         }
     }
 
-
     &__tabsContent {
         width: 45.1rem;
         margin-left: 16.8rem;
+        position: relative;
+        z-index: 1;
     }
-
 
     &__logo {
         width: 14.4rem;
@@ -95,9 +93,6 @@
     }
 }
 
-
-
-
 .button {
     font-size: 1.6rem;
     font-weight: 500;
@@ -109,18 +104,28 @@
     &:not(:last-child) {
         margin-bottom: 1.9rem;
     }
-  
+
     &.active {
-        &:after {
+        &::before {
             content: "";
             width: 1rem;
-            height: 0.1rem;
-            background: rgba(255, 255, 255, 1);
+            height: 1.6rem;
+            background: #FFC443;
 
             position: absolute;
             top: 50%;
             right: -2rem;
             transform: translateY(-50%);
+        }
+
+        &::after {
+            content: "−";
+            color:rgba(255, 255, 255, 1);
+
+            position: absolute;
+            top: 0;
+            right: -1.8rem;
+            z-index: 1;
         }
     }
 }

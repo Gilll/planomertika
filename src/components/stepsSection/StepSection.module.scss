@@ -1,0 +1,58 @@
+.stepSection {
+    margin-bottom: 18rem;
+    font-family: "Gilroy", sans-serif;
+
+    &__inner {
+
+    }
+
+    &__top {
+        display: flex;
+        margin-bottom: 3.1rem;
+    }
+
+    &__title {
+        font-size: 5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #1D1D1D;
+        width: 30%;
+        margin-right: 5rem;
+        display: flex;
+    }
+
+    &__parBlock {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.6rem;
+        font-weight: 300;
+        color: #1D1D1D;
+        width: 70%;
+
+        p {
+            width: 43.7rem;
+            &:first-child {
+                font-weight: 500;
+            }
+        }
+    }
+
+    &__bottom {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+
+        &::before {
+            content: "";
+            width: 80%;
+            height: 0.1rem;
+            border-top: 0.1rem dashed  #C4C4C4;
+
+            position: absolute;
+            top: 3.5rem;
+            left: 0;
+            z-index: -1;
+
+        }
+    }
+}
