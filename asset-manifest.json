@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/planomertika/static/css/main.6647b5e8.css",
-    "main.js": "/planomertika/static/js/main.c599c3b3.js",
+    "main.css": "/planomertika/static/css/main.f0c23874.css",
+    "main.js": "/planomertika/static/js/main.3ae9171d.js",
     "static/media/Gilroy-UltraLightItalic.eot": "/planomertika/static/media/Gilroy-UltraLightItalic.a6fc8679f9d9bbc3e3a7.eot",
     "static/media/Gilroy-UltraLightItalic.ttf": "/planomertika/static/media/Gilroy-UltraLightItalic.68a9a27f1aa1261013f3.ttf",
     "static/media/Gilroy-ThinItalic.eot": "/planomertika/static/media/Gilroy-ThinItalic.cea6b0a2dc07f5b5e074.eot",
@@ -83,16 +83,20 @@
     "static/media/Gilroy-Heavy.woff2": "/planomertika/static/media/Gilroy-Heavy.19b3f6fe15dc6f668d28.woff2",
     "static/media/Gilroy-Regular.woff2": "/planomertika/static/media/Gilroy-Regular.f6c9931fabe5a6eb3307.woff2",
     "static/media/Gilroy-Extrabold.woff2": "/planomertika/static/media/Gilroy-Extrabold.5c5942d3e4d9a9645df4.woff2",
+    "static/media/step1.svg": "/planomertika/static/media/step1.613170b560428d94e525b585676bf395.svg",
+    "static/media/step4.svg": "/planomertika/static/media/step4.c9bc512468bca2cf65f0bc35ed5f6cae.svg",
+    "static/media/step3.svg": "/planomertika/static/media/step3.52eadab8eb47203d50d2ac76229cdef7.svg",
+    "static/media/step2.svg": "/planomertika/static/media/step2.0a030ba8d0945098375cb67c2cac4b2b.svg",
     "static/media/slick.svg": "/planomertika/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/planomertika/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/planomertika/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/planomertika/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/planomertika/index.html",
-    "main.6647b5e8.css.map": "/planomertika/static/css/main.6647b5e8.css.map",
-    "main.c599c3b3.js.map": "/planomertika/static/js/main.c599c3b3.js.map"
+    "main.f0c23874.css.map": "/planomertika/static/css/main.f0c23874.css.map",
+    "main.3ae9171d.js.map": "/planomertika/static/js/main.3ae9171d.js.map"
   },
   "entrypoints": [
-    "static/css/main.6647b5e8.css",
-    "static/js/main.c599c3b3.js"
+    "static/css/main.f0c23874.css",
+    "static/js/main.3ae9171d.js"
   ]
 }
