@@ -9,6 +9,7 @@ import img from "../styles/img/img.jpg";//пример импорта карти
 import Banner from '../components/banner/Banner';
 import FaqSection from '../components/faqSection/FaqSection';
 import StepSection from '../components/stepsSection/StepSection';
+import Reviews from '../components/reviews/Reviews';
 
 
 
@@ -32,6 +33,7 @@ const Landing = () => {
             <Banner/>
             <StepSection/>
             <FaqSection/>
+            <Reviews/>
             <div className="container">
             <h1>Landing</h1>
             <Link to={RouteNames.REQUEST}>
