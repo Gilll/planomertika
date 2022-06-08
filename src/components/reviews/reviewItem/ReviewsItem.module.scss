@@ -1,0 +1,55 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.imgBlock {
+    width: 56.6rem;
+    height: 43.2rem;
+    background: #F7F7F7;
+
+    img {
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.textBlock {
+    width: 84.4rem;
+    padding: 5.8rem 7rem;
+    background: #F7F7F7;
+    border-left: 0.7rem solid #FFC443;
+
+}
+
+.author {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1D1D1D;
+    margin-bottom: 1.5rem;
+}
+
+.date {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #1D1D1D;
+    margin-bottom: 6.3rem;
+    position: relative;
+
+    &:before {
+        content: "";
+        width: 6.8rem;
+        height: 0.3rem;
+        background: #FFC443;
+
+        position: absolute;
+        left: 0;
+        bottom: -3rem;
+    }
+}
+
+.text {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #1D1D1D;
+}
