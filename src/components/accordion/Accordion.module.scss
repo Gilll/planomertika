@@ -1,0 +1,90 @@
+.reviews {
+    margin-bottom: 20.6rem;
+}
+
+.titleWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+}
+
+.title {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #1D1D1D;
+}
+
+
+.nextArrow {
+    width: 4rem;
+    height: 1rem;
+    position: absolute;
+
+    bottom: 10rem;
+    right: 30%;
+    z-index: 1;
+    cursor: pointer;
+    
+    &::before {
+        content: "";
+        
+        background: url(./../../asetss/img/arrowNext.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+
+.prevArrow {
+    width: 4rem;
+    height: 1rem;
+    position: absolute;
+
+    bottom: 10rem;
+    left: 47%;
+    z-index: 1;
+    cursor: pointer;
+    
+    &::before {
+        content: "";
+        background: url(./../../asetss/img/arrowPrev.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+
+.slick-active {
+    position: absolute;
+    bottom: 10rem;
+}
+
+.bullet {
+    width: 0.8rem;
+    height: 0.8rem;
+    background: #C4C4C4;
+}
+
+
+.dots {
+    width: max-content;
+    bottom: 10rem;
+    left: 48%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
