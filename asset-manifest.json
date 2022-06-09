@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/planomertika/static/css/main.f0c23874.css",
-    "main.js": "/planomertika/static/js/main.3ae9171d.js",
+    "main.css": "/planomertika/static/css/main.c1725726.css",
+    "main.js": "/planomertika/static/js/main.9d48b1e2.js",
+    "static/media/rev1.png": "/planomertika/static/media/rev1.fdb996b4a18c8139f4f1.png",
     "static/media/Gilroy-UltraLightItalic.eot": "/planomertika/static/media/Gilroy-UltraLightItalic.a6fc8679f9d9bbc3e3a7.eot",
     "static/media/Gilroy-UltraLightItalic.ttf": "/planomertika/static/media/Gilroy-UltraLightItalic.68a9a27f1aa1261013f3.ttf",
     "static/media/Gilroy-ThinItalic.eot": "/planomertika/static/media/Gilroy-ThinItalic.cea6b0a2dc07f5b5e074.eot",
@@ -92,11 +93,13 @@
     "static/media/slick.ttf": "/planomertika/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/planomertika/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/planomertika/index.html",
-    "main.f0c23874.css.map": "/planomertika/static/css/main.f0c23874.css.map",
-    "main.3ae9171d.js.map": "/planomertika/static/js/main.3ae9171d.js.map"
+    "static/media/arrowPrev.svg": "/planomertika/static/media/arrowPrev.ce338039e3d1a04c9758.svg",
+    "static/media/arrowNext.svg": "/planomertika/static/media/arrowNext.ed4858011ad34b78d6a5.svg",
+    "main.c1725726.css.map": "/planomertika/static/css/main.c1725726.css.map",
+    "main.9d48b1e2.js.map": "/planomertika/static/js/main.9d48b1e2.js.map"
   },
   "entrypoints": [
-    "static/css/main.f0c23874.css",
-    "static/js/main.3ae9171d.js"
+    "static/css/main.c1725726.css",
+    "static/js/main.9d48b1e2.js"
   ]
 }
