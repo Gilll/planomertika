@@ -10,7 +10,8 @@ import Banner from '../components/banner/Banner';
 import FaqSection from '../components/faqSection/FaqSection';
 import StepSection from '../components/stepsSection/StepSection';
 import Reviews from '../components/reviews/Reviews';
-import Accordion from '../components/accordion/Accordion';
+import AccordionSection from '../components/accordionSection/AccordionSection';
+import FormSection from '../components/FormSection/FormSection';
 
 
 
@@ -35,7 +36,8 @@ const Landing = () => {
             <StepSection/>
             <FaqSection/>
             <Reviews/>
-            <Accordion />
+            <AccordionSection />
+            <FormSection />
             <div className="container">
             <h1>Landing</h1>
             <Link to={RouteNames.REQUEST}>

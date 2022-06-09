@@ -1,0 +1,19 @@
+.formSection {
+    background: #1D1D1D;
+    height: 81.5rem;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    position: relative;
+    color: #ffffff;
+
+    &>img {
+        width: 96rem;
+        height: 100%;
+        object-fit: cover;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+}

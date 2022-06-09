@@ -1,0 +1,92 @@
+.item {
+    background: #C4C4C4;
+    padding: 2rem;
+    font-size: 4rem;
+}
+
+
+.ant-collapse-borderless {
+    background: #ffffff;
+}
+
+.ant-collapse-borderless>.ant-collapse-item {
+    border: 1px dashed #C4C4C4;
+}
+
+.ant-collapse-borderless>.ant-collapse-item:last-child {
+    border-bottom: 1px dashed #C4C4C4 !important;
+}
+
+.ant-collapse>.ant-collapse-item>.ant-collapse-header {
+    padding: 0 !important;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #1D1D1D;
+}
+
+.ant-collapse-content-box {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #1D1D1D;
+    padding: 0;
+}
+
+.ant-collapse>.ant-collapse-item>.ant-collapse-header .ant-collapse-arrow {
+
+    svg {
+        display: none;
+    }
+}
+
+.ant-collapse-header {
+    div {
+        display: none;
+    }
+}
+
+.ant-collapse-item {
+    background: #FFFFFF;
+    padding: 1.9rem 8.6rem 1.9rem 3.4rem;
+    position: relative;
+    transition: ease 0.4s;
+
+    &:not(:last-child) {
+        margin-bottom: 2.1rem;
+    }
+
+    &::before {
+        content: "";
+        width: 0.7rem;
+        height: 0.17rem;
+        background: #1D1D1D;
+
+        position: absolute;
+        top: 50%;
+        right: 5rem;
+    }
+
+    &::after {
+        content: "";
+        width: 0.7rem;
+        height: 0.17rem;
+        background: #1D1D1D;
+        transform: rotate(90deg);
+
+        position: absolute;
+        top: 50%;
+        right: 5rem;
+        transition: ease 0.4s;
+    }
+}
+
+
+.ant-collapse-item-active {
+
+    &::after {
+        transform: rotate(0deg);
+
+        position: absolute;
+        top: 50%;
+        right: 5rem;
+    }
+}
