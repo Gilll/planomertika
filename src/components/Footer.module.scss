@@ -1,0 +1,53 @@
+.footer {
+    background: #1D1D1D;
+    padding: 8rem 0 4.4rem 0;
+}
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+} 
+
+.logo {
+    width: 8rem;
+    height: 8.6rem;
+
+    img {
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.addressWrap {
+    a:hover {
+        color: #FFC443;
+    }
+}
+
+.addressItem {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.footerLink {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #ffffff;
+
+    &:hover {
+        color: #FFC443;
+    }
+
+}
+
+.logoDeveloper {
+    width: 18.2rem;
+    height: 5.4rem;
+
+    img {
+        height: 100%;
+        object-fit: contain;
+    }
+}

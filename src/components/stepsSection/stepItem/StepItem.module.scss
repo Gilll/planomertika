@@ -1,7 +1,6 @@
 .stepItem {
     width: 20%;
 
-
     &__img {
         width: 7rem;
         height: 7rem;
@@ -14,6 +13,9 @@
         background: #ffffff;
         border-radius: 0px 0px 1.5rem 0;
         margin-bottom: 2rem;
+
+        position: relative;
+        z-index: 1;
 
         img {
             width: 2.7rem;

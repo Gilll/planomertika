@@ -1,0 +1,16 @@
+.stepSection {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    &::before {
+        content: "";
+        width: 80%;
+        height: 0.1rem;
+        border-top: 0.1rem dashed  #C4C4C4;
+
+        position: absolute;
+        top: 3.5rem;
+        left: 0;
+    }
+}
