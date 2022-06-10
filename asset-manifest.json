@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/planomertika/static/css/main.c1725726.css",
-    "main.js": "/planomertika/static/js/main.9d48b1e2.js",
+    "main.css": "/planomertika/static/css/main.154a3e4c.css",
+    "main.js": "/planomertika/static/js/main.0bd6aea0.js",
     "static/media/rev1.png": "/planomertika/static/media/rev1.fdb996b4a18c8139f4f1.png",
     "static/media/Gilroy-UltraLightItalic.eot": "/planomertika/static/media/Gilroy-UltraLightItalic.a6fc8679f9d9bbc3e3a7.eot",
     "static/media/Gilroy-UltraLightItalic.ttf": "/planomertika/static/media/Gilroy-UltraLightItalic.68a9a27f1aa1261013f3.ttf",
@@ -95,11 +95,11 @@
     "index.html": "/planomertika/index.html",
     "static/media/arrowPrev.svg": "/planomertika/static/media/arrowPrev.ce338039e3d1a04c9758.svg",
     "static/media/arrowNext.svg": "/planomertika/static/media/arrowNext.ed4858011ad34b78d6a5.svg",
-    "main.c1725726.css.map": "/planomertika/static/css/main.c1725726.css.map",
-    "main.9d48b1e2.js.map": "/planomertika/static/js/main.9d48b1e2.js.map"
+    "main.154a3e4c.css.map": "/planomertika/static/css/main.154a3e4c.css.map",
+    "main.0bd6aea0.js.map": "/planomertika/static/js/main.0bd6aea0.js.map"
   },
   "entrypoints": [
-    "static/css/main.c1725726.css",
-    "static/js/main.9d48b1e2.js"
+    "static/css/main.154a3e4c.css",
+    "static/js/main.0bd6aea0.js"
   ]
 }
