@@ -1,7 +1,9 @@
 {
   "files": {
-    "main.css": "/planomertika/static/css/main.154a3e4c.css",
-    "main.js": "/planomertika/static/js/main.0bd6aea0.js",
+    "main.css": "/planomertika/static/css/main.bde75533.css",
+    "main.js": "/planomertika/static/js/main.be9b5925.js",
+    "static/media/reviewsBanner.png": "/planomertika/static/media/reviewsBanner.c65e22024d0d14bfffa2.png",
+    "static/media/bannerOther1.png": "/planomertika/static/media/bannerOther1.51f9765b7c023d620332.png",
     "static/media/rev1.png": "/planomertika/static/media/rev1.fdb996b4a18c8139f4f1.png",
     "static/media/Gilroy-UltraLightItalic.eot": "/planomertika/static/media/Gilroy-UltraLightItalic.a6fc8679f9d9bbc3e3a7.eot",
     "static/media/Gilroy-UltraLightItalic.ttf": "/planomertika/static/media/Gilroy-UltraLightItalic.68a9a27f1aa1261013f3.ttf",
@@ -84,6 +86,8 @@
     "static/media/Gilroy-Heavy.woff2": "/planomertika/static/media/Gilroy-Heavy.19b3f6fe15dc6f668d28.woff2",
     "static/media/Gilroy-Regular.woff2": "/planomertika/static/media/Gilroy-Regular.f6c9931fabe5a6eb3307.woff2",
     "static/media/Gilroy-Extrabold.woff2": "/planomertika/static/media/Gilroy-Extrabold.5c5942d3e4d9a9645df4.woff2",
+    "static/media/avaReviews1.png": "/planomertika/static/media/avaReviews1.567a6ed70bfff239e1b3.png",
+    "static/media/avaReviews3.png": "/planomertika/static/media/avaReviews3.577b2b757cb092171fb8.png",
     "static/media/step1.svg": "/planomertika/static/media/step1.613170b560428d94e525b585676bf395.svg",
     "static/media/step4.svg": "/planomertika/static/media/step4.c9bc512468bca2cf65f0bc35ed5f6cae.svg",
     "static/media/step3.svg": "/planomertika/static/media/step3.52eadab8eb47203d50d2ac76229cdef7.svg",
@@ -94,12 +98,13 @@
     "static/media/slick.woff": "/planomertika/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/planomertika/index.html",
     "static/media/arrowPrev.svg": "/planomertika/static/media/arrowPrev.ce338039e3d1a04c9758.svg",
+    "static/media/starGold.svg": "/planomertika/static/media/starGold.f5bacfa89926a54e80fecf8dcc784da5.svg",
     "static/media/arrowNext.svg": "/planomertika/static/media/arrowNext.ed4858011ad34b78d6a5.svg",
-    "main.154a3e4c.css.map": "/planomertika/static/css/main.154a3e4c.css.map",
-    "main.0bd6aea0.js.map": "/planomertika/static/js/main.0bd6aea0.js.map"
+    "main.bde75533.css.map": "/planomertika/static/css/main.bde75533.css.map",
+    "main.be9b5925.js.map": "/planomertika/static/js/main.be9b5925.js.map"
   },
   "entrypoints": [
-    "static/css/main.154a3e4c.css",
-    "static/js/main.0bd6aea0.js"
+    "static/css/main.bde75533.css",
+    "static/js/main.be9b5925.js"
   ]
 }
