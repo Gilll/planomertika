@@ -1,23 +1,23 @@
 import React from 'react';
 import BannerOther from '../components/bannerOther/BannerOther';
-// import MyBtn from '../components/myBtn/MyBtn';
+import AboutSection from '../components/aboutSection/AboutSecion';
+import FormSection from '../components/FormSection/FormSection';
+import img1 from './../asetss/img/bannerOther1.png';
 
 
-
-
-
+const data = {
+    img1: img1,
+}
 
 
 const About = () => {
-    // const [any,setAny] = useState(-1);
+    
 
     return (
         <div>
-            {/* <h1>about</h1> */}
-            {/* {(any>0) ?'gkfdkjfg': 'lfklfdkjgdlfkdddd55555'}
-            <MyBtn  title="Заполнить анкету" onClick={() => console.log(1)}/>
-            <div className="" onClick={() => console.log(1)}>Заполнить анкету</div> */}
-            <BannerOther />
+            <BannerOther img={data.img1}/>
+            <AboutSection />
+            <FormSection />
         </div>
     );
 };

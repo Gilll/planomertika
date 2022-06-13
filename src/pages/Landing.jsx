@@ -21,14 +21,14 @@ import FormSection from '../components/FormSection/FormSection';
 
 
 const Landing = () => {
-    const sliderSettings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        className: 'custom-slider'
-    };
+    // const sliderSettings = {
+    //     dots: true,
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     className: 'custom-slider'
+    // };
 
     return (
         <div className='main'>

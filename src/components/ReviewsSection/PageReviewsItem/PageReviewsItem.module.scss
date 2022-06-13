@@ -1,0 +1,81 @@
+.reviewsItem {
+    display: flex;
+}
+
+.avatarBlock {
+    width: 8rem;
+    height: 8rem;
+    margin-right: 4rem;
+
+    img {
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.infoBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.author {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1d1d1d;
+}
+
+.place {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #ACACAC;
+}
+
+.description {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #1d1d1d;
+}
+
+.rangeDate {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 1.4rem;
+}
+
+.rangeWrap {
+    display: flex;
+    align-items: center;
+    margin-right: 1.2rem;
+
+    img {
+        width: 2rem;
+        height: 2rem;
+        object-fit: contain;
+
+        &:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+}
+
+.date {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #ACACAC;
+}
+
+.textReview {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #1d1d1d;
+    margin-bottom: 1rem;
+}
+
+.more {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #FFC443;
+    border-bottom: 0.1rem solid #FFC443;
+    width: max-content;
+}

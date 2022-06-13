@@ -1,0 +1,17 @@
+.reviewsSection {
+    margin-bottom: 19rem;
+}
+
+.title {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #1D1D1D;
+    margin-bottom: 5rem;
+}
+
+.reviewsWrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 4rem;
+    row-gap: 5rem;
+}

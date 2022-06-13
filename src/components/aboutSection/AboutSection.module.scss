@@ -1,0 +1,52 @@
+.aboutSection {
+    margin-bottom: 19rem;
+}
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contentBlock {
+    width: 62.3rem;
+
+}
+
+.heading {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #1D1D1D;
+    margin-bottom: 2.8rem;
+}
+
+.text {
+    margin-bottom: 3rem;
+}
+
+.item {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #1D1D1D;
+
+    p:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+}
+
+.title {
+    font-weight: 500;
+}
+
+.imgBlock {
+    width: 71.9rem;
+    height: 81.5rem;
+
+    img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
