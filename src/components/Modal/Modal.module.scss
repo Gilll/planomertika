@@ -1,0 +1,64 @@
+.modal {
+    position: fixed;
+    z-index: 999999;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(31, 31, 31, 0.4);
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: ease 0.5s;
+
+    &__body {
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem;
+    }
+
+    &__content {
+        background-color: #ffffff;
+        width: 90.9rem;
+        position: relative;
+    }
+
+    &__close {
+        width: 2.5rem;
+        height: 2.5rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: absolute;
+        right: 1.7rem;
+        top: 1.8rem;
+        z-index: 99;
+    }
+
+    &__close-img {
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &__content-wrap {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    &.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    &__clouse {
+        width: 3rem;
+        height: 3rem;
+        background: red;
+    }
+}
+
