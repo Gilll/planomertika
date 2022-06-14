@@ -1,0 +1,17 @@
+.questionsSection {
+    margin-bottom: 19rem;
+}
+
+.title {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #1D1D1D;
+    margin-bottom: 5rem;
+}
+
+.itemsWrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 4rem;
+    row-gap: 8.4rem;
+}

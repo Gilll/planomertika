@@ -31,8 +31,8 @@ const reviewsItem = [
     },
     {
         avatar: img3,
-        author: "г. Москва",
-        place: "Спасибо ребятам из planometrika.ru!",
+        author: "Антон и Ася",
+        place: "г. Москва",
         description: "Спасибо ребятам из planometrika.ru!",
         star: star,
         date: "10 декабря",

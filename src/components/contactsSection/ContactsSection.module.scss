@@ -1,0 +1,43 @@
+.titleWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+}
+
+.title {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #1d1d1d;
+}
+
+.contacts {
+    padding: 4rem 3rem;
+    background: #ffffff;
+    width: 48.2rem;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    padding-bottom: 4rem;
+    border-bottom: 0.1rem solid #C4C4C4;
+}
+
+.logo {
+    width: 12rem;
+    height: 3.5rem;
+
+    img {
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.blockTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1d1d1d;
+    margin-right: auto;
+    margin-left: auto;
+}

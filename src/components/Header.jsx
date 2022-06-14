@@ -18,23 +18,22 @@ const Header = () => {
                 <nav className={s.header__nav}>
                     <ul className={s.header__list}>
                         <li className={s.header__item}>
-
-                            <NavLink to={RouteNames.ABOUT} className={s.header__link}>О проекте</NavLink>
+                            <NavLink to={RouteNames.ABOUT} className="link">О проекте</NavLink>
                         </li>
                         <li className={s.header__item}>
-                            <NavLink to={RouteNames.REVIEWS} className={s.header__link}>Отзывы</NavLink>
+                            <NavLink to={RouteNames.REVIEWS} className="link">Отзывы</NavLink>
                         </li>
                         <li className={s.header__item}>
-                            <NavLink to={RouteNames.FAQPage} className={s.header__link}>Вопросы и ответы</NavLink>
+                            <NavLink to={RouteNames.FAQPage} className="link">Вопросы и ответы</NavLink>
                         </li>
                         <li className={s.header__item}>
-                            <NavLink to={RouteNames.CONTACTS} className={s.header__link}>Контакты</NavLink>
+                            <NavLink to={RouteNames.CONTACTS} className="link">Контакты</NavLink>
                         </li>
                         <li className={s.header__itemUser}>
                             <div className={s.header__itemImg}>
                                 <img src={process.env.PUBLIC_URL + "/img/user.svg"} alt="" />
                             </div>
-                            <NavLink to={RouteNames.MYACCOUNT} className={s.header__link}>Личный кабинет</NavLink>
+                            <NavLink to={RouteNames.MYACCOUNT} className="link">Личный кабинет</NavLink>
                         </li>
                     </ul>
                 </nav>

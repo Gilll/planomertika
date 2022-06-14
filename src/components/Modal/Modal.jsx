@@ -11,7 +11,7 @@ const Modal = ({active, setActive, children}) => {
             <div className="modal__body">
                 <div className="modal__content">
                     <button className="modal__clouse" onClick = {() => setActive(false)}>
-                        <img src="" alt="" />
+                        <img src={process.env.PUBLIC_URL + "/img/clouseIcon.svg"} alt="" />
                     </button>
                     <div className="modal__content-wrap">
                         {children}

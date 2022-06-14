@@ -25,25 +25,6 @@
         position: relative;
     }
 
-    &__close {
-        width: 2.5rem;
-        height: 2.5rem;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        position: absolute;
-        right: 1.7rem;
-        top: 1.8rem;
-        z-index: 99;
-    }
-
-    &__close-img {
-        height: 100%;
-        object-fit: contain;
-    }
-
     &__content-wrap {
         display: flex;
         justify-content: space-between;
@@ -56,9 +37,17 @@
     }
 
     &__clouse {
-        width: 3rem;
-        height: 3rem;
-        background: red;
+        width: 2.5rem;
+        height: 2.5rem;
+
+        position: absolute;
+        top: 5rem;
+        right: 5rem;
+
+        img {
+            height: 100%;
+            object-fit: contain;
+        }
     }
 }
 
