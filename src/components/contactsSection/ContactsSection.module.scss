@@ -11,33 +11,44 @@
     color: #1d1d1d;
 }
 
+.content {
+    height: 73rem;
+    margin-bottom: 19rem;
+    position: relative;
+}
+
+.mapWrap {
+    width: 100%;
+    height: 100%;
+
+    .map {
+        width: 100%;
+        height: 100%;
+
+        .ymaps-2-1-79-map {
+            width: 100%;
+        height: 100%;
+        }
+    }
+}
+
 .contacts {
     padding: 4rem 3rem;
     background: #ffffff;
     width: 48.2rem;
-}
 
-.top {
-    display: flex;
-    align-items: center;
-    padding-bottom: 4rem;
-    border-bottom: 0.1rem solid #C4C4C4;
-}
+    position: absolute;
+    top: 8.8rem;
+    left: 5.5rem;
+    z-index: 1;
 
-.logo {
-    width: 12rem;
-    height: 3.5rem;
+    display: none;
 
-    img {
-        height: 100%;
-        object-fit: contain;
+
+    &.active {
+        display: block;
     }
 }
 
-.blockTitle {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1d1d1d;
-    margin-right: auto;
-    margin-left: auto;
-}
+
+  

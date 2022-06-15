@@ -33,7 +33,8 @@ const Header = () => {
                             <div className={s.header__itemImg}>
                                 <img src={process.env.PUBLIC_URL + "/img/user.svg"} alt="" />
                             </div>
-                            <NavLink to={RouteNames.MYACCOUNT} className="link">Личный кабинет</NavLink>
+                            {/* <NavLink to={RouteNames.MYACCOUNT} className="link">Личный кабинет</NavLink> */}
+                            <NavLink to={RouteNames.REQUEST} className="link">Личный кабинет</NavLink>
                         </li>
                     </ul>
                 </nav>

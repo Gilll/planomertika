@@ -2,6 +2,7 @@ import React from 'react';
 import BannerOther from './../components/bannerOther/BannerOther';
 import img4 from './../asetss/img/faqBanner.png';
 import QuestionsSection from '../components/questionsSection/QuestionsSecion';
+import FormSection from '../components/FormSection/FormSection';
 
 
 const data = {
@@ -15,6 +16,7 @@ const Faq = () => {
         <div>
             <BannerOther img={data.img4}/>
             <QuestionsSection />
+            <FormSection />
         </div>
     );
 };
