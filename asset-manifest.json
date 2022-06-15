@@ -1,9 +1,11 @@
 {
   "files": {
-    "main.css": "/planomertika/static/css/main.bde75533.css",
-    "main.js": "/planomertika/static/js/main.be9b5925.js",
+    "main.css": "/planomertika/static/css/main.e9ac7353.css",
+    "main.js": "/planomertika/static/js/main.208b59ed.js",
+    "static/media/faqBanner.png": "/planomertika/static/media/faqBanner.f79c1b1e3ffc5c317630.png",
     "static/media/reviewsBanner.png": "/planomertika/static/media/reviewsBanner.c65e22024d0d14bfffa2.png",
     "static/media/bannerOther1.png": "/planomertika/static/media/bannerOther1.51f9765b7c023d620332.png",
+    "static/media/contactsBanner.png": "/planomertika/static/media/contactsBanner.99ff73c82e2e4c1b919a.png",
     "static/media/rev1.png": "/planomertika/static/media/rev1.fdb996b4a18c8139f4f1.png",
     "static/media/Gilroy-UltraLightItalic.eot": "/planomertika/static/media/Gilroy-UltraLightItalic.a6fc8679f9d9bbc3e3a7.eot",
     "static/media/Gilroy-UltraLightItalic.ttf": "/planomertika/static/media/Gilroy-UltraLightItalic.68a9a27f1aa1261013f3.ttf",
@@ -58,6 +60,7 @@
     "static/media/Gilroy-Medium.woff": "/planomertika/static/media/Gilroy-Medium.5329bc502cdc219ad294.woff",
     "static/media/Gilroy-UltraLight.woff": "/planomertika/static/media/Gilroy-UltraLight.9169fa71e31912724922.woff",
     "static/media/Gilroy-Bold.woff": "/planomertika/static/media/Gilroy-Bold.0607a1bc636f63251ed8.woff",
+    "static/media/avaReviews1.png": "/planomertika/static/media/avaReviews1.965c8920e6cb891e3839.png",
     "static/media/Gilroy-Semibold.woff": "/planomertika/static/media/Gilroy-Semibold.5b042906a8b58ec4633e.woff",
     "static/media/Gilroy-Black.woff": "/planomertika/static/media/Gilroy-Black.a9df216db6a98486e2d4.woff",
     "static/media/Gilroy-Light.woff": "/planomertika/static/media/Gilroy-Light.368f09f56e89b3fe11c7.woff",
@@ -65,6 +68,8 @@
     "static/media/Gilroy-Heavy.woff": "/planomertika/static/media/Gilroy-Heavy.406f336a83b15e582953.woff",
     "static/media/Gilroy-Regular.woff": "/planomertika/static/media/Gilroy-Regular.ebe86c0337572553acea.woff",
     "static/media/Gilroy-Extrabold.woff": "/planomertika/static/media/Gilroy-Extrabold.f39ff81c45c126012265.woff",
+    "static/media/avaReviews2.png": "/planomertika/static/media/avaReviews2.3f25512006d12c10b790.png",
+    "static/media/avaReviews3.png": "/planomertika/static/media/avaReviews3.5899137e2945ad870971.png",
     "static/media/Gilroy-MediumItalic.woff2": "/planomertika/static/media/Gilroy-MediumItalic.56b6f6d9042d2dab3555.woff2",
     "static/media/img.jpg": "/planomertika/static/media/img.22379b23b83a051b4504.jpg",
     "static/media/Gilroy-BoldItalic.woff2": "/planomertika/static/media/Gilroy-BoldItalic.990e3c5e66184d58924e.woff2",
@@ -77,6 +82,7 @@
     "static/media/Gilroy-ExtraboldItalic.woff2": "/planomertika/static/media/Gilroy-ExtraboldItalic.cb765d86e74c6a0ad15a.woff2",
     "static/media/Gilroy-SemiboldItalic.woff2": "/planomertika/static/media/Gilroy-SemiboldItalic.f573f3d8a93d564aa1e6.woff2",
     "static/media/Gilroy-Medium.woff2": "/planomertika/static/media/Gilroy-Medium.acd4e613de34a826c191.woff2",
+    "static/media/avaReviews5.png": "/planomertika/static/media/avaReviews5.131a28cdcd80d51d49d7.png",
     "static/media/Gilroy-Bold.woff2": "/planomertika/static/media/Gilroy-Bold.ef7c40ff1efeaaa4c7c6.woff2",
     "static/media/Gilroy-UltraLight.woff2": "/planomertika/static/media/Gilroy-UltraLight.378f435161b00e9b8b60.woff2",
     "static/media/Gilroy-Black.woff2": "/planomertika/static/media/Gilroy-Black.ae06da6f25281591aa09.woff2",
@@ -86,8 +92,7 @@
     "static/media/Gilroy-Heavy.woff2": "/planomertika/static/media/Gilroy-Heavy.19b3f6fe15dc6f668d28.woff2",
     "static/media/Gilroy-Regular.woff2": "/planomertika/static/media/Gilroy-Regular.f6c9931fabe5a6eb3307.woff2",
     "static/media/Gilroy-Extrabold.woff2": "/planomertika/static/media/Gilroy-Extrabold.5c5942d3e4d9a9645df4.woff2",
-    "static/media/avaReviews1.png": "/planomertika/static/media/avaReviews1.567a6ed70bfff239e1b3.png",
-    "static/media/avaReviews3.png": "/planomertika/static/media/avaReviews3.577b2b757cb092171fb8.png",
+    "static/media/avaReviews4.png": "/planomertika/static/media/avaReviews4.8abd9ca0ea982f272ecf.png",
     "static/media/step1.svg": "/planomertika/static/media/step1.613170b560428d94e525b585676bf395.svg",
     "static/media/step4.svg": "/planomertika/static/media/step4.c9bc512468bca2cf65f0bc35ed5f6cae.svg",
     "static/media/step3.svg": "/planomertika/static/media/step3.52eadab8eb47203d50d2ac76229cdef7.svg",
@@ -100,11 +105,11 @@
     "static/media/arrowPrev.svg": "/planomertika/static/media/arrowPrev.ce338039e3d1a04c9758.svg",
     "static/media/starGold.svg": "/planomertika/static/media/starGold.f5bacfa89926a54e80fecf8dcc784da5.svg",
     "static/media/arrowNext.svg": "/planomertika/static/media/arrowNext.ed4858011ad34b78d6a5.svg",
-    "main.bde75533.css.map": "/planomertika/static/css/main.bde75533.css.map",
-    "main.be9b5925.js.map": "/planomertika/static/js/main.be9b5925.js.map"
+    "main.e9ac7353.css.map": "/planomertika/static/css/main.e9ac7353.css.map",
+    "main.208b59ed.js.map": "/planomertika/static/js/main.208b59ed.js.map"
   },
   "entrypoints": [
-    "static/css/main.bde75533.css",
-    "static/js/main.be9b5925.js"
+    "static/css/main.e9ac7353.css",
+    "static/js/main.208b59ed.js"
   ]
 }
