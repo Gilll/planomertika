@@ -1,0 +1,72 @@
+.login {
+    margin-bottom: 17rem;
+
+
+    .inner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .loginBlock {
+        width: 49.4rem;
+    }
+
+    .infoBlock {
+        width: 82.2rem;
+    }
+
+    .socialIcon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: #4680C2;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 1.9rem;
+            height: 1.7rem;
+            object-fit: contain;
+        }
+
+        &:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+
+    .loginSocial {
+        display: flex;
+        align-items: center;
+    }
+
+    .socialName {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: #1D1D1D;
+        margin-right: 1rem;
+    }
+
+    .infoItem {
+        padding: 3rem;
+        border: 1px dashed #C4C4C4;
+
+        &:not(:last-child) {
+            margin-bottom: 3rem;
+        }
+    }
+
+    .titleItem {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #1D1D1D;
+        margin-bottom: 2rem;
+    }
+
+    .subtitleItem {
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: #1D1D1D;
+    }
+}
