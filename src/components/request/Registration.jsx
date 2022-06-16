@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button } from "antd";
 import { RequestSteps } from "./RequestSteps";
 import LoginForm from '../loginForm/LoginForm';
 import s from './RequestSteps.module.scss';
-import BtnDark from '../btnDark/BtnDark';
 import MyBtn from '../myBtn/MyBtn';
 import {Link} from "react-router-dom";
+import {Button} from "antd";
+
 
 
 
@@ -18,7 +18,8 @@ const Registration = ({ nextStep }) => {
                     <div className={s.loginBlock}>
                         <LoginForm>
                             <MyBtn title="Зарегистрироваться" />
-                            <BtnDark title="Войти" onClick={() => nextStep(RequestSteps.QUESTIONNAIRE)} />
+                            <Button className={s.btnDark} type="primary"
+                            onClick={() => nextStep(RequestSteps.QUESTIONNAIRE)}>Войти</Button>
                         </LoginForm>
                         <div className={s.loginSocial}>
                             <div className={s.socialName}>Войти через социальную сеть</div>
@@ -28,6 +29,7 @@ const Registration = ({ nextStep }) => {
                             <Link to="#" className={s.socialIcon}>
                                 <img src="img/vkIcon.svg" alt="" />
                             </Link>
+
                         </div>
                     </div>
                     <div className={s.infoBlock}>

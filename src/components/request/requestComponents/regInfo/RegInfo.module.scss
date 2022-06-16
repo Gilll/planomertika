@@ -1,0 +1,36 @@
+.regInfo {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background: linear-gradient(87.22deg, #FFB40F -28.91%, #FFCE62 105.28%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2.3rem;
+
+    img {
+        width: 2rem;
+        height: 2rem;
+        object-fit: contain;
+    }
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1D1D1D;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #1D1D1D;
+}
+

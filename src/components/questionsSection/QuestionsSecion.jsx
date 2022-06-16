@@ -54,7 +54,7 @@ const QuestionsSection = () => {
                     <div className={s.title}>Часто задаваемые вопросы</div>
                     <div className={s.itemsWrap}>
                     {questionItem.map((questionItem, index) =>
-                        <QuestionItem
+                        <QuestionItem  key={index}
                             title={questionItem.title}
                             text={questionItem.text}
                             more={questionItem.more}

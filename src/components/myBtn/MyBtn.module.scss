@@ -3,12 +3,14 @@
     border-radius: 2rem 0;
     height: 5.8rem;
     width: 22.6rem;
-
     font-size: 1.8rem;
     font-weight: 700;
     color: #1D1D1D;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: easy .5s;
+    &:hover {
+        background: #FFCE62;
+    }
 }
