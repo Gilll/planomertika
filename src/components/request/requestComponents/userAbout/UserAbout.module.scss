@@ -1,0 +1,93 @@
+.userAbout {
+    width: 47.8rem;
+    background: linear-gradient(90deg, #F7F7F7 28.48%, rgba(247, 247, 247, 0) 108.21%);
+    padding: 3rem 3.7rem;
+    border-left: 0.7rem solid #FFC443;
+    margin-bottom: 7.9rem;
+}
+
+
+.name {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1d1d1d;
+    margin-bottom: 1.5rem;
+}
+
+.eMail {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #1d1d1d;
+    margin-bottom: 1.5rem;
+}
+
+.phone {
+    position: relative;
+    margin-bottom: 1.5rem;
+
+    img {
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: contain;
+
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    input {
+        background: none;
+        outline: none;
+        border: none;
+
+        &::placeholder {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #FFC443;
+            padding-left: 3.5rem;
+        }
+    }
+}
+
+.logOut {
+    display: flex;
+    align-items: center;
+    
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #1d1d1d;
+    margin-bottom: 2rem;
+
+    img {
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: contain;
+        margin-right: 1rem;
+    }
+
+    &:hover {
+        color: #FFC443;
+    }
+}
+
+.infoMoney {
+    display: flex;
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 0.1rem solid #ACACAC;
+    width: max-content;
+
+    img {
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: contain;
+        margin-right: 1rem;
+    }
+
+    span {
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: #1d1d1d;
+    }
+}

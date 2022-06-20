@@ -1,5 +1,5 @@
 @import "set.scss";
-@import "fonts.css"; 
+@import "fonts.css";
 @import "./../components/faqSection/FaqSection.module.scss";
 @import "./../components/faqSection/faqContent/FaqContent.module.scss";
 @import "./../components/reviews/Reviews.module.scss";
@@ -20,6 +20,7 @@ body h1 {
 .custom-slider {
   margin: 6rem 0;
   width: 100%;
+
   .item {
     background-color: gray;
     color: white;
@@ -35,7 +36,7 @@ body h1 {
 }
 
 .ant-typography-single-line {
-  white-space: normal !important; 
+  white-space: normal !important;
 }
 
 
@@ -45,11 +46,11 @@ body h1 {
   transition: ease 0.5s;
 
   &:hover {
-      color: rgba(29, 29, 29, 1);
+    color: rgba(29, 29, 29, 1);
   }
 
   &.active {
-      text-shadow: 0.5px 0.5px 0px rgb(29 29 29);
+    text-shadow: 0.5px 0.5px 0px rgb(29 29 29);
   }
 }
 
@@ -84,7 +85,7 @@ body h1 {
 }
 
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  background-color: rgba(#FFC443, 0.1)  !important;
+  background-color: rgba(#FFC443, 0.1) !important;
 }
 
 .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
@@ -92,7 +93,7 @@ body h1 {
 }
 
 .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
-  box-shadow:  0 0 2px rgb(255, 196, 20%) !important;
+  box-shadow: 0 0 2px rgb(255, 196, 20%) !important;
 }
 
 
@@ -117,7 +118,8 @@ body h1 {
   right: 2rem !important;
 }
 
-.ant-select-single.ant-select-show-arrow .ant-select-selection-item, .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+.ant-select-single.ant-select-show-arrow .ant-select-selection-item,
+.ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
   padding-right: 2rem;
   display: flex;
   align-items: center;
@@ -129,4 +131,41 @@ body h1 {
 
 .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
   border-color: #FFC443 !important;
+}
+
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #ffffff;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #ffffff;
+  border-color: #FFC443;
+}
+
+.ant-checkbox-inner {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  background-color: #fff !important;
+  border: 1px solid #FFC443 !important;
+  border-radius: 0px !important;
+}
+
+.ant-checkbox-checked:after {
+  border: 1px solid #faae0a !important;
+  border-radius: 0px !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner:after {
+  border: 2px solid #1d1d1d !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  width: 0.6rem;
+  height: 1.2rem;
+  left: 30%;
+  top: 40%;
+}
+
+.ant-checkbox-wrapper:after {
+  content: none !important;
 }
