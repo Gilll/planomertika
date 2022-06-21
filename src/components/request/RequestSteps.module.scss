@@ -232,6 +232,7 @@
 
 .step2 {
     margin-bottom: 17rem;
+    font-family: 'Gilroy';
 }
 
 .inner {
@@ -260,5 +261,79 @@
         font-size: 1.8rem;
         font-weight: 600;
         color: #acacac;
+    }
+}
+
+.checkboxes {
+    margin-bottom: 2.5rem;
+}
+
+.checkboxWrap {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.checkboxItem {
+    width: 16rem;
+    margin-right: 2.5rem;
+}
+
+
+.description {
+    visibility: hidden;
+    opacity: 0;
+    transition: ease 0.8s;
+
+    button {
+        display: flex;
+        align-items: center;
+        font-family: 'Gilroy';
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #1D1D1D;
+
+        img {
+            width: 1.5rem;
+            height: 1.5rem;
+            object-fit: contain;
+            margin-right: 1.5rem;
+        }
+    }
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+
+.userText {
+    .title {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #1D1D1D;
+    }
+
+    textarea {
+        width: 100%;
+        height: 17.1rem;
+        border:  0.1rem solid #ACACAC;
+        padding: 2rem;
+
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: #1d1d1d;
+        margin-bottom: 2.5rem;
+        resize: none;
+
+        &::placeholder {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #C4C4C4;
+        }
     }
 }
