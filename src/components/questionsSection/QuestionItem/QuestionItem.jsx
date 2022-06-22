@@ -35,7 +35,6 @@ const QuestionItem = ({ title, text, more }) => {
                 <EllipsisMiddle suffixCount={500} className={s.text}>
                     {text}
                 </EllipsisMiddle>
-                {/* <div className={s.text}>{text}</div> */}
                 <button className={s.more} onClick={() => setModalActive(true)}>{more}</button>
             <Modal active={modalActive} setActive={setModalActive}>
                 <div className={s.contentWrap}>

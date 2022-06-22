@@ -170,3 +170,34 @@ body h1 {
 .ant-checkbox-wrapper:after {
   content: none !important;
 }
+
+.ant-upload.ant-upload-drag {
+  background: transparent !important;
+  border: 1px dashed #C4C4C4 !important;
+}
+
+.ant-upload.ant-upload-drag p.ant-upload-hint {
+  font-size: 1.6rem !important;
+  font-weight: 400;
+  color: #ACACAC !important;
+  font-family: 'Gilroy';
+  width: 51%;
+  margin: 0 auto 1.5rem auto;
+}
+
+.ant-upload.ant-upload-drag p.ant-upload-text {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  color: #ACACAC !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    margin-right: 1.5rem;
+  }
+}

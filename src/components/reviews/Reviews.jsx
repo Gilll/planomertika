@@ -10,7 +10,8 @@ import img2 from './../../asetss/img/rev1.png';
 
 
 
-const Reviews = () => {
+const Reviews = (props) => {
+    
 
     const data = {
         title: "Оставить отзыв",
@@ -31,6 +32,8 @@ const Reviews = () => {
         },
     ]
 
+
+
     const sliderSettings = {
         dots: true,
         infinite: true,
@@ -38,27 +41,29 @@ const Reviews = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         className: 'custom-slider',
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
+        nextArrow: <Next />,
+        prevArrow: <Prev />,
         dotsClass: 'dots',
+        // nextArrow: 'arNext',
+        // prevArrow: 'arPrev'
     };
 
 
-    function NextArrow(props) {
+    function Next(props) {
         const { onClick } = props;
         return (
             <div
-                className={s.nextArrow}
+                className={s.arNext}
                 onClick={onClick}
             />
         );
     }
 
-    function PrevArrow(props) {
+    function Prev(props) {
         const { onClick } = props;
         return (
             <div
-                className={s.prevArrow}
+                className={s.arPrev}
                 onClick={onClick}
             />
         );
@@ -77,8 +82,15 @@ const Reviews = () => {
                     <div className="">
                         <Slider  {...sliderSettings}>
                             {reviews.map((reviews, index) =>
-                                <ReviewsItem img={reviews.img} name={reviews.name} date={reviews.date} text={reviews.text} />
+                                <ReviewsItem key={index} img={reviews.img} name={reviews.name} date={reviews.date} text={reviews.text} />
                             )}
+                            {/* <div className='pagination'>
+                                <Next  onClick={props} className={s.arNext}>
+                                    <img src="url(img/arrowNext.svg)" alt="" />
+                                </Next>
+                                <div className="dots"></div>
+                                <Prev  onClick={props} className={s.arPrev}/>
+                            </div> */}
                         </Slider>
                     </div>
                 </div>

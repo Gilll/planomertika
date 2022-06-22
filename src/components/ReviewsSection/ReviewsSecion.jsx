@@ -70,7 +70,7 @@ const ReviewsSection = () => {
                     <div className={s.title}>Отзывы клиентов</div>
                     <div className={s.reviewsWrap}>
                     {reviewsItem.map((reviewsItem, index) =>
-                        <PageReviewsItem
+                        <PageReviewsItem key={index}
                             avatar={reviewsItem.avatar}
                             author={reviewsItem.author}
                             place={reviewsItem.place}

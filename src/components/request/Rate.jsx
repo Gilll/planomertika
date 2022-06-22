@@ -159,7 +159,7 @@ const Rate = ({ nextStep }) => {
                             <div className={s.next}>
                                 <div className={s.nextItem}>План БТИ</div>
                             </div>
-                            <Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.CHAT)}>Далее</Button>
+                            <Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.PLAN)}>Далее</Button>
                         </div>
                     </div>
                     <div className={s.infoBlock}>

@@ -16,10 +16,11 @@
 }
 
 
-.nextArrow {
+.arNext {
     width: 4rem;
-    height: 1rem;
+    height: 4rem;
     position: absolute;
+    background: red;
 
     bottom: 10rem;
     right: 30%;
@@ -42,10 +43,12 @@
 }
 
 
-.prevArrow {
+.arPrev {
     width: 4rem;
-    height: 1rem;
+    height: 4rem;
     position: absolute;
+    background: red;
+
 
     bottom: 10rem;
     left: 47%;
@@ -66,6 +69,9 @@
     }
 }
 
+.sliderWrap {
+    position: relative;
+}
 
 .slick-active {
     position: absolute;
@@ -78,7 +84,15 @@
     background: #C4C4C4;
 }
 
+.pagination {
+    display: flex;
+    align-items: center;
 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+}
 .dots {
     width: max-content;
     bottom: 10rem;

@@ -9,7 +9,6 @@ import {Button} from "antd";
 
 
 
-
 const Registration = ({ nextStep }) => {
     return (
         <section className={s.login}>
@@ -29,7 +28,6 @@ const Registration = ({ nextStep }) => {
                             <Link to="#" className={s.socialIcon}>
                                 <img src="img/vkIcon.svg" alt="" />
                             </Link>
-
                         </div>
                     </div>
                     <div className={s.infoBlock}>
