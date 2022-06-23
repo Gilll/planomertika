@@ -1,10 +1,11 @@
 export const RequestSteps = {
     'REGISTRATION': '0',
     'QUESTIONNAIRE': 1,
-    'RATE': 2,
-    'PLAN': 3,
-    'CHAT': 4,
-    'WAITING': 5,
-    'RESULT': 6,
-    'HISTORY': 7
+    'CHARACTERISTICS': 2,
+    'RATE': 3,
+    'PLAN': 4,
+    'CHAT': 5,
+    'WAITING': 6,
+    'RESULT': 7,
+    'HISTORY': 8
 }

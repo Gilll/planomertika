@@ -149,7 +149,7 @@ const Questionnaire = ({ nextStep }) => {
                             <div className={s.nextItem}>Комнаты</div>
                             <div className={s.nextItem}>План БТИ</div>
                         </div>
-                        <Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.RATE)}>Далее</Button>
+                        <Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.CHARACTERISTICS)}>Далее</Button>
                     </div>
 
                     <div className={s.infoBlock}>

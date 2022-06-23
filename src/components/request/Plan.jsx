@@ -82,7 +82,7 @@ const Plan = ({ nextStep }) => {
                         <Checkbox style={{ marginBottom: '4rem'}}>
                                 У меня есть собственный замер, который я выполнил ответственно
                         </Checkbox>
-                        <Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.CHAT)}>Выбрать тариф</Button>
+                        <Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.RATE)}>Выбрать тариф</Button>
                     </div>
                     <div className={s.infoBlock}>
                         <UserAbout name="Александр Решетников" eMail="aleksreshetnikov@gmail.com" />

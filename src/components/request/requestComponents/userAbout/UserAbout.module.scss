@@ -71,11 +71,14 @@
     }
 }
 
+.bottomInfo {
+    padding-top: 2rem;
+    border-top: 0.1rem solid #ACACAC;
+}
+
 .infoMoney {
     display: flex;
     align-items: center;
-    padding-top: 2rem;
-    border-top: 0.1rem solid #ACACAC;
     width: max-content;
 
     img {
@@ -91,3 +94,5 @@
         color: #1d1d1d;
     }
 }
+
+
