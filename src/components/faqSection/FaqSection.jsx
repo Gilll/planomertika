@@ -48,7 +48,7 @@ const FaqSection = () => {
                             </div>
                             <div className={s.faqSection__tabsContent}>
                                 {{
-                                    0: <FaqContent title={data.title} text={data.text} />,
+                                    0: <FaqContent title={data.title} text={data.text}/>,
                                     1: <FaqContent title={data.title2} text={data.text2} />,
                                     2: <FaqContent title={data.title3} text={data.text3} />,
                                     3: <FaqContent title={data.title4} text={data.text4} />,
