@@ -461,3 +461,11 @@
         object-fit: contain;
     }
 }
+
+.waiting {
+    margin-bottom: 17rem;
+    
+    .inner {
+        display: flex;
+    }
+}
