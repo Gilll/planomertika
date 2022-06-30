@@ -5,22 +5,34 @@ import s from './RequestSteps.module.scss';
 import UserAbout from './requestComponents/userAbout/UserAbout';
 import InfoSteps from './requestComponents/infoSteps/InfoSteps';
 import Modal from '../Modal/Modal';
-import { Statistic } from 'antd';
 import Time from './requestComponents/time/Time';
-const { Countdown } = Statistic;
-const deadline = Date.now() + 1000 * 60 * 60 * 24 * 1 + 1000 * 30; // Moment is also OK
 
 
 
- 
-
-
-const Waiting = ({ nextStep }) => {
+const Waiting = ({ hours = 0, minutes = 0, seconds = 10, nextStep}) => {
     const [modalActive, setModalActive] = React.useState(false);
 
-    const onFinish = () => {
-        console.log('finished!');
+    const [over, setOver] = React.useState(false);
+    const [[h, m, sec], setTime] = React.useState([hours, minutes, seconds]);
+
+    const tick = () => {
+
+        if (h === 0 && m === 0 && sec === 0) {
+            setOver(true);
+            console.log('Время вышло')
+        } else if (m === 0 && sec === 0) {
+            setTime([h - 1, 59, 59]);
+        } else if (sec === 0) {
+            setTime([h, m - 1, 59]);
+        } else {
+            setTime([h, m, sec - 1]);
+        }
     };
+
+    React.useEffect(() => {
+        const timerID = setInterval(() => tick(), 1000);
+        return () => clearInterval(timerID);
+    });
 
     const data = {
         numberStep: "4",
@@ -35,14 +47,10 @@ const Waiting = ({ nextStep }) => {
                 <div className={s.inner}>
                     <div className={s.quizeBlock}>
                         <div className={s.title}>Архитектор делает планировку для вашей квартиры</div>
-                        <Countdown value={deadline} onFinish={onFinish} format="HH:mm:ss"  
-                        valueStyle ={{color: '#3f8600',}}/>
-                        <div className={s.countdown__keyWrap}>
-                            <span>часов</span>
-                            <span>минут</span>
-                        </div>
-                        <Time  hours={0} minutes={1}/>
-                    <Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.RESULT)}>next step</Button>
+                        <Time  hours={0} minutes={0} seconds={10}>
+                            <Button className={over ? "BtnColorTime active" : 'BtnColorTime'} onClick={() => nextStep(RequestSteps.RESULT)} type="primary">Скачать план</Button>
+                        </Time>
+                    
                     </div>
                     <div className={s.infoBlock}>
                         <UserAbout name="Александр Решетников" eMail="aleksreshetnikov@gmail.com">
