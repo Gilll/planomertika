@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/planomertika/static/css/main.98448b9d.css",
-    "main.js": "/planomertika/static/js/main.07859d7e.js",
+    "main.css": "/planomertika/static/css/main.fad71371.css",
+    "main.js": "/planomertika/static/js/main.53c21d48.js",
     "static/media/faqBanner.png": "/planomertika/static/media/faqBanner.f79c1b1e3ffc5c317630.png",
     "static/media/reviewsBanner.png": "/planomertika/static/media/reviewsBanner.c65e22024d0d14bfffa2.png",
     "static/media/bannerOther1.png": "/planomertika/static/media/bannerOther1.51f9765b7c023d620332.png",
@@ -93,24 +93,24 @@
     "static/media/Gilroy-Regular.woff2": "/planomertika/static/media/Gilroy-Regular.f6c9931fabe5a6eb3307.woff2",
     "static/media/Gilroy-Extrabold.woff2": "/planomertika/static/media/Gilroy-Extrabold.5c5942d3e4d9a9645df4.woff2",
     "static/media/avaReviews4.png": "/planomertika/static/media/avaReviews4.8abd9ca0ea982f272ecf.png",
-    "static/media/step1.svg": "/planomertika/static/media/step1.613170b560428d94e525b585676bf395.svg",
-    "static/media/step4.svg": "/planomertika/static/media/step4.c9bc512468bca2cf65f0bc35ed5f6cae.svg",
-    "static/media/step3.svg": "/planomertika/static/media/step3.52eadab8eb47203d50d2ac76229cdef7.svg",
-    "static/media/step2.svg": "/planomertika/static/media/step2.0a030ba8d0945098375cb67c2cac4b2b.svg",
+    "static/media/step1.svg": "/planomertika/static/media/step1.aa15f014afaa2252fd484ff56c510472.svg",
+    "static/media/step4.svg": "/planomertika/static/media/step4.7a8f189e060139ed525132292a118aa7.svg",
+    "static/media/step3.svg": "/planomertika/static/media/step3.c27d89285680584092797af0a1ec33b6.svg",
+    "static/media/step2.svg": "/planomertika/static/media/step2.0d6e9dcacfce09dfe2c2cba59488731b.svg",
     "static/media/slick.svg": "/planomertika/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/planomertika/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/planomertika/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/planomertika/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/planomertika/index.html",
-    "static/media/arrowPrev.svg": "/planomertika/static/media/arrowPrev.ce338039e3d1a04c9758.svg",
-    "static/media/starGold.svg": "/planomertika/static/media/starGold.f5bacfa89926a54e80fecf8dcc784da5.svg",
-    "static/media/arrowNext.svg": "/planomertika/static/media/arrowNext.ed4858011ad34b78d6a5.svg",
-    "static/media/arrowSelect.svg": "/planomertika/static/media/arrowSelect.e9c65c550ef136a583c4.svg",
-    "main.98448b9d.css.map": "/planomertika/static/css/main.98448b9d.css.map",
-    "main.07859d7e.js.map": "/planomertika/static/js/main.07859d7e.js.map"
+    "static/media/arrowPrev.svg": "/planomertika/static/media/arrowPrev.8e59848c23b774c012c4.svg",
+    "static/media/starGold.svg": "/planomertika/static/media/starGold.82b70bd00f2105ad588f9bbdc2faa655.svg",
+    "static/media/arrowNext.svg": "/planomertika/static/media/arrowNext.d824817cb5b57cd0e723.svg",
+    "static/media/arrowSelect.svg": "/planomertika/static/media/arrowSelect.c2e6cc8b18ed04562123.svg",
+    "main.fad71371.css.map": "/planomertika/static/css/main.fad71371.css.map",
+    "main.53c21d48.js.map": "/planomertika/static/js/main.53c21d48.js.map"
   },
   "entrypoints": [
-    "static/css/main.98448b9d.css",
-    "static/js/main.07859d7e.js"
+    "static/css/main.fad71371.css",
+    "static/js/main.53c21d48.js"
   ]
 }
