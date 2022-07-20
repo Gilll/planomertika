@@ -25,10 +25,6 @@ const UserAbout = ({ name, eMail, children }) => {
             </Link>
             <div className={s.bottomInfo}>
                 {children}
-                <div className={s.infoMoney}>
-                    <img src="img/money.svg" alt="" />
-                    <span>Вы еще не внесли оплату</span>
-                </div>
             </div>
         </div>
     );

@@ -213,3 +213,16 @@ body h1 {
   //   color: #faae0a;
   // }
 }
+
+
+.ant-modal {
+  width: 102rem !important;
+
+  .ant-modal-footer {
+    display: none;
+  }
+
+  .ant-modal-body {
+    padding: 5rem;
+  }
+}

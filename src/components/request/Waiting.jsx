@@ -59,7 +59,16 @@ const Waiting = ({ hours = 0, minutes = 0, seconds = 10, nextStep}) => {
                                 <span>
                                     Моя анкета
                                 </span>
-                                <img src="img/edit2.svg" alt="" />
+                            </div>
+                            <div className={s.myAnket} onClick={() => nextStep(RequestSteps.CHAT)}>
+                                <img src="img/chat-icon.svg" alt="" />
+                                <span>
+                                    Чат с архитектором
+                                </span>
+                            </div>
+                            <div className={s.infoMoney}>
+                                <img src="img/money.svg" alt="" />
+                                <span>Работа оплачена по тарифу «Чат с архитектором»</span>
                             </div>
                         </UserAbout>
                         <InfoSteps numberStep={data.numberStep} title={data.title} par1={data.par1} par2={data.par2} />

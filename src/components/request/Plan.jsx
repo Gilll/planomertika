@@ -77,15 +77,20 @@ const Plan = ({ nextStep }) => {
                                     <img src="img/upLoad.svg" alt="" />
                                     Загрузить файл с компьютера</p>
                             </Dragger>
-                            
+
                         </div>
-                        <Checkbox style={{ marginBottom: '4rem'}}>
-                                У меня есть собственный замер, который я выполнил ответственно
+                        <Checkbox style={{ marginBottom: '4rem' }}>
+                            У меня есть собственный замер, который я выполнил ответственно
                         </Checkbox>
                         <Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.RATE)}>Выбрать тариф</Button>
                     </div>
                     <div className={s.infoBlock}>
-                        <UserAbout name="Александр Решетников" eMail="aleksreshetnikov@gmail.com" />
+                        <UserAbout name="Александр Решетников" eMail="aleksreshetnikov@gmail.com">
+                            <div className={s.infoMoney}>
+                                <img src="img/money.svg" alt="" />
+                                <span>Вы еще не внесли оплату</span>
+                            </div>
+                        </UserAbout>
                         <InfoSteps numberStep={data.numberStep} title={data.title} par1={data.par1} par2={data.par2} />
                     </div>
                 </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from "antd";
 import { RequestSteps } from "./RequestSteps";
 import s from './RequestSteps.module.scss';
-import RegInfo from './requestComponents/regInfo/RegInfo';
 import UserAbout from './requestComponents/userAbout/UserAbout';
 import InfoSteps from './requestComponents/infoSteps/InfoSteps';
 import { Checkbox } from 'antd';
@@ -66,7 +65,6 @@ const Rate = ({ nextStep }) => {
             <div className="container">
                 <div className={s.inner}>
                     <div className={s.quizeBlock}>
-                        <RegInfo />
                         <div className={s.title}>Выберите подходящий для вас тариф</div>
                         <div className={s.selectRate}>
                             <div className={s.rateWrap}>
@@ -104,6 +102,10 @@ const Rate = ({ nextStep }) => {
                                     Моя анкета
                                 </span>
                                 <img src="img/edit2.svg" alt="" />
+                            </div>
+                            <div className={s.infoMoney}>
+                                <img src="img/money.svg" alt="" />
+                                <span>Вы еще не внесли оплату</span>
                             </div>
                         </UserAbout>
                         <InfoSteps numberStep={data.numberStep} title={data.title} par1={data.par1} par2={data.par2} />
