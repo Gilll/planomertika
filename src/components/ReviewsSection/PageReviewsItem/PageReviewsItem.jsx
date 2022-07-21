@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Typography } from 'antd';
 import s from "./PageReviewsItem.module.scss";
-// import Modal from "../../Modal/Modal";
-import { Button, Modal } from 'antd';
+import { Modal } from 'antd';
 
 
 const { Text } = Typography;
@@ -22,7 +21,6 @@ const EllipsisMiddle = ({ suffixCount, children }) => {
 
 
 const PageReviewsItem = (props) => {
-    // const [modalActive, setModalActive] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const showModal = () => {
@@ -60,32 +58,9 @@ const PageReviewsItem = (props) => {
                     {props.textReview}
                 </EllipsisMiddle>
                 {/* <div className={s.textReview}>{props.textReview}</div> */}
-                {/* <button className={s.more} onClick={() => setModalActive(true)}>Читать полностью</button> */}
                 <button className={s.more} onClick={showModal}>Читать полностью</button>
             </div>
-            {/* <Modal active={modalActive} setActive={setModalActive}>
-                <div className={s.modalReviewItem}>
-                    <div className={s.avatarBlock}>
-                        <img src={props.avatar} alt="" />
-                    </div>
-                    <div className={s.infoBlock}>
-                        <div className={s.author}>{props.author}</div>
-                        <div className={s.place}>{props.place}</div>
-                        <div className={s.description}>{props.description}</div>
-                        <div className={s.rangeDate}  style={{ marginTop: "2.5rem"}}>
-                            <div className={s.rangeWrap}>
-                                <img src={props.star} alt="" />
-                                <img src={props.star} alt="" />
-                                <img src={props.star} alt="" />
-                                <img src={props.star} alt="" />
-                                <img src={props.star} alt="" />
-                            </div>
-                            <div className={s.date}>{props.date}</div>
-                        </div>
-                        <div className={s.textReview}>{props.textReview}</div>
-                    </div>
-                </div>
-            </Modal> */}
+            
             <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
             <div className={s.modalReviewItem}>
                     <div className={s.avatarBlock}>
@@ -93,7 +68,6 @@ const PageReviewsItem = (props) => {
                     </div>
                     <div className={s.infoBlock}>
                         <div className={s.author}>{props.author}</div>
-                        <div className={s.place}>{props.place}</div>
                         <div className={s.description}>{props.description}</div>
                         <div className={s.rangeDate}  style={{ marginTop: "2.5rem"}}>
                             <div className={s.rangeWrap}>
