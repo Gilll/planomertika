@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/planomertika/static/css/main.a28dbab7.css",
-    "main.js": "/planomertika/static/js/main.81ac1987.js",
+    "main.js": "/planomertika/static/js/main.31e86a52.js",
     "static/media/faqBanner.png": "/planomertika/static/media/faqBanner.f79c1b1e3ffc5c317630.png",
     "static/media/reviewsBanner.png": "/planomertika/static/media/reviewsBanner.c65e22024d0d14bfffa2.png",
     "static/media/bannerOther1.png": "/planomertika/static/media/bannerOther1.51f9765b7c023d620332.png",
@@ -107,10 +107,10 @@
     "static/media/arrowNext.svg": "/planomertika/static/media/arrowNext.d824817cb5b57cd0e723.svg",
     "static/media/arrowSelect.svg": "/planomertika/static/media/arrowSelect.c2e6cc8b18ed04562123.svg",
     "main.a28dbab7.css.map": "/planomertika/static/css/main.a28dbab7.css.map",
-    "main.81ac1987.js.map": "/planomertika/static/js/main.81ac1987.js.map"
+    "main.31e86a52.js.map": "/planomertika/static/js/main.31e86a52.js.map"
   },
   "entrypoints": [
     "static/css/main.a28dbab7.css",
-    "static/js/main.81ac1987.js"
+    "static/js/main.31e86a52.js"
   ]
 }
