@@ -129,11 +129,15 @@ const Rate = ({ nextStep }) => {
 
             <Modal className='modalAnket' visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                 <div className={s.contentWrap}>
-                    <div className={s.title}>Моя анкета</div>
-                    <div className={s.subtitle}>Просмотрите свою заполненную анкету</div>
+                    <div className='title-anket'>Моя анкета</div>
+                    {/* <div className={s.subtitle}>Просмотрите свою заполненную анкету</div> */}
 
-                    <Collapse accordion>
-                        <Panel header="Индивидуальные особенности" key="1">
+                    <Collapse accordion className='anket'>
+                        <Panel className='anket' header="Индивидуальные особенности" key="1">
+                            <div className="item-subtitle">
+                                Расскажите нам о себе что бы мы сделать
+                                вашу будущею квартиру более удобную именно для вас!
+                            </div>
                             <div className={s.itemsQuize}>
                                 <div className={s.item}>
                                     <div className={s.selectTitle}>1. Сколько человек будет жить в вашей квартире?</div>
@@ -243,6 +247,10 @@ const Rate = ({ nextStep }) => {
                             </div>
                         </Panel>
                         <Panel header="Комнаты" key="2">
+                            <div className="item-subtitle">
+                                Расскажите нам о себе что бы мы сделать
+                                вашу будущею квартиру более удобную именно для вас!
+                            </div>
                             <div className={s.itemsQuize}>
                                 <div className={s.checkboxes}>
                                     <div className={s.checkboxWrap}>
@@ -358,6 +366,10 @@ const Rate = ({ nextStep }) => {
                             </div>
                         </Panel>
                         <Panel header="План БТИ" key="3">
+                            <div className="item-subtitle">
+                                Расскажите нам о себе что бы мы сделать
+                                вашу будущею квартиру более удобную именно для вас!
+                            </div>
                             <div className={s.upLoadWrap}>
                                 <Dragger {...props}>
                                     <p className="ant-upload-hint">

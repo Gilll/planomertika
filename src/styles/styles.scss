@@ -217,6 +217,7 @@ body h1 {
 
 .ant-modal {
   width: 102rem !important;
+  font-family: 'Gilroy';
 
   .ant-modal-footer {
     display: none;
@@ -227,10 +228,84 @@ body h1 {
   }
 }
 
-// .ant-modal.modalAnket {
-//   .ant-modal-footer {
-//     display: flex;
-//     flex-direction: row-reverse;
-//     text-align: left;
-//   }
-// }
+.ant-modal.modalAnket {
+  width: 75rem !important;
+}
+
+.modalAnket {
+  .buttons {
+    display: flex;
+    align-items: center;
+
+    button:not(:last-child) {
+      margin-right: 2.5rem;
+    }
+  }
+}
+
+.title-anket {
+  font-size: 5rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+.ant-collapse.anket {
+  border: none;
+  background: #ffffff;
+  margin-bottom: 4rem;
+
+  .item-subtitle {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+  }
+
+  .ant-collapse>.ant-collapse-item {
+    border-bottom: none;
+  }
+
+  .ant-collapse-item {
+    background: #FFFFFF;
+    padding: 0rem 2rem 0rem 3rem;
+    position: relative;
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+
+  .ant-collapse-item::before {
+    content: "";
+    width: 1.7rem;
+    height: 1.3rem;
+    background: url(./../asetss/../../public/img/check.svg) no-repeat center;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0rem;
+  }
+
+  .ant-collapse-item-active::before {
+    top: 1.2rem;
+    background: #1D1D1D;
+    width: 1.5rem;
+    height: 0.2rem;
+
+  }
+
+  .ant-collapse-item::after {
+    content: none;
+  }
+
+  .ant-collapse-content {
+    border-top: none;
+  }
+}
+
+.ant-collapse.anket>.ant-collapse-item>.ant-collapse-header {
+  color: #ACACAC ;
+  
+}
+
+.ant-collapse.anket>.ant-collapse-item-active>.ant-collapse-header {
+  color: #1D1D1D;
+}
