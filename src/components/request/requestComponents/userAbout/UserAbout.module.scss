@@ -24,6 +24,7 @@
 .phone {
     position: relative;
     margin-bottom: 1.5rem;
+    transition: 0.3s;
 
     img {
         width: 1.5rem;
@@ -40,12 +41,41 @@
         background: none;
         outline: none;
         border: none;
+        visibility: hidden;
 
         &::placeholder {
             font-size: 1.6rem;
             font-weight: 500;
             color: #FFC443;
             padding-left: 3.5rem;
+        }
+    }
+
+    span {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: #FFC443;
+        padding-left: 3.5rem;
+    }
+
+    button {
+        visibility: hidden;
+    }
+
+    &.active {
+        img {
+            visibility: hidden;
+        }
+        span {
+            // visibility: hidden;
+        }
+
+        input {
+            visibility: visible;
+        }
+
+        button {
+            visibility: visible;
         }
     }
 }

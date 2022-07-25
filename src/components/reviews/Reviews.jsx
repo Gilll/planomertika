@@ -44,8 +44,6 @@ const Reviews = (props) => {
         nextArrow: <Next />,
         prevArrow: <Prev />,
         dotsClass: 'dots',
-        // nextArrow: 'arNext',
-        // prevArrow: 'arPrev'
     };
 
 
@@ -84,13 +82,6 @@ const Reviews = (props) => {
                             {reviews.map((reviews, index) =>
                                 <ReviewsItem key={index} img={reviews.img} name={reviews.name} date={reviews.date} text={reviews.text} />
                             )}
-                            {/* <div className='pagination'>
-                                <Next  onClick={props} className={s.arNext}>
-                                    <img src="url(img/arrowNext.svg)" alt="" />
-                                </Next>
-                                <div className="dots"></div>
-                                <Prev  onClick={props} className={s.arPrev}/>
-                            </div> */}
                         </Slider>
                     </div>
                 </div>
