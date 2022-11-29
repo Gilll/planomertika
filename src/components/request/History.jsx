@@ -3,7 +3,7 @@ import s from './RequestSteps.module.scss';
 import UserAbout from './requestComponents/userAbout/UserAbout';
 
 
-const History = () => {
+const History = ({form, setForm}) => {
     return (
         <div className={s.history}>
             <div className="container">
@@ -12,8 +12,7 @@ const History = () => {
                         <div className={s.title}>История заказов</div>
                     </div>
                     <div className={s.infoBlock}>
-                        <UserAbout name="Александр Решетников" eMail="aleksreshetnikov@gmail.com">
-                        </UserAbout>
+                        <UserAbout user={form.user} setUser={(val) => setForm({...form, user: val})} modal={form} setModal={setForm}/>
                     </div>
                 </div>
             </div>

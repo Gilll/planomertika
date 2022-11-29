@@ -34,7 +34,7 @@ const props = {
     },
 };
 
-const Waiting = ({ hours = 0, minutes = 0, seconds = 10, nextStep }) => {
+const Waiting = ({ hours = 0, minutes = 0, seconds = 10, nextStep, form, setForm }) => {
     const [valuePet, setValuePet] = React.useState('');
     const [valueChildren, setValueChildren] = React.useState('');
     const [checked1, setChecked1] = React.useState(false);
@@ -103,24 +103,7 @@ const Waiting = ({ hours = 0, minutes = 0, seconds = 10, nextStep }) => {
 
                     </div>
                     <div className={s.infoBlock}>
-                        <UserAbout name="Александр Решетников" eMail="aleksreshetnikov@gmail.com">
-                            <div className={s.myAnket} onClick={showModal}>
-                                <img src="img/user.svg" alt="" />
-                                <span>
-                                    Моя анкета
-                                </span>
-                            </div>
-                            <div className={s.myAnket} onClick={() => nextStep(RequestSteps.CHAT)}>
-                                <img src="img/chat-icon.svg" alt="" />
-                                <span>
-                                    Чат с архитектором
-                                </span>
-                            </div>
-                            <div className={s.infoMoney}>
-                                <img src="img/money.svg" alt="" />
-                                <span>Работа оплачена по тарифу «Чат с архитектором»</span>
-                            </div>
-                        </UserAbout>
+                        <UserAbout user={form.user} setUser={(val) => setForm({...form, user: val})} modal={form} setModal={setForm}/>
                         <InfoSteps numberStep={data.numberStep} title={data.title} par1={data.par1} par2={data.par2} />
                     </div>
 

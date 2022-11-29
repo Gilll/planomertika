@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Registration from "../components/request/Registration";
 import Questionnaire from "../components/request/Questionnaire";
 import {RequestSteps} from "../components/request/RequestSteps";
@@ -9,27 +9,138 @@ import Plan from "../components/request/Plan";
 import Waiting from "../components/request/Waiting";
 import Results from "../components/request/Results";
 import History from "../components/request/History";
+import {useApi} from "../hooks/useApi";
+import {useSelector} from "react-redux";
+import Loading from "./Loading";
 
 const Request = () => {
-    const [currentStep, setCurrentStep] = useState(RequestSteps.REGISTRATION);
+    const [serverError, setServerError] = useState('');
+    const [currentStep, setCurrentStep] = useState(RequestSteps.QUESTIONNAIRE);
+    const [pagesIsLoading, setPageIsLoading] = useState(true);
+    const [requestForm, setRequestForm] = useState({
+        order: {
+            id: ''
+        },
+        questionnaire: {
+            tenantsCount: '',
+            pet: '',
+            petAdvanced: '',
+            age: '',
+            childrens: '',
+            childrensCount: '',
+            childrensAge: '',
+            guests: '',
+            guestsCount: ''
+        },
+        rooms: {
+            hallway: false,
+            bedroom: false,
+            childrensroom: false,
+            kitchen: false,
+            bathroom: false,
+            livingroom: false,
+            wardrobe: false,
+            cabinet: false,
+            advanced: ''
+        },
+        files: [],
+        user: {
+            name: localStorage.getItem('name'),
+			surname: localStorage.getItem('surname'),
+            email: localStorage.getItem('email'),
+            phone: ''
+        }
+    })
+
     const renderSteps = (params) => {
         switch (params) {
-            case RequestSteps.REGISTRATION: return <Registration nextStep={setCurrentStep}/>;
-            case RequestSteps.QUESTIONNAIRE: return <Questionnaire nextStep={setCurrentStep}/>;
-            case RequestSteps.CHARACTERISTICS: return <Characteristics nextStep={setCurrentStep}/>;
-            case RequestSteps.RATE: return <Rate nextStep={setCurrentStep}/>;
-            case RequestSteps.PLAN: return <Plan nextStep={setCurrentStep}/>;
-            case RequestSteps.CHAT: return <Chat nextStep={setCurrentStep}/>;
-            case RequestSteps.WAITING: return <Waiting nextStep={setCurrentStep}/>;
-            case RequestSteps.RESULT: return <Results nextStep={setCurrentStep}/>;
-            case RequestSteps.HISTORY: return <History nextStep={setCurrentStep}/>;
+            case RequestSteps.QUESTIONNAIRE: return <Questionnaire nextStep={setCurrentStep} form={requestForm} setForm={setRequestForm}/>;
+            case RequestSteps.CHARACTERISTICS: return <Characteristics nextStep={setCurrentStep} form={requestForm} setForm={setRequestForm}/>;
+            case RequestSteps.RATE: return <Rate nextStep={setCurrentStep} form={requestForm} setForm={setRequestForm}/>;
+            case RequestSteps.PLAN: return <Plan nextStep={setCurrentStep} form={requestForm} setForm={setRequestForm}/>;
+            case RequestSteps.CHAT: return <Chat nextStep={setCurrentStep} form={requestForm} setForm={setRequestForm}/>;
+            case RequestSteps.WAITING: return <Waiting nextStep={setCurrentStep} form={requestForm} setForm={setRequestForm}/>;
+            case RequestSteps.RESULT: return <Results nextStep={setCurrentStep} form={requestForm} setForm={setRequestForm}/>;
+            case RequestSteps.HISTORY: return <History nextStep={setCurrentStep} form={requestForm} setForm={setRequestForm}/>;
             default: return <Registration nextStep={setCurrentStep}/>;
         }
     }
+    const topBlock = useRef(null)
+    const executeScroll = () => topBlock.current.scrollIntoView({ behavior: "smooth" })
+
+    const user = useSelector(state => state.user)
+
+    const [curRequestId, setCurRequestId] = useState();
+
+    const [getRuquest, getRuquestIsLoading] = useApi({
+        url: '/orders/getAllByClient/' + localStorage.getItem('userId'),
+        method: 'GET'
+    });
+
+    const [getOrder, getOrderIsLoading] = useApi({
+        url: '/orders/' + curRequestId,
+        method: 'GET'
+    });
+
+    useEffect(() => {
+    	console.log(window.appSettings);
+        getRuquest().then((resp) => {
+            if (resp.length) {
+                setCurRequestId(resp[0].id)
+            } else {
+            	setPageIsLoading(false)
+			}
+        }).catch((e) => setServerError(e.message))
+    },[])
+
+    useEffect(() => {
+        currentStep !== RequestSteps.QUESTIONNAIRE && executeScroll();
+    },[currentStep])
+
+    useEffect(() => {
+        if (curRequestId) {
+			getOrder().then((resp) => {
+				let currentRequest = resp
+				setRequestForm({...requestForm, questionnaire: {
+						tenantsCount: currentRequest.orderPageOneResponse.peoples,
+						pet: currentRequest.orderPageOneResponse.pets,
+						petAdvanced: '',
+						age: currentRequest.orderPageOneResponse.age,
+						childrens: currentRequest.orderPageOneResponse.kids,
+						childrensCount: currentRequest.orderPageOneResponse.numberOfKids ? currentRequest.orderPageOneRequest.numberOfKids : '',
+						childrensAge: currentRequest.orderPageOneResponse.ageOfKids ? currentRequest.orderPageOneRequest.ageOfKids : '',
+						guests: currentRequest.orderPageOneResponse.guess,
+						guestsCount: currentRequest.orderPageOneResponse.numberOfGuess
+					}, rooms: {
+						hallway: currentRequest.orderPageTwoResponse.isHallway,
+						bedroom: false,
+						childrensroom: currentRequest.orderPageTwoResponse.isChildrens,
+						kitchen: currentRequest.orderPageTwoResponse.isKitchen,
+						bathroom: currentRequest.orderPageTwoResponse.isWc,
+						livingroom: false,
+						wardrobe: currentRequest.orderPageTwoResponse.isWardrobe,
+						cabinet: currentRequest.orderPageTwoResponse.isCabinet,
+						advanced: currentRequest.orderPageTwoResponse.wish
+					}, files: currentRequest.files,
+					order: { id: currentRequest.id }})
+				if (currentRequest.files && currentRequest.files.length) {
+					setCurrentStep(RequestSteps.RATE);
+				} else {
+					setCurrentStep(RequestSteps.PLAN);
+				}
+				setPageIsLoading(false)
+				console.log(resp);
+			})
+        }
+    },[curRequestId])
 
     return (
         <div className='intro-page'>
-            {renderSteps(currentStep)}
+            <div ref={topBlock}/>
+            {serverError ?
+                <div className="content-error">{serverError}</div>
+                :
+				pagesIsLoading ? <Loading /> : renderSteps(currentStep)}
         </div>
     );
 };

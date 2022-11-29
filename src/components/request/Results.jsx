@@ -8,7 +8,7 @@ import { Rate } from 'antd';
 
 
 
-const Results = ({ nextStep }) => {
+const Results = ({ nextStep, form, setForm }) => {
 
     const data = {
         numberStep: "5",
@@ -42,12 +42,7 @@ const Results = ({ nextStep }) => {
                         <Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.HISTORY)}>Отправить</Button>
                     </div>
                     <div className={s.infoBlock}>
-                        <UserAbout name="Александр Решетников" eMail="aleksreshetnikov@gmail.com">
-                            <div className={s.infoMoney}>
-                                <img src="img/money.svg" alt="" />
-                                <span>Работа оплачена по тарифу «Чат с архитектором»</span>
-                            </div>
-                        </UserAbout>
+                        <UserAbout user={form.user} setUser={(val) => setForm({...form, user: val})} modal={form} setModal={setForm}/>
                         <InfoSteps numberStep={data.numberStep} title={data.title} par1={data.par1} par2={data.par2} />
                         <Button className={s.btnDark} type="primary">Заказать еще вариант со скидкой</Button>
                     </div>

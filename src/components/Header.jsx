@@ -2,11 +2,12 @@ import React from 'react';
 import s from './Header.module.scss';
 import {RouteNames} from "../router/routeNames";
 import {Link, NavLink} from "react-router-dom";
-// import {Button} from "antd";
-
+import {useSelector} from "react-redux";
 
 
 const Header = () => {
+    const isAuth = useSelector(state => state.isAuth)
+
     return (
         <header className={s.header}>
             <div className="container">
@@ -29,13 +30,18 @@ const Header = () => {
                         <li className={s.header__item}>
                             <NavLink to={RouteNames.CONTACTS} className="link">Контакты</NavLink>
                         </li>
-                        <li className={s.header__itemUser}>
-                            <div className={s.header__itemImg}>
-                                <img src={process.env.PUBLIC_URL + "/img/user.svg"} alt="" />
-                            </div>
-                            {/* <NavLink to={RouteNames.MYACCOUNT} className="link">Личный кабинет</NavLink> */}
-                            <NavLink to={RouteNames.REQUEST} className="link">Личный кабинет</NavLink>
-                        </li>
+                        {isAuth ?
+                            <li className={s.header__itemUser}>
+                                <div className={s.header__itemImg}>
+                                    <img src={process.env.PUBLIC_URL + "/img/user.svg"} alt="" />
+                                </div>
+                                <NavLink to={RouteNames.REQUEST} className="link">Заявка</NavLink>
+                            </li>
+                        :
+                            <li className={s.header__item}>
+                                <NavLink to={RouteNames.LOGIN} className="link">Вход</NavLink> / <NavLink to={RouteNames.REGISTRATION} className="link">Регистрация</NavLink>
+                            </li>
+                        }
                     </ul>
                 </nav>
                 <div className={s.header__contact}>

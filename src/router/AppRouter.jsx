@@ -8,6 +8,9 @@ import Reviews from '../pages/Reviews';
 import FAQPage from '../pages/FAQPage';
 import Contacts from '../pages/Contacts';
 import MyAccount from '../pages/MyAccount';
+import AuthWrapper from "../components/AuthWrapper";
+import Login from "../pages/Login";
+import Registration from "../pages/Registration";
 
 
 
@@ -22,6 +25,10 @@ const AppRouter = () => {
             <Route path={RouteNames.FAQPage} element={<FAQPage/>}/>
             <Route path={RouteNames.CONTACTS} element={<Contacts/>}/>
             <Route path={RouteNames.MYACCOUNT} element={<MyAccount/>}/>
+            <Route element={<AuthWrapper/>}>
+                <Route path={RouteNames.LOGIN} element={<Login/>}/>
+                <Route path={RouteNames.REGISTRATION} element={<Registration/>}/>
+            </Route>
         </Routes>
     );
 };

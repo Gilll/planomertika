@@ -1,0 +1,5 @@
+
+
+window.appSettings = {
+	test: 'abc'
+}

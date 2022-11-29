@@ -23,7 +23,6 @@
 
 .phone {
     position: relative;
-    margin-bottom: 1.5rem;
     transition: 0.3s;
 
     img {
@@ -61,44 +60,31 @@
     button {
         visibility: hidden;
     }
-
-    &.active {
-        img {
-            visibility: hidden;
-        }
-        span {
-            // visibility: hidden;
-        }
-
-        input {
-            visibility: visible;
-        }
-
-        button {
-            visibility: visible;
-        }
-    }
 }
 
 .logOut {
     display: flex;
     align-items: center;
-    
+
     font-size: 1.6rem;
     font-weight: 400;
     color: #1d1d1d;
     margin-bottom: 2rem;
-
+	div {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+	}
     img {
         width: 1.5rem;
         height: 1.5rem;
         object-fit: contain;
         margin-right: 1rem;
     }
-
-    &:hover {
-        color: #FFC443;
-    }
+	span {
+		font-weight: 600;
+		text-decoration: underline;
+	}
 }
 
 .bottomInfo {
