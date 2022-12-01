@@ -8,6 +8,7 @@ import UserAbout from './requestComponents/userAbout/UserAbout';
 import InfoSteps from './requestComponents/infoSteps/InfoSteps';
 import {useApi} from "../../hooks/useApi";
 import {getData} from "../../utils/utils";
+import {hostName} from "../../API/config";
 
 const Plan = ({ nextStep, form, setForm }) => {
     const { Dragger } = Upload;
@@ -26,7 +27,7 @@ const Plan = ({ nextStep, form, setForm }) => {
     const props = {
         name: 'file',
         multiple: true,
-        action: 'http://51.250.25.78/orders/addFiles/' + form.order.id,
+        action: hostName + '/orders/addFiles/' + form.order.id,
         headers: {
             'Authorization': localStorage.getItem('token')
         },

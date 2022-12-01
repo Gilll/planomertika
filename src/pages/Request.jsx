@@ -28,7 +28,7 @@ const Request = () => {
             age: '',
             childrens: '',
             childrensCount: '',
-            childrensAge: '',
+            childrensAge: [],
             guests: '',
             guestsCount: ''
         },
@@ -101,14 +101,15 @@ const Request = () => {
         if (curRequestId) {
 			getOrder().then((resp) => {
 				let currentRequest = resp
+				console.log(resp);
 				setRequestForm({...requestForm, questionnaire: {
 						tenantsCount: currentRequest.orderPageOneResponse.peoples,
 						pet: currentRequest.orderPageOneResponse.pets,
 						petAdvanced: '',
 						age: currentRequest.orderPageOneResponse.age,
 						childrens: currentRequest.orderPageOneResponse.kids,
-						childrensCount: currentRequest.orderPageOneResponse.numberOfKids ? currentRequest.orderPageOneRequest.numberOfKids : '',
-						childrensAge: currentRequest.orderPageOneResponse.ageOfKids ? currentRequest.orderPageOneRequest.ageOfKids : '',
+						childrensCount: currentRequest.orderPageOneResponse.numberOfKids || '',
+						childrensAge: currentRequest.orderPageOneResponse.ageOfKids || '',
 						guests: currentRequest.orderPageOneResponse.guess,
 						guestsCount: currentRequest.orderPageOneResponse.numberOfGuess
 					}, rooms: {

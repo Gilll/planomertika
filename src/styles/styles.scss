@@ -439,6 +439,7 @@ body .ant-checkbox-wrapper {
 .payment-link {
   display: flex;
   align-items: center;
+	font-size: 1.6rem;
   &.qs {
     margin-bottom: 1.5rem;
     span {
@@ -491,16 +492,20 @@ body .ant-btn-primary:focus, body .ant-btn-primary:hover {
   padding: 20rem 0;
 }
 
-.container .ant-input::placeholder {
+html .ant-input::placeholder {
   color: #ACACAC;
   font-size: 1.6rem;
   font-weight: 500;
 }
 
-.container .ant-input {
+html .ant-input {
   color: #1D1D1D;
   font-size: 1.6rem;
   font-weight: 500;
+}
+
+html .ant-form-item-explain-error {
+	font-size: 1.4rem;
 }
 
 input:-webkit-autofill,
@@ -573,4 +578,169 @@ select:-webkit-autofill:focus {
 	&__form {
 		width: 49.5rem;
 	}
+}
+
+.chat-room {
+	background-color: white;
+	height: 66rem;
+	&__container {
+		margin: 0 6rem;
+		border-left: 1px solid #EBEBEB;
+		border-right: 1px solid #EBEBEB;
+		height: 66rem;
+		display: flex;
+		flex-direction: column;
+	}
+	&__title {
+		padding-bottom: 3rem;
+		border-bottom: 1px solid #EBEBEB;
+	}
+	&__input-wrapper {
+		background: #F9F8FD;
+		min-height: 8rem;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-end;
+		padding: 1.5rem;
+	}
+	&__input-file {
+		flex-shrink: 0;
+		width: 5rem;
+		height: 5rem;
+		border-radius: 50%;
+		margin-right: 3rem;
+		box-shadow: 5px 5px 20px rgba(5, 15, 25, 0.1);
+		background-color: white;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	&__input {
+		flex-grow: 1;
+		.ant-mentions {
+			border: 0 !important;
+			outline: none !important;
+			box-shadow: none !important;
+			background: transparent !important;
+		}
+		.ant-mentions>textarea {
+			padding: 0 0 1.6rem !important;
+			font-size: 1.8rem;
+			line-height: 2.15rem;
+			font-family: "Euclid Circular A";
+			background: transparent !important;
+			overflow: hidden !important;
+		}
+	}
+	&__send {
+		flex-shrink: 0;
+		width: 5rem;
+		height: 5rem;
+		border-radius: 50%;
+		margin-left: 3rem;
+		box-shadow: 5px 5px 20px rgba(5, 15, 25, 0.1);
+		background: rgba(21, 22, 47, 0.3);
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+
+.mess-box {
+	flex-grow: 1;
+	&__wrapper {
+		padding: 0 1.5rem;
+	}
+}
+
+.message {
+	&-date {
+		text-align: center;
+		padding: 2rem 0;
+		font-size: 1.8rem;
+		line-height: 2.2rem;
+		color: rgba(21, 22, 47, 0.3);
+		text-align: center;
+	}
+}
+
+
+
+.user-message {
+	padding: 0 1.5rem 2rem;
+	&__text {
+		font-size: 1.8rem;
+		line-height: 2.15rem;
+		color: #15162F;
+		border-radius: 1.5rem;
+		padding: 1.5rem 2rem;
+		white-space: pre-line;
+		&-wrapper {
+			display: flex;
+		}
+	}
+	&__icon {
+		position: relative;
+		overflow: hidden;
+		border-radius: 50%;
+		width: 4.5rem;
+		height: 4.5rem;
+		margin-right: 1.5rem;
+		flex-shrink: 0;
+	}
+	&__row {
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-end;
+	}
+	&__status {
+		font-size: 1.4rem;
+		line-height: 1.7rem;
+		padding-top: 0.7rem;
+	}
+	&__user-name {
+		font-weight: 600;
+	}
+	&__date {
+		color: rgba(21, 22, 47, 0.5);
+		margin: 0 1.5rem;
+	}
+	&--self {
+		.user-message__text {
+			background: rgba(21, 22, 47, 0.1);
+			border-bottom-right-radius: 0;
+			margin-left: 3rem;
+			&-wrapper {
+				justify-content: flex-end;
+			}
+		}
+		.user-message__status {
+			text-align: right;
+		}
+	}
+	&--companion {
+		.user-message__text {
+			background: #F9F8FD;
+			border-bottom-left-radius: 0;
+			margin-right: 3rem;
+		}
+	}
+}
+
+.user-message.enter {
+	transform: translateX(-75rem);
+}
+.user-message.enter-active {
+	transform: translateX(0);
+	transition: all 300ms ease-in;
+}
+.user-message.exit {
+	opacity: 1;
+}
+.user-message.exit-active {
+	opacity: 0;
+	transition: all 300ms ease-in;
 }

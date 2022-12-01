@@ -5,6 +5,14 @@ import {Select} from "antd";
 const FormQuest = ({form, setForm}) => {
     const { Option } = Select;
 
+    const getAgesArr = (cout) => {
+    	let arr = [];
+    	for (let i = 0; i < cout; i++) {
+    		arr.push(0)
+		}
+    	return arr;
+	}
+
     return (
         <div className={s.itemsQuize}>
             <div className={s.item}>
@@ -67,9 +75,7 @@ const FormQuest = ({form, setForm}) => {
                         <div className={s.selectSubtitle}>Дети</div>
                         <Select value={form.questionnaire.childrens}
                                 onChange={(val) => {
-                                	let tmp = {...form.questionnaire, childrens: val};
-                                	if (val !== 'Есть') { tmp.childrensAge = '' }
-                                	if (val !== 'Нет') { tmp.childrensCount = '' }
+                                	let tmp = {...form.questionnaire, childrens: val, childrensAge: [], childrensCount: '' };
 									setForm({...form, questionnaire: tmp });
 								}} className={s.select}>
                             <Option value="Есть">Есть</Option>
@@ -81,30 +87,196 @@ const FormQuest = ({form, setForm}) => {
                         <div className={s.selectSubtitle}>Кол-во</div>
                         <Select value={form.questionnaire.childrensCount}
                                 onChange={(val) => setForm({...form, questionnaire:
-                                        {...form.questionnaire, childrensCount: val}})} className={s.select}>
-                            <Option value="1">1</Option>
-                            <Option value="2">2</Option>
-                            <Option value="3">3</Option>
-                            <Option value="4">4</Option>
-                            <Option value="5">5</Option>
-                            <Option value="6">5+</Option>
+                                        {...form.questionnaire, childrensCount: val, childrensAge: getAgesArr(val)}})} className={s.select}>
+                            <Option value={1}>1</Option>
+                            <Option value={2}>2</Option>
+                            <Option value={3}>3</Option>
+                            <Option value={4}>4</Option>
+                            <Option value={5}>5</Option>
+                            <Option value={6}>5+</Option>
                         </Select>
                     </div>
                 </div>
-                <div className={s.selectesWrap} style={{ height: form.questionnaire.childrens === 'Есть' ? '8.3rem' : 0 }}>
-                    <div className={'hidden-col ' + (form.questionnaire.childrens === 'Есть' ? 'show' : '')}>
-                        <div className={s.selectSubtitle} style={{ marginTop: '1.5rem' }}>Возраст детей</div>
-                        <Select value={form.questionnaire.childrensAge}
-                                onChange={(val) => setForm({...form, questionnaire:
-                                        {...form.questionnaire, childrensAge: val}})} className={s.select}>
-                            <Option value="0-3">0-3</Option>
-                            <Option value="4-6">4-6</Option>
-                            <Option value="7-10">7-10</Option>
-                            <Option value="11-15">11-15</Option>
-                            <Option value="16-18">16-18</Option>
-                        </Select>
-                    </div>
-                </div>
+				<div className={s.selectesWrap} style={{ height: form.questionnaire.childrensCount > 0 && form.questionnaire.childrens === 'Есть' ? '9.5rem' : 0 }}>
+					<div className={'hidden-col ' + (form.questionnaire.childrensCount > 0 && form.questionnaire.childrens === 'Есть' ? 'show' : '')}>
+						{form.questionnaire.childrensCount > 0 && <>
+						<div className={s.selectSubtitle} style={{ marginTop: '1.5rem' }}>Возраст детей</div>
+						<Select value={form.questionnaire.childrensAge[0]}
+								onChange={(val) => setForm({...form, questionnaire:
+										{...form.questionnaire, childrensAge: form.questionnaire.childrensAge.map((el, ind) => ind === 0 ? val : el)}})} className={s.select}>
+							<Option value={0}>0</Option>
+							<Option value={1}>1</Option>
+							<Option value={2}>2</Option>
+							<Option value={3}>3</Option>
+							<Option value={4}>4</Option>
+							<Option value={5}>5</Option>
+							<Option value={6}>6</Option>
+							<Option value={7}>7</Option>
+							<Option value={8}>8</Option>
+							<Option value={9}>9</Option>
+							<Option value={10}>10</Option>
+							<Option value={11}>11</Option>
+							<Option value={12}>12</Option>
+							<Option value={13}>13</Option>
+							<Option value={14}>14</Option>
+							<Option value={15}>15</Option>
+							<Option value={16}>16</Option>
+							<Option value={17}>17</Option>
+							<Option value={18}>18</Option>
+						</Select>
+						</>
+						}
+					</div>
+					<div className={'hidden-col ' + (form.questionnaire.childrensCount > 1 && form.questionnaire.childrens === 'Есть' ? 'show' : '')}>
+						{form.questionnaire.childrensCount > 1 && <>
+						<div className={s.selectSubtitle} style={{ marginTop: '1.5rem' }}>Возраст детей</div>
+						<Select value={form.questionnaire.childrensAge[1]}
+								onChange={(val) => setForm({...form, questionnaire:
+										{...form.questionnaire, childrensAge: form.questionnaire.childrensAge.map((el, ind) => ind === 1 ? val : el)}})} className={s.select}>
+							<Option value={0}>0</Option>
+							<Option value={1}>1</Option>
+							<Option value={2}>2</Option>
+							<Option value={3}>3</Option>
+							<Option value={4}>4</Option>
+							<Option value={5}>5</Option>
+							<Option value={6}>6</Option>
+							<Option value={7}>7</Option>
+							<Option value={8}>8</Option>
+							<Option value={9}>9</Option>
+							<Option value={10}>10</Option>
+							<Option value={11}>11</Option>
+							<Option value={12}>12</Option>
+							<Option value={13}>13</Option>
+							<Option value={14}>14</Option>
+							<Option value={15}>15</Option>
+							<Option value={16}>16</Option>
+							<Option value={17}>17</Option>
+							<Option value={18}>18</Option>
+						</Select>
+						</>
+						}
+					</div>
+				</div>
+				<div className={s.selectesWrap} style={{ height: form.questionnaire.childrensCount > 2 && form.questionnaire.childrens === 'Есть'  ? '9.5rem' : 0 }}>
+					<div className={'hidden-col ' + (form.questionnaire.childrensCount > 2 && form.questionnaire.childrens === 'Есть' ? 'show' : '')}>
+						{form.questionnaire.childrensCount > 2 && <>
+						<div className={s.selectSubtitle} style={{ marginTop: '1.5rem' }}>Возраст детей</div>
+						<Select value={form.questionnaire.childrensAge[2]}
+								onChange={(val) => setForm({...form, questionnaire:
+										{...form.questionnaire, childrensAge: form.questionnaire.childrensAge.map((el, ind) => ind === 2 ? val : el)}})} className={s.select}>
+							<Option value={0}>0</Option>
+							<Option value={1}>1</Option>
+							<Option value={2}>2</Option>
+							<Option value={3}>3</Option>
+							<Option value={4}>4</Option>
+							<Option value={5}>5</Option>
+							<Option value={6}>6</Option>
+							<Option value={7}>7</Option>
+							<Option value={8}>8</Option>
+							<Option value={9}>9</Option>
+							<Option value={10}>10</Option>
+							<Option value={11}>11</Option>
+							<Option value={12}>12</Option>
+							<Option value={13}>13</Option>
+							<Option value={14}>14</Option>
+							<Option value={15}>15</Option>
+							<Option value={16}>16</Option>
+							<Option value={17}>17</Option>
+							<Option value={18}>18</Option>
+						</Select>
+						</>
+						}
+					</div>
+					<div className={'hidden-col ' + (form.questionnaire.childrensCount > 3 && form.questionnaire.childrens === 'Есть' ? 'show' : '')}>
+						{form.questionnaire.childrensCount > 3 && <>
+						<div className={s.selectSubtitle} style={{ marginTop: '1.5rem' }}>Возраст детей</div>
+						<Select value={form.questionnaire.childrensAge[3]}
+								onChange={(val) => setForm({...form, questionnaire:
+										{...form.questionnaire, childrensAge: form.questionnaire.childrensAge.map((el, ind) => ind === 3 ? val : el)}})} className={s.select}>
+							<Option value={0}>0</Option>
+							<Option value={1}>1</Option>
+							<Option value={2}>2</Option>
+							<Option value={3}>3</Option>
+							<Option value={4}>4</Option>
+							<Option value={5}>5</Option>
+							<Option value={6}>6</Option>
+							<Option value={7}>7</Option>
+							<Option value={8}>8</Option>
+							<Option value={9}>9</Option>
+							<Option value={10}>10</Option>
+							<Option value={11}>11</Option>
+							<Option value={12}>12</Option>
+							<Option value={13}>13</Option>
+							<Option value={14}>14</Option>
+							<Option value={15}>15</Option>
+							<Option value={16}>16</Option>
+							<Option value={17}>17</Option>
+							<Option value={18}>18</Option>
+						</Select>
+						</>
+						}
+					</div>
+				</div>
+				<div className={s.selectesWrap} style={{ height: form.questionnaire.childrensCount > 4 && form.questionnaire.childrens === 'Есть'  ? '9.5rem' : 0 }}>
+					<div className={'hidden-col ' + (form.questionnaire.childrensCount > 4 && form.questionnaire.childrens === 'Есть' ? 'show' : '')}>
+						{form.questionnaire.childrensCount > 4 && <>
+						<div className={s.selectSubtitle} style={{ marginTop: '1.5rem' }}>Возраст детей</div>
+						<Select value={form.questionnaire.childrensAge[2]}
+								onChange={(val) => setForm({...form, questionnaire:
+										{...form.questionnaire, childrensAge: form.questionnaire.childrensAge.map((el, ind) => ind === 2 ? val : el)}})} className={s.select}>
+							<Option value={0}>0</Option>
+							<Option value={1}>1</Option>
+							<Option value={2}>2</Option>
+							<Option value={3}>3</Option>
+							<Option value={4}>4</Option>
+							<Option value={5}>5</Option>
+							<Option value={6}>6</Option>
+							<Option value={7}>7</Option>
+							<Option value={8}>8</Option>
+							<Option value={9}>9</Option>
+							<Option value={10}>10</Option>
+							<Option value={11}>11</Option>
+							<Option value={12}>12</Option>
+							<Option value={13}>13</Option>
+							<Option value={14}>14</Option>
+							<Option value={15}>15</Option>
+							<Option value={16}>16</Option>
+							<Option value={17}>17</Option>
+							<Option value={18}>18</Option>
+						</Select>
+						</>
+						}
+					</div>
+					<div className={'hidden-col ' + (form.questionnaire.childrensCount > 5 && form.questionnaire.childrens === 'Есть' ? 'show' : '')}>
+						{form.questionnaire.childrensCount > 5 && <>
+						<div className={s.selectSubtitle} style={{ marginTop: '1.5rem' }}>Возраст детей</div>
+						<Select value={form.questionnaire.childrensAge[3]}
+								onChange={(val) => setForm({...form, questionnaire:
+										{...form.questionnaire, childrensAge: form.questionnaire.childrensAge.map((el, ind) => ind === 3 ? val : el)}})} className={s.select}>
+							<Option value={0}>0</Option>
+							<Option value={1}>1</Option>
+							<Option value={2}>2</Option>
+							<Option value={3}>3</Option>
+							<Option value={4}>4</Option>
+							<Option value={5}>5</Option>
+							<Option value={6}>6</Option>
+							<Option value={7}>7</Option>
+							<Option value={8}>8</Option>
+							<Option value={9}>9</Option>
+							<Option value={10}>10</Option>
+							<Option value={11}>11</Option>
+							<Option value={12}>12</Option>
+							<Option value={13}>13</Option>
+							<Option value={14}>14</Option>
+							<Option value={15}>15</Option>
+							<Option value={16}>16</Option>
+							<Option value={17}>17</Option>
+							<Option value={18}>18</Option>
+						</Select>
+						</>
+						}
+					</div>
+				</div>
             </div>
             <div className={s.item}>
                 <div className={s.selectTitle}>5. Как часто к вам приходят гости  и сколько человек вы готовы принять к застолью?</div>

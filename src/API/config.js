@@ -1,2 +1,2 @@
 
-export const hostName = 'http://51.250.25.78';
+export const hostName = 'http://planometrika.mayabiorobotics.ru:8181';

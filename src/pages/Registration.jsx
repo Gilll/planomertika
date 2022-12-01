@@ -30,7 +30,7 @@ const Registration = () => {
 		url: '/api/auth/confirmation',
 		data: {
 			email: regForm.email,
-			uuid: confirmCode
+			code: confirmCode
 		}
 	});
 
@@ -81,6 +81,7 @@ const Registration = () => {
 					<div className="conf-input">
 						<Input value={confirmCode} onChange={(e) => setConfirmCode(e.target.value)}/>
 					</div>
+					<div className='val-errors'>{serverError}</div>
 					<div className={t.buttonsWrap}>
 						<Button className={s.btnColor} onClick={tryConfirmMail} type="primary" htmlType="button" loading={confirmMailIsLoading}>Подтвердить</Button>
 					</div>

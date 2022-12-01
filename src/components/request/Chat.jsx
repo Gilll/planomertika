@@ -1,67 +1,57 @@
-import React from 'react';
-import { Button, Modal } from "antd";
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import { Button } from "antd";
 import { RequestSteps } from "./RequestSteps";
 import s from './RequestSteps.module.scss';
 import UserAbout from './requestComponents/userAbout/UserAbout';
 import InfoSteps from './requestComponents/infoSteps/InfoSteps';
-import { Checkbox } from 'antd';
-import { Collapse, Select, message, Upload } from 'antd';
-const { Option } = Select;
-const { Panel } = Collapse;
+import {useApi} from "../../hooks/useApi";
+import Loading from "../../pages/Loading";
+import Stomp from "../../utils/stomp";
+import {v4 as uuidv4} from "uuid";
+import {Scrollbars} from "react-custom-scrollbars";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
+import Empty from "antd/es/empty";
+import Mentions from "antd/es/mentions";
+import UserMessage from "./requestComponents/UserMessage";
 
-
-const { Dragger } = Upload;
-
-const props = {
-    name: 'file',
-    multiple: true,
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-
-    onChange(info) {
-        const { status } = info.file;
-
-        if (status !== 'uploading') {
-            console.log(info.file, info.fileList);
-        }
-
-        if (status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully.`);
-        } else if (status === 'error') {
-            message.error(`${info.file.name} file upload failed.`);
-        }
-    },
-
-    onDrop(e) {
-        console.log('Dropped files', e.dataTransfer.files);
-    },
-};
-
+let stomp;
 
 const Chat = ({ nextStep, form, setForm }) => {
-    const [valuePet, setValuePet] = React.useState('');
-    const [valueChildren, setValueChildren] = React.useState('');
-    const [checked1, setChecked1] = React.useState(false);
-    const [checked2, setChecked2] = React.useState(false);
-    const [checked3, setChecked3] = React.useState(false);
-    const [checked4, setChecked4] = React.useState(false);
-    const [checked5, setChecked5] = React.useState(false);
-    const [checked6, setChecked6] = React.useState(false);
-    const [checked7, setChecked7] = React.useState(false);
-    const [checked8, setChecked8] = React.useState(false);
+	const [serverError, setServerError] = useState('');
+	const [userText, setUserText] = useState('');
+	const { Option } = Mentions;
+	const [prefix, setPrefix] = useState('@');
+	const [roomName, setRoomName] = useState('');
+	const [messages, setMessages] = useState([]);
+	const [roomIsLoading, setRoomIsLoading] = useState(true);
+	const [roomId, setRoomId] = useState('')
+	const chatScroll = useRef();
+	const [getChatAuth, getChatAuthIsLoading] = useApi({
+		url: '/api/chat/signIn',
+	});
 
-    const [isModalVisible, setIsModalVisible] = React.useState(false);
+	useEffect(() => {
+		getChatAuth().then((resp) => {
+			console.log(resp)
+			localStorage.setItem('jwtToken', resp.jwtToken)
+			localStorage.setItem('exchangeName', resp.exchangeName)
+			getRooms().then((rooms) => {
+				console.log(rooms);
+				setRoomId(rooms[0].dialogId);
+				getRoom(rooms[0].dialogId).then(roomData => {
+					console.log(roomData);
+					setRoomName(roomData.name);
+					console.log('SET MESSAGES');
+					console.log(roomData.messages);
+					setMessages(roomData.messages);
+				}).then(() => setRoomIsLoading(false));
+			})
+		}).catch(() => setServerError('Проблема с сервером'))
+	},[])
 
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
-
-    const handleOk = () => {
-        setIsModalVisible(false);
-    };
-
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    };
+	useEffect(() => {
+		console.log(serverError);
+	},[serverError])
 
     const data = {
         numberStep: "3",
@@ -71,6 +61,146 @@ const Chat = ({ nextStep, form, setForm }) => {
     }
 
 
+	const [sockConnected, setSockConnected] = useState(false);
+
+	const notificationConnect = useCallback( async () => {
+		let url = "wss://chatrabbit.mayabiorobotics.ru:15673/ws", sc;
+
+		const onConnectedNotif = () => {
+			setSockConnected(true);
+		}
+
+		const onErrorNotif = (error) => {
+			console.log("fail")
+			console.log('STOMP: ' + error);
+			//stomp.disconnect();
+			stomp = null;
+			setSockConnected(false);
+			setTimeout( () => {notificationConnect()}, 5000);
+			console.log('STOMP: Reconecting in 5 seconds');
+			console.log("try");
+		}
+
+		console.log("Go")
+		sc = Stomp.client(url);
+		stomp = sc;
+		sc.heartbeat.outgoing = 10000; // client will send heartbeats every 20000ms
+		sc.heartbeat.incoming = 10000;
+		sc.connect('test', 'test', onConnectedNotif, onErrorNotif);
+	}, [])
+
+	const onMessageReceived = (payload) => {
+		payload.ack();
+		let message = JSON.parse(payload.body);
+		if (message.type === 'MESSAGE') {
+			let tmp = {...message.payload};
+			setMessages(st => [...st, tmp])
+		}
+	}
+
+	useEffect(() => {
+		notificationConnect();
+		return () => stomp && stomp.disconnect();
+	},[notificationConnect])
+
+	useEffect(() => {
+		if (sockConnected && stomp !== null) {
+			if (!localStorage.getItem('uuid')) {
+				localStorage.setItem('uuid', uuidv4())
+			}
+			if (localStorage.getItem('exchangeName') && sockConnected) stomp.subscribe('/exchange/' + localStorage.getItem('exchangeName'), onMessageReceived,
+				{
+					"id": "sub", "auto-delete": false, "x-queue-name": localStorage.getItem('uuid'), "ack": "client"
+				});
+		}
+	},[sockConnected])
+
+	const hostname = 'https://chatdev.mayabiorobotics.ru'
+
+	const getRooms = async () => {
+		let resp = '';
+		try {
+			const response = await fetch(hostname + '/api/dialogs', {
+				crossDomain: true,
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					"Authorization": "Bearer " + localStorage.getItem('jwtToken')
+				}
+			});
+			resp = await response.json();
+			if (!response.ok) {
+				throw new Error(response.statusText);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+		return resp;
+	}
+
+	const getRoom = async (roomId) => {
+		let resp = '';
+		try {
+			const response = await fetch(hostname + '/api/dialog/' + roomId, {
+				crossDomain: true,
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					"Authorization": "Bearer " + localStorage.getItem('jwtToken')
+				}
+			});
+			resp = await response.json();
+			if (!response.ok) {
+				throw new Error(response.statusText);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+		return resp;
+	}
+
+	const AddNewMessage = (message) => {
+		let rabbitMessage = {
+			type: "MESSAGE",
+			payload: message
+		}
+		stomp.send(
+			"/queue/chat-application-messages",
+			{"Authorization": "Bearer " + localStorage.getItem('jwtToken')},
+			JSON.stringify(rabbitMessage)
+		);
+	}
+
+	const addNewMessage = () => {
+		let str = userText.trim();
+		if (str) {
+			selfNewMess(str)
+			setUserText('');
+		}
+	}
+
+	const selfNewMess = (text) => {
+		AddNewMessage({ content: text, dialogId: roomId, uniqueCode: new Date().valueOf() });
+	}
+
+	const MOCK_DATA = {
+		'@': ['user1', 'user2', 'user3'],
+		'#': ['11111111111', '22222222222', '3333333333']
+	};
+
+	const onSearch = (_, query) => {
+		setPrefix(query);
+	}
+
+	let chatScrollInited = false;
+
+	const chatScrollUpdate = () => {
+		if (!chatScrollInited && chatScroll.current.getValues().top !== 1) {
+			chatScrollInited = true;
+			chatScroll.current.scrollToBottom();
+		}
+	}
+
     return (
         <div className={s.chatBlock}>
             <div className="container">
@@ -78,281 +208,92 @@ const Chat = ({ nextStep, form, setForm }) => {
                     <div className={s.quizeBlock}>
                         <div className={s.title}>Обсудите с архитектором необходимые детали</div>
                         <div className={s.chat}>
-                            <img src={process.env.PUBLIC_URL + "/img/chat.png"} alt="" />
+							{getChatAuthIsLoading ?
+								<Loading />
+								:
+								serverError ? <div className="content-error">{serverError}</div>
+									:
+									<div className="chat-room">
+										<div className="chat-room__container">
+											<div className="chat-room__title">
+												<div className="left-red-Line">
+													{roomIsLoading
+														?
+														<div className="lh-less">Загрузка...</div>
+														:
+														<>
+															<div className="lh-less">{roomName}</div>
+															<div className="online-status">Сейчас онлайн</div>
+														</>
+													}
+												</div>
+											</div>
+											<div className="mess-box">
+												<Scrollbars autoHide ref={chatScroll} onUpdate={chatScrollUpdate}>
+													<div className="day-wrapper">
+														{roomIsLoading ?
+															<div>Загрузка</div>
+															:
+															<>
+																<div className="message-date">Date</div>
+																{messages && messages.length > 0 ?
+																	<TransitionGroup className="messages-date-wrapper">
+																		{messages.map(mess => (
+																			<CSSTransition timeout={300} key={mess.messageId} className="user-message">
+																				<UserMessage message={mess} userId={localStorage.getItem('123')}/>
+																			</CSSTransition>
+																		))}
+																	</TransitionGroup>
+																	:
+																	<div className="empty-wrap">
+																		<Empty/>
+																	</div>
+																}
+															</>
+														}
+													</div>
+												</Scrollbars>
+											</div>
+											<div className="chat-room__input-wrapper">
+												<div className="chat-room__input-file" onClick={() => console.log(messages)}>
+													<svg className="icon-clip" width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M15.7504 6.7502L7.62536 14.8752C7.12808 15.3725 6.84871 16.0469 6.84871 16.7502C6.84871 17.4535 7.12808 18.1279 7.62536 18.6252C8.12264 19.1225 8.7971 19.4019 9.50036 19.4019C10.2036 19.4019 10.8781 19.1225 11.3754 18.6252L19.5004 10.5002C20.4949 9.50564 21.0537 8.15672 21.0537 6.7502C21.0537 5.34368 20.4949 3.99476 19.5004 3.0002C18.5058 2.00564 17.1569 1.4469 15.7504 1.4469C14.3438 1.4469 12.9949 2.00564 12.0004 3.0002L3.87536 11.1252C2.38352 12.617 1.54541 14.6404 1.54541 16.7502C1.54541 18.86 2.38352 20.8834 3.87536 22.3752C5.3672 23.867 7.39058 24.7052 9.50036 24.7052C11.6101 24.7052 13.6335 23.867 15.1254 22.3752L23.2504 14.2502"/>
+													</svg>
+												</div>
+												<div className="chat-room__input">
+													<Mentions autoSize style={{ width: '100%' }}
+															  placeholder="Написать сообщение..."
+															  prefix={['@', '#']}
+															  onSearch={onSearch}
+															  value={userText}
+															  onChange={value => setUserText(value)}
+													>
+														{(MOCK_DATA[prefix] || []).map(value => (
+															<Option key={value} value={value}>
+																{value}
+															</Option>
+														))}
+													</Mentions>
+												</div>
+												<div className="chat-room__send" onClick={addNewMessage}>
+													<svg className="icon-send" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M8.63297 7.37351L18.538 4.07185C22.983 2.59018 25.398 5.01685 23.928 9.46185L20.6263 19.3668C18.4096 26.0285 14.7696 26.0285 12.553 19.3668L11.573 16.4268L8.63297 15.4468C1.9713 13.2302 1.9713 9.60185 8.63297 7.37351Z" />
+														<path d="M11.7944 15.9245L15.9711 11.7361" />
+													</svg>
+												</div>
+											</div>
+										</div>
+									</div>
+							}
                         </div>
                     </div>
                     <div className={s.infoBlock}>
-                        <UserAbout user={form.user} setUser={(val) => setForm({...form, user: val})}/>
+                        <UserAbout user={form.user} setUser={(val) => setForm({...form, user: val})} modal={form} setModal={setForm}/>
                         <InfoSteps numberStep={data.numberStep} title={data.title} par1={data.par1} par2={data.par2} />
                         <Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.WAITING)}>Все согласовано – начинайте работу!</Button>
                     </div>
                 </div>
             </div>
-            <Modal className='modalAnket' visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                <div className={s.contentWrap}>
-                    <div className='title-anket'>Моя анкета</div>
-                    {/* <div className={s.subtitle}>Просмотрите свою заполненную анкету</div> */}
-
-                    <Collapse accordion className='anket'>
-                        <Panel className='anket' header="Индивидуальные особенности" key="1">
-                            <div className="item-subtitle">
-                                Расскажите нам о себе что бы мы сделать
-                                вашу будущею квартиру более удобную именно для вас!
-                            </div>
-                            <div className={s.itemsQuize}>
-                                <div className={s.item}>
-                                    <div className={s.selectTitle}>1. Сколько человек будет жить в вашей квартире?</div>
-                                    <div className={s.selectItem}>
-                                        <div className={s.selectSubtitle}>Кол-во</div>
-                                        <Select className={s.select}>
-                                            <Option value="" hidden></Option>
-                                            <Option value="1">1</Option>
-                                            <Option value="2">2</Option>
-                                            <Option value="3">3</Option>
-                                            <Option value="4">4</Option>
-                                            <Option value="5+">5+</Option>
-                                        </Select>
-                                    </div>
-                                </div>
-                                <div className={s.item}>
-                                    <div className={s.selectTitle}>2. Есть ли у вас домашний питомец?</div>
-                                    <div className={s.selectesWrap}>
-                                        <div className={s.selectItem}>
-                                            <div className={s.selectSubtitle}>Питомец</div>
-                                            <Select className={s.select}
-                                                onChange={setValuePet}> value={valuePet}
-                                                <Option value="" hidden></Option>
-                                                <Option value="Нет">Нет</Option>
-                                                <Option value="Да">Да</Option>
-                                                <Option value="Другое">Другое</Option>
-                                            </Select>
-                                        </div>
-                                        <div className={s.selectItem}>
-                                            {valuePet === 'Другое' &&
-                                                <div>
-                                                    <div className={s.selectSubtitle}>Питомец</div>
-                                                    <input className={s.input} type="text" />
-                                                </div>}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={s.item}>
-                                    <div className={s.selectTitle}>3. Какой ваш примерный возраст?</div>
-                                    <div className={s.selectItem}>
-                                        <div className={s.selectSubtitle}>Возраст</div>
-                                        <Select className={s.select}>
-                                            <Option value="" hidden></Option>
-                                            <Option value="18-25">18-25</Option>
-                                            <Option value="25-40">25-40</Option>
-                                            <Option value="40-60">40-60</Option>
-                                            <Option value="60+">60+</Option>
-                                        </Select>
-                                    </div>
-                                </div>
-                                <div className={s.item}>
-                                    <div className={s.selectTitle}>4. Есть ли у вас дети, или планируете в ближайшем будущем?</div>
-                                    <div className={s.selectesWrap}>
-                                        <div className={s.selectItem}>
-                                            <div className={s.selectSubtitle}>Дети</div>
-                                            <Select value={valueChildren} className={s.select}
-                                                onChange={setValueChildren}>
-                                                <Option value="" hidden></Option>
-                                                <Option value="Есть">Есть</Option>
-                                                <Option value="Нет, но планируется">Нет, но планируется</Option>
-                                                <Option value="Нет">Нет</Option>
-                                            </Select>
-                                        </div>
-                                        <div className={s.selectItem}>
-                                            {valueChildren !== 'Нет' && valueChildren !== '' &&
-                                                <div>
-                                                    <div className={s.selectSubtitle}>Кол-во</div>
-                                                    <Select className={s.select} name="" id="">
-                                                        <Option value="" hidden></Option>
-                                                        <Option value="1">1</Option>
-                                                        <Option value="2">2</Option>
-                                                        <Option value="3">3</Option>
-                                                        <Option value="3+">3+</Option>
-                                                    </Select>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={s.item}>
-                                    <div className={s.selectTitle}>5. Как часто к вам приходят гости  и сколько человек вы готовы принять к застолью?</div>
-                                    <div className={s.selectesWrap}>
-                                        <div className={s.selectItem}>
-                                            <div className={s.selectSubtitle}>Гости</div>
-
-                                            <Select className={s.select}>
-                                                <Option value="" hidden></Option>
-                                                <Option value="Раз в неделю">Раз в неделю</Option>
-                                                <Option value="Раз в месяц">Раз в месяц</Option>
-                                                <Option value="Раз в пол года">Раз в пол года</Option>
-                                            </Select>
-                                        </div>
-                                        <div className={s.selectItem}>
-                                            <div className={s.selectSubtitle}>Кол-во</div>
-
-                                            <Select className={s.select}>
-                                                <Option value="" hidden></Option>
-                                                <Option value="1">1</Option>
-                                                <Option value="2">2</Option>
-                                                <Option value="3">3</Option>
-                                                <Option value="4">5</Option>
-                                                <Option value="5+">5+</Option>
-                                            </Select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Panel>
-                        <Panel header="Комнаты" key="2">
-                            <div className="item-subtitle">
-                                Расскажите нам о себе что бы мы сделать
-                                вашу будущею квартиру более удобную именно для вас!
-                            </div>
-                            <div className={s.itemsQuize}>
-                                <div className={s.checkboxes}>
-                                    <div className={s.checkboxWrap}>
-                                        <div className={s.checkboxItem}>
-                                            <Checkbox value={checked1} onChange={() => setChecked1(!checked1)}>
-                                                Прихожая
-                                            </Checkbox>
-                                        </div>
-                                        <div className={checked1 ? 'description active' : 'description'}>
-                                            <button>
-                                                <img src="img/edit.svg" alt="" />
-                                                <span>добавить описание</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className={s.checkboxWrap}>
-                                        <div className={s.checkboxItem}>
-                                            <Checkbox value={checked2} onChange={() => setChecked2(!checked2)}>
-                                                Гардеробная
-                                            </Checkbox>
-                                        </div>
-                                        <div className={checked2 ? 'description active' : 'description'}>
-                                            <button>
-                                                <img src="img/edit.svg" alt="" />
-                                                <span>добавить описание</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className={s.checkboxWrap}>
-                                        <div className={s.checkboxItem}>
-                                            <Checkbox value={checked3} onChange={() => setChecked3(!checked3)}>
-                                                Кухня
-                                            </Checkbox>
-                                        </div>
-                                        <div className={checked3 ? 'description active' : 'description'}>
-                                            <button>
-                                                <img src="img/edit.svg" alt="" />
-                                                <span>добавить описание</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className={s.checkboxWrap}>
-                                        <div className={s.checkboxItem}>
-                                            <Checkbox value={checked4} onChange={() => setChecked4(!checked4)}>
-                                                Гостиная
-                                            </Checkbox>
-                                        </div>
-                                        <div className={checked4 ? 'description active' : 'description'}>
-                                            <button>
-                                                <img src="img/edit.svg" alt="" />
-                                                <span>добавить описание</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className={s.checkboxWrap}>
-                                        <div className={s.checkboxItem}>
-                                            <Checkbox value={checked5} onChange={() => setChecked5(!checked5)}>
-                                                Спальня
-                                            </Checkbox>
-                                        </div>
-                                        <div className={checked5 ? 'description active' : 'description'}>
-                                            <button>
-                                                <img src="img/edit.svg" alt="" />
-                                                <span>добавить описание</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className={s.checkboxWrap}>
-                                        <div className={s.checkboxItem}>
-                                            <Checkbox value={checked6} onChange={() => setChecked6(!checked6)}>
-                                                Детская
-                                            </Checkbox>
-                                        </div>
-                                        <div className={checked6 ? 'description active' : 'description'}>
-                                            <button>
-                                                <img src="img/edit.svg" alt="" />
-                                                <span>добавить описание</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className={s.checkboxWrap}>
-                                        <div className={s.checkboxItem}>
-                                            <Checkbox value={checked7} onChange={() => setChecked7(!checked7)}>
-                                                Санузел
-                                            </Checkbox>
-                                        </div>
-                                        <div className={checked7 ? 'description active' : 'description'}>
-                                            <button>
-                                                <img src="img/edit.svg" alt="" />
-                                                <span>добавить описание</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className={s.checkboxWrap}>
-                                        <div className={s.checkboxItem}>
-                                            <Checkbox value={checked8} onChange={() => setChecked8(!checked8)}>
-                                                Кабинет
-                                            </Checkbox>
-                                        </div>
-                                        <div className={checked8 ? 'description active' : 'description'}>
-                                            <button>
-                                                <img src="img/edit.svg" alt="" />
-                                                <span>добавить описание</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className={s.userText}>
-                                    <div className={s.title}>Произвольное пожелание</div>
-                                    <textarea placeholder='Ваше пожелание...' name="" id="" cols="30" rows="10"></textarea>
-                                </div>
-                            </div>
-                        </Panel>
-                        <Panel header="План БТИ" key="3">
-                            <div className="item-subtitle">
-                                Расскажите нам о себе что бы мы сделать
-                                вашу будущею квартиру более удобную именно для вас!
-                            </div>
-                            <div className={s.upLoadWrap}>
-                                <Dragger {...props}>
-                                    <p className="ant-upload-hint">
-                                        Перетащите сюда файл в формате pdf или
-                                    </p>
-                                    <p className="ant-upload-text">
-                                        <img src="img/upLoad.svg" alt="" />
-                                        Загрузить файл с компьютера</p>
-                                </Dragger>
-
-                            </div>
-                            <Checkbox style={{ marginBottom: '4rem' }}>
-                                У меня есть собственный замер, который я выполнил ответственно
-                            </Checkbox>
-                        </Panel>
-                    </Collapse>
-                    <div className="buttons">
-                        <button class="MyBtn_myBtn__nNQdk">Сохранить</button>
-                        <button type="button" onClick={(handleCancel)} class="ant-btn ant-btn-primary RequestSteps_btnDark__3gAJB"><span>Закрыть</span></button>
-                    </div>
-                </div>
-            </Modal>
         </div>
     );
 };

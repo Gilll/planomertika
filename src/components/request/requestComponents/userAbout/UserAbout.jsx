@@ -53,6 +53,9 @@ const UserAbout = ({ user, setUser, modal, setModal }) => {
         localStorage.removeItem('surname')
         localStorage.removeItem('email')
         localStorage.removeItem('userId')
+        localStorage.removeItem('uuid')
+        localStorage.removeItem('jwtToken')
+        localStorage.removeItem('exchangeName')
         dispatch({ type: redActions.setIsAuth, payload: false });
         navigate(RouteNames.LANDING);
     }
