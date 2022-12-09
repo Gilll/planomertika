@@ -382,6 +382,9 @@ body .ant-checkbox-wrapper {
   .phone-input-wrap {
     display: flex;
     align-items: center;
+	  div {
+		  cursor: pointer;
+	  }
   }
 }
 
@@ -743,4 +746,178 @@ select:-webkit-autofill:focus {
 .user-message.exit-active {
 	opacity: 0;
 	transition: all 300ms ease-in;
+}
+
+.actions-wrap {
+	display: flex;
+	align-items: center;
+	.ant-btn-default {
+		margin-left: 2.5rem;
+	}
+	.ant-btn-default:active, .ant-btn-default:focus, .ant-btn-default:hover {
+		background: #313131;
+	}
+}
+
+.icon-profile {
+	width: 1.3rem;
+	height: 1.3rem;
+}
+
+.icon-pass {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.App {
+	min-height: 100vh;
+	position: relative;
+	padding-bottom: 26rem;
+}
+
+.admin-container {
+	width: 144rem;
+	margin: 0 auto;
+}
+
+.admin-title {
+	font-weight: 700;
+	font-size: 5rem;
+	line-height: 6.2rem;
+	letter-spacing: 0.01em;
+}
+
+.admin-text {
+	font-weight: 400;
+	font-size: 1.6rem;
+	line-height: 150%;
+}
+
+.admin-chat {
+	margin-top: 5rem;
+	height: 70rem;
+	border: 1px solid #C4C4C4;
+	margin-bottom: 17rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.admin-chat-rooms {
+	width: 65rem;
+	height: 70rem;
+	border-right: 1px solid #C4C4C4;
+}
+
+.admin-chat-room {
+	flex-grow: 1;
+	height: 70rem;
+}
+
+.room-list {
+	margin-top: 4rem;
+	flex-grow: 1;
+	&.admin {
+
+	}
+	&__date {
+		font-size: 1.4rem;
+		color: rgba(21, 22, 47, 0.5);
+	}
+	.ant-empty {
+		margin-top: 4rem;
+	}
+	&__item {
+		border-top: 1px solid #EBEBEB;
+		position: relative;
+		z-index: 1;
+		border-left: 0.5rem solid transparent;
+		padding: 3rem 3.5rem 3rem 1.5rem;
+		display: flex;
+		justify-content: left;
+		cursor: pointer;
+		transition: 0.3s;
+		color: #15162F;
+		&:last-child {
+			border-bottom: 1px solid #EBEBEB;
+		}
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.6);
+			transition: 0.3s;
+		}
+		&.active {
+			border-left-color: #F4493C;
+			border-top-color: white;
+			border-bottom-color: white;
+			cursor: default;
+			background-color: white;
+			border-bottom: 0;
+			transition: 0.3s;
+			margin-bottom: -1px;
+			padding-bottom: calc(3rem + 1px);
+			z-index: 2;
+		}
+	}
+	&__icon {
+		background-color: rgba(64, 93, 190, 0.3);
+		width: 4.5rem;
+		height: 4.5rem;
+		margin-right: 1.2rem;
+		flex-shrink: 0;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-weight: 600;
+		font-size: 2.2rem;
+		color: white;
+		img {
+			width: 4.5rem;
+		}
+	}
+	&__info {
+		flex-grow: 1;
+	}
+	&__name {
+		white-space: nowrap;
+		overflow: hidden;
+		font-size: 1.8rem;
+		font-weight: 600;
+		line-height: 2.15rem;
+		text-overflow: ellipsis;
+		height: 2.15rem;
+		width: 25rem;
+		margin-bottom: 1rem;
+	}
+	&__last-mess {
+		color: rgba(21, 22, 47, 0.5);
+		font-size: 1.6rem;
+		line-height: 1.9rem;
+		height: 1.9rem;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 25rem;
+	}
+}
+
+.room-list-scroll > div:last-child {
+	z-index: 3;
+}
+
+.change-phone-input {
+	margin-bottom: 5rem;
+	input {
+		font-family: 'Gilroy', sans-serif;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 1.6rem;
+		line-height: 150%;
+		color: #1D1D1D;
+		padding: 1.8rem 2.5rem;
+		width: 49.5rem;
+	}
+}
+
+html .ant-upload-list-picture .ant-upload-list-item-thumbnail img {
+	object-fit: contain;
 }

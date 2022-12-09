@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 
 const deafaultState = {
     isAuth: false,
+	isAdmin: false,
     user: {
         name: '',
         email: '',
@@ -18,6 +19,8 @@ const reducer = (state = deafaultState, action) => {
     switch (action.type) {
         case "SET_IS_AUTH":
             return {...state, isAuth: action.payload}
+        case "SET_IS_ADMIN":
+            return {...state, isAdmin: action.payload}
         case "SET_USER":
             return {...state, user: action.payload}
         default:

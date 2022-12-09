@@ -82,9 +82,6 @@ const FormRooms = ({form, setForm}) => {
 							  onChange={(e) => setForm({...form, rooms: {...form.rooms, advanced: e.target.value}})}
 							  placeholder='Ваше пожелание...' cols="30" rows="10"/>
 				</div>
-				<div className={s.next}>
-					<div className={s.nextItem}>План БТИ</div>
-				</div>
 			</>
 	);
 };

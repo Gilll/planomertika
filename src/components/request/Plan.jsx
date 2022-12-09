@@ -27,7 +27,7 @@ const Plan = ({ nextStep, form, setForm }) => {
     const props = {
         name: 'file',
         multiple: true,
-        action: hostName + '/orders/addFiles/' + form.order.id,
+        action: hostName + '/orders/addFiles',
         headers: {
             'Authorization': localStorage.getItem('token')
         },
@@ -67,7 +67,10 @@ const Plan = ({ nextStep, form, setForm }) => {
     };
 
     const saveRequest = () => {
-        saveAll().then(() => nextStep(RequestSteps.RATE)).catch((e) => console.log(e.message))
+        saveAll().then((resp) => {
+			setForm({...form, order: {id: resp.id}})
+        	nextStep(RequestSteps.RATE)
+		}).catch((e) => console.log(e.message))
     }
 
     useEffect(() => {
@@ -116,7 +119,7 @@ const Plan = ({ nextStep, form, setForm }) => {
                         </div>
                     </div>
                     <div className={s.infoBlock}>
-                        <UserAbout user={form.user} setUser={(val) => setForm({...form, user: val})}/>
+                        <UserAbout user={form.user} modal={form} setUser={(val) => setForm({...form, user: val})}/>
                         <InfoSteps numberStep={data.numberStep} title={data.title} par1={data.par1} par2={data.par2} />
                     </div>
                 </div>

@@ -7,6 +7,7 @@ import InfoSteps from './requestComponents/infoSteps/InfoSteps';
 import FormQuest from "./FormQuest";
 
 const Questionnaire = ({ nextStep, form, setForm }) => {
+	console.log('quest')
     const [stepComplete, setStepComplete] = useState(false)
     const data = {
         numberStep: "1",
@@ -55,9 +56,8 @@ const Questionnaire = ({ nextStep, form, setForm }) => {
                             <span className={'fade ' + (stepComplete && 'hide')}>Для продолжения заполните все поля</span>
                         </div>
                     </div>
-
                     <div className={s.infoBlock}>
-                        <UserAbout user={form.user} setUser={(val) => setForm({...form, user: val})}/>
+                        <UserAbout user={form.user} modal={form} setUser={(val) => setForm({...form, user: val})}/>
                         <InfoSteps numberStep={data.numberStep} title={data.title} par1={data.par1} par2={data.par2} />
                     </div>
                 </div>

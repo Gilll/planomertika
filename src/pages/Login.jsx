@@ -24,7 +24,7 @@ const Login = () => {
 		url: '/api/auth/confirmation',
 		data: {
 			email: regForm.email,
-			uuid: confirmCode
+			code: confirmCode
 		}
 	});
     const dispatch = useDispatch();
@@ -39,10 +39,12 @@ const Login = () => {
 			localStorage.setItem('userId', resp.userResponse.id)
 			if (resp.userResponse.phoneNumber)  { localStorage.setItem('phoneNumber', resp.userResponse.phoneNumber) }
 			dispatch({ type: redActions.setIsAuth, payload: true });
+			dispatch({ type: redActions.setIsAdmin, payload: resp.jwtResponse.roles.includes('ROLE_ARCHITECT') });
 			dispatch({ type: redActions.setUser, payload: {
-					name: resp.username,
+					name: resp.name,
+					surname: resp.surname,
 					email: resp.email,
-					phone: '',
+					phone: resp.userResponse.phoneNumber || '',
 					id: resp.id
 				} });
 			navigate(RouteNames.REQUEST)
@@ -63,6 +65,7 @@ const Login = () => {
 				localStorage.setItem('userId', resp.id)
 				if (resp.phoneNumber)  { localStorage.setItem('phoneNumber', resp.phoneNumber) }
 				dispatch({ type: redActions.setIsAuth, payload: true });
+				dispatch({ type: redActions.setIsAdmin, payload: response.jwtResponse.roles.includes('ROLE_ARCHITECT') });
 				dispatch({ type: redActions.setUser, payload: {
 						name: resp.name,
 						surname: resp.surname,

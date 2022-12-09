@@ -30,6 +30,17 @@ const Chat = ({ nextStep, form, setForm }) => {
 		url: '/api/chat/signIn',
 	});
 
+	const [newState, newStateIsLoading] = useApi({
+		url: '/orders/changeStateOfOrderInWork/' + form.order.id,
+	});
+
+	const trySetNewState = () => {
+		newState().then((resp) => {
+			nextStep(RequestSteps.WAITING);
+			setForm({...form, orderState: 'IN_WORK'})
+		}).catch((e) => console.log(e.message))
+	}
+
 	useEffect(() => {
 		getChatAuth().then((resp) => {
 			console.log(resp)
@@ -290,7 +301,7 @@ const Chat = ({ nextStep, form, setForm }) => {
                     <div className={s.infoBlock}>
                         <UserAbout user={form.user} setUser={(val) => setForm({...form, user: val})} modal={form} setModal={setForm}/>
                         <InfoSteps numberStep={data.numberStep} title={data.title} par1={data.par1} par2={data.par2} />
-                        <Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.WAITING)}>Все согласовано – начинайте работу!</Button>
+                        <Button className={s.btnColor} loading={newStateIsLoading} type="primary" onClick={trySetNewState}>Все согласовано – начинайте работу!</Button>
                     </div>
                 </div>
             </div>

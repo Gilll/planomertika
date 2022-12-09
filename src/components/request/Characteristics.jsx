@@ -49,6 +49,9 @@ const Characteristics = ({ nextStep, form, setForm }) => {
 						</div>
 						<div className={s.itemsQuize}>
 							<FormRooms form={form} setForm={setForm}/>
+							<div className={s.next}>
+								<div className={s.nextItem}>План БТИ</div>
+							</div>
 							<div className="nextstep-wrap">
 								<Button className={s.btnColor} type="primary" onClick={() => nextStep(RequestSteps.PLAN)} disabled={!stepComplete}>Далее</Button>
 								<span className={'fade ' + (stepComplete && 'hide')}>Для продолжения выберите как миннимум 2 комнаты</span>
@@ -56,7 +59,7 @@ const Characteristics = ({ nextStep, form, setForm }) => {
 						</div>
 					</div>
                     <div className={s.infoBlock}>
-                        <UserAbout user={form.user} setUser={(val) => setForm({...form, user: val})}/>
+                        <UserAbout user={form.user} modal={form} setUser={(val) => setForm({...form, user: val})}/>
                         <InfoSteps numberStep={data.numberStep} title={data.title} par1={data.par1} par2={data.par2} />
                     </div>
                 </div>

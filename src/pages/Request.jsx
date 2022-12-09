@@ -21,6 +21,7 @@ const Request = () => {
         order: {
             id: ''
         },
+		orderState: '',
         questionnaire: {
             tenantsCount: '',
             pet: '',
@@ -48,7 +49,7 @@ const Request = () => {
             name: localStorage.getItem('name'),
 			surname: localStorage.getItem('surname'),
             email: localStorage.getItem('email'),
-            phone: ''
+            phone: localStorage.getItem('phone')
         }
     })
 
@@ -83,7 +84,6 @@ const Request = () => {
     });
 
     useEffect(() => {
-    	console.log(window.appSettings);
         getRuquest().then((resp) => {
             if (resp.length) {
                 setCurRequestId(resp[0].id)
@@ -92,6 +92,10 @@ const Request = () => {
 			}
         }).catch((e) => setServerError(e.message))
     },[])
+
+	useEffect(() => {
+		console.log(requestForm);
+	},[requestForm])
 
     useEffect(() => {
         currentStep !== RequestSteps.QUESTIONNAIRE && executeScroll();
@@ -122,15 +126,19 @@ const Request = () => {
 						wardrobe: currentRequest.orderPageTwoResponse.isWardrobe,
 						cabinet: currentRequest.orderPageTwoResponse.isCabinet,
 						advanced: currentRequest.orderPageTwoResponse.wish
-					}, files: currentRequest.files,
-					order: { id: currentRequest.id }})
-				if (currentRequest.files && currentRequest.files.length) {
-					setCurrentStep(RequestSteps.RATE);
-				} else {
-					setCurrentStep(RequestSteps.PLAN);
-				}
+					}, files: currentRequest.files || [],
+					order: { id: currentRequest.id },
+					orderState: currentRequest.state.state
+				})
 				setPageIsLoading(false)
-				console.log(resp);
+				switch (currentRequest.state.state) {
+					case "CREATED": return setCurrentStep(RequestSteps.RATE);
+					case "CREATE_DIALOG": return setCurrentStep(RequestSteps.CHAT);
+					case "DIALOG_CREATED": return setCurrentStep(RequestSteps.CHAT);
+					case "IN_WORK": return setCurrentStep(RequestSteps.WAITING);
+					case "READY": return setCurrentStep(RequestSteps.RESULT);
+					default: setCurrentStep(RequestSteps.QUESTIONNAIRE);
+				}
 			})
         }
     },[curRequestId])

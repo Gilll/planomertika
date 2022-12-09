@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Route, Routes} from "react-router";
 import {RouteNames} from "./routeNames";
 import Landing from "../pages/Landing";
@@ -11,15 +11,25 @@ import MyAccount from '../pages/MyAccount';
 import AuthWrapper from "../components/AuthWrapper";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
-
-
-
+import {useSelector} from "react-redux";
+import AdminMain from "../pages/AdminMain";
+import Room from "../components/admin/Room";
 
 const AppRouter = () => {
+	const isAuth = useSelector(state => state.isAuth)
+	const isAdmin = useSelector(state => state.isAdmin)
+
     return (
         <Routes>
             <Route path={RouteNames.LANDING} element={<Landing/>}/>
-            <Route path={RouteNames.REQUEST} element={<Request/>}/>
+			{isAdmin ?
+				<Route path='/request' element={<AdminMain/>}>
+					<Route path='/request/:id' element={<Room/>}/>
+					<Route index element={<Room/>}/>
+				</Route>
+				:
+				<Route path={RouteNames.REQUEST} element={<Request/>}/>
+			}
             <Route path={RouteNames.ABOUT} element={<About/>}/>
             <Route path={RouteNames.REVIEWS} element={<Reviews/>}/>
             <Route path={RouteNames.FAQPage} element={<FAQPage/>}/>

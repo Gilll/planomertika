@@ -15,6 +15,17 @@ const Rate = ({ nextStep, form, setForm }) => {
         }
     });
 
+	const [skipPayment, skipPaymentIsLoading] = useApi({
+		url: '/orders/changeStateOfOrderCreateDialog/' + form.order.id,
+	});
+
+	const trySkipPayment = () => {
+		skipPayment().then(() => {
+			nextStep(RequestSteps.CHAT)
+			console.log('payment skiped')
+		})
+	}
+
     const data = {
         numberStep: "2",
         title: "Выбор тарифа",
@@ -50,7 +61,8 @@ const Rate = ({ nextStep, form, setForm }) => {
                             </div>
                         </div>
                         <div  className={s.title}>
-							<span onClick={() => nextStep(RequestSteps.CHAT)} style={{ color: 'red', cursor: 'pointer' }}>Пропустить(DEV)</span>
+							<span onClick={trySkipPayment} style={{ color: 'red', cursor: 'pointer' }}>Пропустить(DEV)</span>
+							{skipPaymentIsLoading && <span> loading...</span>}
                         </div>
                         <div className={s.bottomBlock}>
                             <Button className={s.btnColor} loading={paymentIsLoading} type="primary" onClick={() => payment().then((resp) => {
