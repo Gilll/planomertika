@@ -89,7 +89,6 @@ const Reviews = (props) => {
                 <div className={s.inner}>
                     <div className={s.titleWrap}>
                         <div className={s.title}>Отзывы</div>
-                        <MyBtn title={data.title} />
                     </div>
                     <div className="">
                         <Slider  {...sliderSettings}>

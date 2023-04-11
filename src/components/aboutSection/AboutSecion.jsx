@@ -1,6 +1,8 @@
 import React from "react";
 import MyBtn from "../myBtn/MyBtn";
 import s from "./AboutSection.module.scss";
+import {RouteNames} from "../../router/routeNames";
+import {Link} from "react-router-dom";
 
 
 
@@ -70,7 +72,7 @@ const AboutSection = () => {
 								<p>Мы работаем он-лайн и на связи с вами все 24 часа, которые будут потрачены на создание удобной планировки для вас</p>
                             </div>
                         </div>
-                        <MyBtn title="Заполнить анкету"/>
+                        <Link to={RouteNames.REQUEST}><MyBtn title="Заполнить анкету"/></Link>
                     </div>
                     <div className={s.imgBlock}>
                         <img src={process.env.PUBLIC_URL + "/img/AboutSection.png"} alt="" />

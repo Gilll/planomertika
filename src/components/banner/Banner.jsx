@@ -1,6 +1,8 @@
 import React from "react";
 import MyBtn from "../myBtn/MyBtn";
 import s from "./Banner.module.scss";
+import {RouteNames} from "../../router/routeNames";
+import {Link} from "react-router-dom";
 
 
 
@@ -28,7 +30,7 @@ const Banner = () => {
                     <div className={s.banner__title}>Planometrika</div>
                     <div className={s.banner__subtitle}>Планировочное решение вашей квартиры</div>
                     <div className={s.banner__contentBottom}>
-                    <MyBtn title={data.title}/>
+                    <Link to={RouteNames.REQUEST}><MyBtn title={data.title}/></Link>
                     <div className={s.banner__price}>
                         <span>3 500 р.</span>/24 часа
                     </div>

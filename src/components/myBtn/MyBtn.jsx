@@ -7,7 +7,7 @@ import s from "./MyBtn.module.scss";
 
 const MyBtn = (props) => {
     return (
-        <button className={s.myBtn} onClick={() => props.onClick() }>
+        <button className={s.myBtn} onClick={() => { if (props.onClick) { props.onClick() }} }>
             {props.title}
         </button>
     );

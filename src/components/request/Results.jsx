@@ -8,6 +8,7 @@ import { Rate } from 'antd';
 import {useApi} from "../../hooks/useApi";
 import Loading from "../../pages/Loading";
 import {useNavigate} from "react-router";
+import {Link} from "react-router-dom";
 
 
 
@@ -31,6 +32,13 @@ const Results = ({ nextStep, form, setForm, archived }) => {
     	if (form.archived) {
 			getReview().then((resp) => { setFinalComment(resp[0].comment)})
 		}
+		checkDiscount().then(resp => {
+			setHasDiscount(resp)
+		})
+		getRuquest().then((resp) => {
+			setOrders(resp.orderResponseList)
+		})
+		console.log(orders)
 	},[])
 
     const [rate, setRate] = useState(4.5);
@@ -49,6 +57,29 @@ const Results = ({ nextStep, form, setForm, archived }) => {
 
     const trySendReview = () => {
 		sendReview().then(() => navigate('/history'));
+	}
+
+	const [hasDiscount, setHasDiscount] = useState()
+	const [orders, setOrders] = useState([])
+	const [checkDiscount, checkDiscountIsLoading] = useApi({
+		url: '/clientOrders/checkDiscount',
+		method: 'GET'
+	});
+	const [getRuquest, getRuquestIsLoading] = useApi({
+		url: '/clientOrders/getOrdersFilter',
+		data: {
+			countElementOnPage: 100,
+			numPage: 0
+		}
+	});
+
+	const newOrder = () => {
+		console.log('newOrder');
+		nextStep(RequestSteps.QUESTIONNAIRE)
+	}
+	const newOrderDiscount = () => {
+		console.log('newOrderDiscount');
+		nextStep(RequestSteps.QUESTIONNAIRE)
 	}
 
     return (
@@ -100,7 +131,25 @@ const Results = ({ nextStep, form, setForm, archived }) => {
                     <div className={s.infoBlock}>
                         <UserAbout user={form.user} setUser={(val) => setForm({...form, user: val})} modal={form} setModal={setForm}/>
                         <InfoSteps numberStep={data.numberStep} title={data.title} par1={data.par1} par2={data.par2} />
-                        <Button className={s.btnDark} onClick={() => nextStep(RequestSteps.QUESTIONNAIRE)} type="primary">Заказать еще вариант со скидкой</Button>
+						{(getRuquestIsLoading || checkDiscountIsLoading) ?
+							<Loading />
+							:
+							<>{orders.filter((el) => el.state.state !== 'READY').length === 0 && <>
+								{hasDiscount ?
+									<div className="history-actions">
+										<Link to={'/request/new'}>
+											<Button className={s.btnDark} onClick={newOrder} type="primary">Заказать еще вариант со скидкой</Button>
+										</Link>
+									</div>
+									:
+									<div className="history-actions">
+										<Link to={'/request/new'}>
+											<Button className={s.btnDark} onClick={newOrderDiscount} type="primary">Заказать еще</Button>
+										</Link>
+									</div>
+								}
+							</>}</>
+						}
                     </div>
                 </div>
             </div>

@@ -150,10 +150,10 @@ const HistoryPage = () => {
 					</div>
 					<div className={s.infoBlock}>
 						<UserAbout user={form.user} noOrder={true} setUser={(val) => setForm({...form, user: val})} modal={form} setModal={setForm}/>
-						{checkDiscountIsLoading ?
+						{(getRuquestIsLoading || checkDiscountIsLoading) ?
 							<Loading />
 							:
-							<>
+							<>{orders.filter((el) => el.state.state !== 'READY').length === 0 && <>
 								{hasDiscount ?
 									<div className="history-actions">
 										<Link to={'/request/new'}>
@@ -167,7 +167,7 @@ const HistoryPage = () => {
 										</Link>
 									</div>
 								}
-							</>
+							</>}</>
 						}
 
 					</div>
