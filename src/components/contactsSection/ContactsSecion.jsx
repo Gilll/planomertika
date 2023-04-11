@@ -22,8 +22,8 @@ const ContactsSection = () => {
                     <div className={s.content}>
                         <YMaps>
                             <div className={s.mapWrap}>
-                                <Map className={s.map} defaultState={{ center: [55.756128, 37.602382], zoom: 15 }}>
-                                    <Placemark geometry={[55.756128, 37.602382]} />
+                                <Map className={s.map} defaultState={{ center: [55.74376544232384,37.610089812565384], zoom: 15 }}>
+                                    <Placemark geometry={[55.74376544232384,37.610089812565384]} />
                                 </Map>
                             </div>
                         </YMaps>

@@ -371,10 +371,12 @@ const Chat = ({ nextStep, form, setForm }) => {
 												<div className="chat-room__input">
 													<Mentions autoSize style={{ width: '100%' }}
 															  placeholder="Написать сообщение..."
-															  prefix={['@', '#']}
-															  onSearch={onSearch}
 															  value={userText}
 															  onChange={value => setUserText(value)}
+															  onKeyPress={(e) => { if (e.charCode === 13) {
+																  e.preventDefault();
+																  addNewMessage()
+															  }}}
 													>
 														{(MOCK_DATA[prefix] || []).map(value => (
 															<Option key={value} value={value}>

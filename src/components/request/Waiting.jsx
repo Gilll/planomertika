@@ -74,8 +74,7 @@ const Waiting = ({ nextStep, form, setForm }) => {
     const tick = () => {
 		if (initTimes) {
 			if (h === 0 && m === 0 && sec === 0) {
-				setOver(true);
-				console.log('Время вышло')
+				setTime([2, 0, 0])
 			} else if (m === 0 && sec === 0) {
 				setTime([h - 1, 59, 59]);
 			} else if (sec === 0) {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import t from './UserAbout.module.scss';
 import PhoneInput from "../../../PhoneInput";
@@ -321,10 +321,12 @@ const UserAbout = ({ user, setUser, modal, setModal, noOrder }) => {
 					</Modal>
 				</>
 				}
-				<div className="payment-link">
-					<IconPayment/>
-					<span>Вы еще не внесли оплату</span>
-				</div>
+				{modal.orderState === 'CREATED' &&
+					<div className="payment-link">
+						<IconPayment/>
+						<span>Вы еще не внесли оплату</span>
+					</div>
+				}
 			</div>
 			}
         </div>

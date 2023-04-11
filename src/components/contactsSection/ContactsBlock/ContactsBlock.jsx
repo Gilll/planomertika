@@ -27,11 +27,11 @@ const ContactsBlock = () => {
                     <div className={s.info}>
                         <div className={s.infoItem}>
                             <div className={s.key}>Адрес</div>
-                            <div className={s.value}>г. Москва, Малый Кисловский переулок д.9 к.1</div>
+                            <div className={s.value}>г.Москва, Берсеневская наб., 20, 119072</div>
                         </div>
                         <div className={s.infoItem}>
                             <div className={s.key}>Телефон</div>
-                            <a href="tel:+89959044150" className={s.value}>8 (995) 904-41-50</a>
+                            <a href="tel:+79153370855" className={s.value}>+7 (915) 337-08-55</a>
                         </div>
                         <div className={s.infoItem}>
                             <div className={s.key}>Режим</div>
