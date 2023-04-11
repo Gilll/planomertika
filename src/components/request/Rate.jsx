@@ -60,10 +60,7 @@ const Rate = ({ nextStep, form, setForm }) => {
                                 </div>
                             </div>
                         </div>
-                        <div  className={s.title}>
-							<span onClick={trySkipPayment} style={{ color: 'red', cursor: 'pointer' }}>Пропустить(DEV)</span>
-							{skipPaymentIsLoading && <span> loading...</span>}
-                        </div>
+
                         <div className={s.bottomBlock}>
                             <Button className={s.btnColor} loading={paymentIsLoading} type="primary" onClick={() => payment().then((resp) => {
 								console.log(resp);
