@@ -12,6 +12,8 @@ const Login = () => {
     const [serverError, setServerError] = useState('');
     const [confirmForm, setConfirmForm] = useState(false)
     const [confirmCode, setConfirmCode] = useState('')
+	const [resetPassReq, setResetPassReq] = useState(false)
+	const [resetSucces, setResetSucces] = useState(false)
     const [regForm, setRegForm] = useState({
         email: "",
         password: "",
@@ -25,6 +27,19 @@ const Login = () => {
 		data: {
 			email: regForm.email,
 			code: confirmCode
+		}
+	});
+	const [resetPass, resetPassIsLoading] = useApi({
+		url: '/users/resetPassword',
+		data: {
+			mail: regForm.email,
+		}
+	});
+	const [resetPassFin, resetPassIsLoadingFin] = useApi({
+		url: '/users/applyPassword',
+		data: {
+			code: confirmCode,
+			password: regForm.password,
 		}
 	});
     const dispatch = useDispatch();
@@ -63,6 +78,8 @@ const Login = () => {
 				localStorage.setItem('surname', resp.surname)
 				localStorage.setItem('email', resp.email)
 				localStorage.setItem('userId', resp.id)
+				localStorage.setItem("chatUserId", resp.chatUserId)
+				if (response.jwtResponse.roles.includes('ROLE_ARCHITECT')) { localStorage.setItem('isAdmin', 'true') }
 				if (resp.phoneNumber)  { localStorage.setItem('phoneNumber', resp.phoneNumber) }
 				dispatch({ type: redActions.setIsAuth, payload: true });
 				dispatch({ type: redActions.setIsAdmin, payload: response.jwtResponse.roles.includes('ROLE_ARCHITECT') });
@@ -82,6 +99,25 @@ const Login = () => {
         })
     }
 
+    const tryResetPass = () => {
+		resetPass().then(() => {
+			setResetSucces(true);
+			setServerError('');
+		}).catch((err) => {
+			setServerError(err.message);
+		})
+	}
+
+	const finishResetPass = () => {
+		resetPassFin().then(() => {
+			setResetSucces(false);
+			setResetPassReq(false);
+			setServerError('');
+		}).catch((err) => {
+			setServerError(err.message);
+		})
+	}
+
     return (
         <div className={s.loginBlock}>
 			{confirmForm ?
@@ -100,63 +136,132 @@ const Login = () => {
 				</div>
 				:
 				<div className={t.loginForm}>
-					<div className={s.title}>Вход</div>
-					<Form action="" onFinish={trySignIn} autoComplete="off">
-						<div className={t.inputsWrap}>
-							<Form.Item
-								name="email"
-								rules={[
-									{
-										type: 'email',
-										message: 'Неверный формат email',
-									},
-									{
-										required: true,
-										message: 'Введите email',
-									},
-								]}
-							>
-								<Input value={regForm.email}
-									   onChange={(e) => {
-										   setRegForm({...regForm, email: e.target.value})
-										   setServerError('')
-									   }}
-									   className={t.input} placeholder="Ваше имя" />
-							</Form.Item>
-							<Form.Item
-								name="password"
-								rules={[
-									{
-										required: true,
-										message: 'Введите пароль',
-									},
-								]}
-							>
-								<Input.Password value={regForm.password}
-												onChange={(e) => {
-													setRegForm({...regForm, password: e.target.value})
-													setServerError('')
-												}}
-												className={t.input} placeholder="Пароль" />
-							</Form.Item>
-						</div>
-						<div className='val-errors'>{serverError}</div>
-						<div className={t.buttonsWrap}>
-							<Button className={s.btnColor} type="primary" htmlType="submit" loading={signupIsLoading}>Войти</Button>
-							<Link to={RouteNames.REGISTRATION}><Button className={s.btnDark} >Зарегистрироваться</Button></Link>
-						</div>
-					</Form>
+					{resetPassReq ?
+						<>
+							<div className={s.title}>Восстановление пароля</div>
+							{resetSucces ?
+								<>
+									<div className="conf-text">
+										На вашу почту <span>{regForm.email}</span> был отправлен код. Введите его для смены пароля.
+									</div>
+									<div className="conf-input">
+										<Input value={confirmCode} onChange={(e) => setConfirmCode(e.target.value)}/>
+									</div>
+									<div className="conf-text">Новый пароль</div>
+									<Form.Item
+										name="password"
+										rules={[
+											{
+												required: true,
+												message: 'Введите пароль',
+											},
+										]}
+									>
+										<Input.Password value={regForm.password}
+														onChange={(e) => {
+															setRegForm({...regForm, password: e.target.value})
+															setServerError('')
+														}}
+														className={t.input} placeholder="Новый пароль" />
+									</Form.Item>
+									<div className='val-errors'>{serverError}</div>
+									<div className={t.buttonsWrap}>
+										<Button className={s.btnColor} loading={resetPassIsLoadingFin} type="primary" onClick={finishResetPass}>Подтвердить</Button>
+										<Button className={s.btnDark} onClick={() => {
+											setResetPassReq(false)
+											setResetSucces(false)
+										}}>Войти</Button>
+									</div>
+								</>
+							:
+								<Form action="" onFinish={tryResetPass} autoComplete="off">
+									<div className={t.inputsWrap}>
+										<Form.Item
+											name="email"
+											rules={[
+												{
+													type: 'email',
+													message: 'Неверный формат email',
+												},
+												{
+													required: true,
+													message: 'Введите email',
+												},
+											]}
+										>
+											<Input value={regForm.email}
+												   onChange={(e) => {
+													   setRegForm({...regForm, email: e.target.value})
+													   setServerError('')
+												   }}
+												   className={t.input} placeholder="Ваше имя" />
+										</Form.Item>
+									</div>
+									<div className='val-errors'>{serverError}</div>
+									<div className={t.buttonsWrap}>
+										<Button className={s.btnColor} type="primary" htmlType="submit" loading={resetPassIsLoading}>Востановить</Button>
+										<Button onClick={() => setResetPassReq(false)} className={s.btnDark} >Войти</Button>
+									</div>
+								</Form>
+							}
+						</>
+					:
+						<>
+							<div className={s.title}>Вход</div>
+							<Form action="" onFinish={trySignIn} autoComplete="off">
+								<div className={t.inputsWrap}>
+									<Form.Item
+										name="email"
+										rules={[
+											{
+												type: 'email',
+												message: 'Неверный формат email',
+											},
+											{
+												required: true,
+												message: 'Введите email',
+											},
+										]}
+									>
+										<Input value={regForm.email}
+											   onChange={(e) => {
+												   setRegForm({...regForm, email: e.target.value})
+												   setServerError('')
+											   }}
+											   className={t.input} placeholder="Ваше имя" />
+									</Form.Item>
+									<Form.Item
+										name="password"
+										rules={[
+											{
+												required: true,
+												message: 'Введите пароль',
+											},
+										]}
+									>
+										<Input.Password value={regForm.password}
+														onChange={(e) => {
+															setRegForm({...regForm, password: e.target.value})
+															setServerError('')
+														}}
+														className={t.input} placeholder="Пароль" />
+									</Form.Item>
+								</div>
+								<div className='val-errors'>{serverError}</div>
+								<div className={t.buttonsWrap}>
+									<Button className={s.btnColor} type="primary" htmlType="submit" loading={signupIsLoading}>Войти</Button>
+									<Link to={RouteNames.REGISTRATION}><Button className={s.btnDark} >Зарегистрироваться</Button></Link>
+								</div>
+							</Form>
+						</>
+					}
 				</div>
 			}
-            <div className={s.loginSocial}>
-                <div className={s.socialName}>Войти через социальную сеть</div>
-                <Link to="#" className={s.socialIcon}>
-                    <img src="img/fbIcon.svg" alt="" />
-                </Link>
-                <Link to="#" className={s.socialIcon}>
-                    <img src="img/vkIcon.svg" alt="" />
-                </Link>
-            </div>
+			{!resetPassReq &&
+				<div className={s.loginSocial}>
+					<div className={s.socialName} onClick={() => navigate(RouteNames.RESTORE_PASS)}>Забыли пароль?</div>
+				</div>
+			}
         </div>
     );
 };

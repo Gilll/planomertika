@@ -22,7 +22,7 @@ const Registration = () => {
     });
 
     const [signup, signupIsLoading] = useApi({
-        url: '/api/auth/signup',
+        url: '/api/auth/signupWeb',
         data: regForm
     });
 

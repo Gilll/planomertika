@@ -3,29 +3,8 @@ import { Typography } from 'antd';
 import s from "./QuestionItem.module.scss";
 import { Modal } from 'antd';
 
-
-
-const { Text } = Typography;
-const EllipsisMiddle = ({ suffixCount, children }) => {
-    const partText = children.slice(0, children.length - suffixCount).trim();
-    if (children.length <= 391) {
-        return (
-            <Text>
-                {children}
-            </Text>
-        );
-    }
-
-    else {
-        return (
-            <Text>
-                {partText}...
-            </Text>
-        );
-    }
-};
-
 const QuestionItem = ({ title, text, more }) => {
+	const { Text } = Typography;
     const [isModalVisible, setIsModalVisible] = React.useState(false);
 
     const showModal = () => {
@@ -45,9 +24,7 @@ const QuestionItem = ({ title, text, more }) => {
             <div className={s.subtitle}>Вопрос:</div>
             <div className={s.title}>{title}</div>
             <div className={s.subtitle}>Ответ:</div>
-            <EllipsisMiddle suffixCount={500} className={s.text}>
-                {text}
-            </EllipsisMiddle>
+			<Text>{text}</Text>
             <button className={s.more} onClick={showModal}>{more}</button>
 
             <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>

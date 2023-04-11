@@ -38,7 +38,7 @@ const Characteristics = ({ nextStep, form, setForm }) => {
 					<div className={s.quizeBlock}>
 						<div className={s.title}>Заполните анкету для&nbsp;передачи данных архитектору</div>
 						<div className={s.done}>
-							<img src="img/done2.svg" alt="" />
+							<img src="/img/done2.svg" alt="" />
 							<span>Индивидуальные особенности</span>
 						</div>
 						<div className={s.aboutQuize}>

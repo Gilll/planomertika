@@ -7,9 +7,9 @@ import s from './StepItem.module.scss';
 
 
 const StepItem = (props) => {
-    
+
     return (
-        <div className={s.stepItem} {...props.title}>
+        <div className={s.stepItem}>
             <div className={s.stepItem__img}>
                 <img src={props.img} alt="" />
             </div>

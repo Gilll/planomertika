@@ -10,5 +10,8 @@ export const RouteNames = {
      'MYACCOUNT': additionalPath + '/myaccount',
      'LOGIN': additionalPath + '/login',
      'REGISTRATION': additionalPath + '/registration',
-	'CHAT': '/request'
+     'HISTORY': additionalPath + '/history',
+     'REDIRECT': additionalPath + '/redirect',
+	'CHAT': '/request',
+	'RESTORE_PASS': '/restore-pass'
  }

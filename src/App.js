@@ -13,6 +13,7 @@ function App() {
 
     useEffect(() => {
         localStorage.getItem('token') && dispatch({ type: redActions.setIsAuth, payload: true });
+        localStorage.getItem('isAdmin') && dispatch({ type: redActions.setIsAdmin, payload: true });
     },[])
 
     return (

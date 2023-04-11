@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { RequestSteps } from "./RequestSteps";
 import { Button, Modal, Collapse, Select, Checkbox,  message, Upload} from "antd";
 import s from './RequestSteps.module.scss';
 import UserAbout from './requestComponents/userAbout/UserAbout';
 import InfoSteps from './requestComponents/infoSteps/InfoSteps';
 import Time from './requestComponents/time/Time';
+import {useApi} from "../../hooks/useApi";
+import Loading from "../../pages/Loading";
 
 const { Option } = Select;
 const { Panel } = Collapse;
@@ -34,7 +36,7 @@ const props = {
     },
 };
 
-const Waiting = ({ hours = 0, minutes = 0, seconds = 10, nextStep, form, setForm }) => {
+const Waiting = ({ nextStep, form, setForm }) => {
     const [valuePet, setValuePet] = React.useState('');
     const [valueChildren, setValueChildren] = React.useState('');
     const [checked1, setChecked1] = React.useState(false);
@@ -59,30 +61,54 @@ const Waiting = ({ hours = 0, minutes = 0, seconds = 10, nextStep, form, setForm
         setIsModalVisible(false);
     };
 
+	const [getCurTime, getCurTimeIsLoading] = useApi({
+		url: '/clientOrders/getTime',
+		method: 'GET'
+	});
+
+	const [initTimes, setInitTimer] = useState(false)
 
     const [over, setOver] = React.useState(false);
-    const [[h, m, sec], setTime] = React.useState([hours, minutes, seconds]);
+    const [[h, m, sec], setTime] = React.useState([0, 0, 0]);
 
     const tick = () => {
-
-        if (h === 0 && m === 0 && sec === 0) {
-            setOver(true);
-            console.log('Время вышло')
-        } else if (m === 0 && sec === 0) {
-            setTime([h - 1, 59, 59]);
-        } else if (sec === 0) {
-            setTime([h, m - 1, 59]);
-        } else {
-            setTime([h, m, sec - 1]);
-        }
+		if (initTimes) {
+			if (h === 0 && m === 0 && sec === 0) {
+				setOver(true);
+				console.log('Время вышло')
+			} else if (m === 0 && sec === 0) {
+				setTime([h - 1, 59, 59]);
+			} else if (sec === 0) {
+				setTime([h, m - 1, 59]);
+			} else {
+				setTime([h, m, sec - 1]);
+			}
+		}
     };
+
+	useEffect(() => {
+		if (form.orderState === 'DIALOG_CREATED') {
+			setTime([24, 0, 0]);
+			setInitTimer(true);
+		} else {
+			getCurTime().then((resp) => {
+				let date1 = new Date(form.timeOfChangeState);
+				let date2 = new Date(resp);
+				let timeDiff = Math.abs(date2.getTime() - date1.getTime());
+				let d = parseInt(timeDiff/(1000*60*60*24));
+				let m = parseInt((timeDiff/(1000*60))%60);
+				let h = parseInt((timeDiff/(1000*60*60))%24);
+				let s = parseInt((timeDiff/1000)%60);
+				setTime([h, m, s]);
+				setInitTimer(true);
+			})
+		}
+	},[])
 
     React.useEffect(() => {
         const timerID = setInterval(() => tick(), 1000);
         return () => clearInterval(timerID);
     });
-
-  
 
     const data = {
         numberStep: "4",
@@ -97,10 +123,16 @@ const Waiting = ({ hours = 0, minutes = 0, seconds = 10, nextStep, form, setForm
                 <div className={s.inner}>
                     <div className={s.quizeBlock}>
                         <div className={s.title}>Архитектор делает планировку для вашей квартиры</div>
-                        <Time hours={0} minutes={0} seconds={10}>
-                            <Button className={over ? "BtnColorTime active" : 'BtnColorTime'} onClick={() => nextStep(RequestSteps.RESULT)} type="primary">Скачать план</Button>
-                        </Time>
-
+						{form.orderState === 'LATE' &&
+							<div className={s.title2}>К сожалению, выполнение заказа задерживается, приносим свои извенения.</div>
+						}
+						{getCurTimeIsLoading ?
+							<Loading />
+						:
+							<Time h={h} m={m} sec={sec}>
+								<Button className={over ? "BtnColorTime active" : 'BtnColorTime'} onClick={() => nextStep(RequestSteps.RESULT)} type="primary">Скачать план</Button>
+							</Time>
+						}
                     </div>
                     <div className={s.infoBlock}>
                         <UserAbout user={form.user} setUser={(val) => setForm({...form, user: val})} modal={form} setModal={setForm}/>

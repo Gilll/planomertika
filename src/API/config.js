@@ -1,2 +1,2 @@
 
-export const hostName = 'http://planometrika.mayabiorobotics.ru:8181';
+export const hostName = 'https://planometrika-back-lb.mayabiorobotics.ru:8181';

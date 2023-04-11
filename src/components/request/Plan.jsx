@@ -9,14 +9,15 @@ import InfoSteps from './requestComponents/infoSteps/InfoSteps';
 import {useApi} from "../../hooks/useApi";
 import {getData} from "../../utils/utils";
 import {hostName} from "../../API/config";
+import {useNavigate} from "react-router";
 
-const Plan = ({ nextStep, form, setForm }) => {
+const Plan = ({ nextStep, form, setForm, oldOrderId }) => {
     const { Dragger } = Upload;
     const [stepComplete, setStepComplete] = useState(false)
 	const [orderFiles, setOrderFiles] = useState([])
 
     const [saveAll, saveAllIsLoading] = useApi({
-        url: '/orders/create',
+        url: '/clientOrders/create',
         headers: {
             //'Content-Type': 'multipart/form-data'
             'Content-Type': 'application/json'
@@ -24,10 +25,14 @@ const Plan = ({ nextStep, form, setForm }) => {
         data: getData(form, orderFiles)
     });
 
+    const [newOrderDiscount, newOrderDiscountIsLoading] = useApi({
+		url: '/clientOrders/repeatOrder/' + oldOrderId,
+	})
+
     const props = {
-        name: 'file',
+        name: 'files',
         multiple: true,
-        action: hostName + '/orders/addFiles',
+        action: hostName + '/clientOrders/addClientFiles',
         headers: {
             'Authorization': localStorage.getItem('token')
         },
@@ -43,7 +48,7 @@ const Plan = ({ nextStep, form, setForm }) => {
             if (status === 'done') {
                 console.log(`${info.file.name} file uploaded successfully.`);
                 console.log(info.file);
-				setOrderFiles([...orderFiles, { id: info.file.response[0].id }])
+				setOrderFiles([...orderFiles, info.file.response[0].id ])
             } else if (status === 'error') {
                 console.log(`${info.file.name} file upload failed.`);
             }
@@ -60,17 +65,18 @@ const Plan = ({ nextStep, form, setForm }) => {
         par2: "2. Непонятно, что можно изменять входе ремонта,а что запрещается законом; Случайное повреждение несущих конструкций может повлечь разрушение дома. 1.Без проекта перепланировки нельзя приступать к ремонту квартиры;",
     }
 
-    const dummyRequest = ({ file, onSuccess }) => {
-        setTimeout(() => {
-            onSuccess("ok");
-        }, 0);
-    };
+    const navigate = useNavigate()
 
     const saveRequest = () => {
-        saveAll().then((resp) => {
-			setForm({...form, order: {id: resp.id}})
-        	nextStep(RequestSteps.RATE)
-		}).catch((e) => console.log(e.message))
+    	if (form.discount && oldOrderId) {
+			newOrderDiscount().then((resp) => {
+				navigate('/request/' + resp.id)
+			}).catch((e) => console.log(e.message))
+		} else {
+			saveAll().then((resp) => {
+				navigate('/request/' + resp.id)
+			}).catch((e) => console.log(e.message))
+		}
     }
 
     useEffect(() => {
@@ -84,11 +90,11 @@ const Plan = ({ nextStep, form, setForm }) => {
                     <div className={s.quizeBlock}>
                         <div className={s.title}>Заполните анкету для&nbsp;передачи данных архитектору</div>
                         <div className={s.done}>
-                            <img src="img/done2.svg" alt="" />
+                            <img src="/img/done2.svg" alt="" />
                             <span>Индивидуальные особенности</span>
                         </div>
                         <div className={s.done}>
-                            <img src="img/done2.svg" alt="" />
+                            <img src="/img/done2.svg" alt="" />
                             <span>Комнаты</span>
                         </div>
                         <div className={s.aboutQuize}>
@@ -106,7 +112,7 @@ const Plan = ({ nextStep, form, setForm }) => {
                                     Перетащите сюда файл в формате pdf или
                                 </p>
                                 <p className="ant-upload-text">
-                                    <img src="img/upLoad.svg" alt="" />
+                                    <img src="/img/upLoad.svg" alt="" />
                                     Загрузить файл с компьютера</p>
                             </Dragger>
                         </div>
@@ -114,7 +120,7 @@ const Plan = ({ nextStep, form, setForm }) => {
                             У меня есть собственный замер, который я выполнил ответственно
                         </Checkbox>
                         <div className="nextstep-wrap">
-                            <Button className={s.btnColor} type="primary" loading={saveAllIsLoading} onClick={() => saveRequest()} disabled={!stepComplete}>Далее</Button>
+                            <Button className={s.btnColor} type="primary" loading={saveAllIsLoading && newOrderDiscountIsLoading} onClick={() => saveRequest()} disabled={!stepComplete}>Далее</Button>
                             <span className={'fade ' + (stepComplete && 'hide')}>Для продолжения загрузите БТИ</span>
                         </div>
                     </div>

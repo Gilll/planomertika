@@ -19,8 +19,7 @@ import IconPass from "../../../icons/IconPass";
 import Dragger from "antd/es/upload/Dragger";
 import {hostName} from "../../../../API/config";
 
-const UserAbout = ({ user, setUser, modal, setModal }) => {
-	console.log(modal);
+const UserAbout = ({ user, setUser, modal, setModal, noOrder }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [changePassModal, setChangePassModal] = useState(false);
     const [changeEmailModal, setChangeEmailModal] = useState(false);
@@ -39,12 +38,12 @@ const UserAbout = ({ user, setUser, modal, setModal }) => {
 	});
 
 	const [saveAll, saveAllIsLoading] = useApi({
-		url: '/orders/updateOrder',
+		url: '/clientOrders/updateOrder',
 		headers: {
 			//'Content-Type': 'multipart/form-data'
 			'Content-Type': 'application/json'
 		},
-		data: modal ? {...getData(modal, orderFiles), id: modal.order.id } : {}
+		data: modal ? {...getData(modal, orderFiles.map((el) => { return el.id })), id: modal.order.id } : {}
 	});
 
 	const [changePass, changePassIsLoading] = useApi({
@@ -103,6 +102,8 @@ const UserAbout = ({ user, setUser, modal, setModal }) => {
         localStorage.removeItem('uuid')
         localStorage.removeItem('jwtToken')
         localStorage.removeItem('exchangeName')
+        localStorage.removeItem('chatUserId')
+        localStorage.removeItem('phoneNumber')
         dispatch({ type: redActions.setIsAuth, payload: false });
         navigate(RouteNames.LANDING);
     }
@@ -118,13 +119,13 @@ const UserAbout = ({ user, setUser, modal, setModal }) => {
 			const { status } = info.file;
 
 			if (status !== 'uploading') {
-				setOrderFiles(info.fileList.map((el) => { return { id: el.uid } }))
+				setOrderFiles(info.fileList.map((el) => { return  el.uid  }))
 				console.log(info.file, info.fileList);
 			}
 
 			if (status === 'done') {
 				console.log(`${info.file.name} file uploaded successfully.`);
-				setOrderFiles([...orderFiles, { id: info.file.response[0].id }])
+				setOrderFiles([...orderFiles, info.file.response[0].id ])
 			} else if (status === 'error') {
 				console.log(`${info.file.name} file upload failed.`);
 			}
@@ -141,8 +142,6 @@ const UserAbout = ({ user, setUser, modal, setModal }) => {
 			}
 		})
 	};
-
-	console.log(modal.files);
 
     return (
         <div className={t.userAbout}>
@@ -266,66 +265,68 @@ const UserAbout = ({ user, setUser, modal, setModal }) => {
                 	<span>Выйти</span>
 				</div>
             </span>
-            <div className={t.bottomInfo}>
-                {modal &&
-                    <>
-                        <div className="payment-link qs">
-							<div onClick={() => setIsModalVisible(true)}>
-								<IconProfile/>
-								<span>Моя анкета</span>
-								<IconEdit/>
-                            </div>
-                        </div>
-                        <Modal className='modalAnket' visible={isModalVisible} onCancel={() => setIsModalVisible(false)}>
-                            <div className={s.contentWrap}>
-                                <div className='title-anket'>Моя анкета</div>
-                                <div className={s.aboutQuize}>
-                                    <div className={s.aboutquizeTitle}>Индивидуальные особенности</div>
-                                    <div className={s.aboutquizeSubtitle}>
-                                        Расскажите нам о себе что бы мы сделать
-                                        вашу будущею квартиру более удобную именно для вас!
-                                    </div>
-                                </div>
-                                <FormQuest form={modal} setForm={setModal}/>
-								<div className={s.aboutQuize}>
-									<div className={s.aboutquizeTitle}>Комнаты</div>
-									<div className={s.aboutquizeSubtitle}>
-										Добавьте комнаты, которые вы хотели бы иметь в вашей будущей квартире
-									</div>
+			{!noOrder &&
+				<div className={t.bottomInfo}>
+				{modal &&
+				<>
+					<div className="payment-link qs">
+						<div onClick={() => setIsModalVisible(true)}>
+							<IconProfile/>
+							<span>Моя анкета</span>
+							<IconEdit/>
+						</div>
+					</div>
+					<Modal className='modalAnket' visible={isModalVisible} onCancel={() => setIsModalVisible(false)}>
+						<div className={s.contentWrap}>
+							<div className='title-anket'>Моя анкета</div>
+							<div className={s.aboutQuize}>
+								<div className={s.aboutquizeTitle}>Индивидуальные особенности</div>
+								<div className={s.aboutquizeSubtitle}>
+									Расскажите нам о себе что бы мы сделать
+									вашу будущею квартиру более удобную именно для вас!
 								</div>
-                                <FormRooms form={modal} setForm={setModal}/>
-								<div className={s.aboutQuize}>
-									<div className={s.aboutquizeTitle}>План БТИ</div>
-									<div className={s.aboutquizeSubtitle}>
-										БТИ – это план вашей квартиры, выполненный
-										специалистами городской жилищной инспекцией,
-										который позволит нам увидеть вашу
-										существующую ситуацию глазами профессионалов
-									</div>
+							</div>
+							<FormQuest form={modal} setForm={setModal}/>
+							<div className={s.aboutQuize}>
+								<div className={s.aboutquizeTitle}>Комнаты</div>
+								<div className={s.aboutquizeSubtitle}>
+									Добавьте комнаты, которые вы хотели бы иметь в вашей будущей квартире
 								</div>
-								<div className={s.upLoadWrap}>
-									<Dragger {...props} listType="picture">
-										<p className="ant-upload-hint">
-											Перетащите сюда файл в формате pdf или
-										</p>
-										<p className="ant-upload-text">
-											<img src="img/upLoad.svg" alt="" />
-											Загрузить файл с компьютера</p>
-									</Dragger>
+							</div>
+							<FormRooms form={modal} setForm={setModal}/>
+							<div className={s.aboutQuize}>
+								<div className={s.aboutquizeTitle}>План БТИ</div>
+								<div className={s.aboutquizeSubtitle}>
+									БТИ – это план вашей квартиры, выполненный
+									специалистами городской жилищной инспекцией,
+									который позволит нам увидеть вашу
+									существующую ситуацию глазами профессионалов
 								</div>
-                                <div className="buttons">
-                                    <Button loading={saveAllIsLoading} className="MyBtn_myBtn__nNQdk" onClick={tryUpdate}>Сохранить</Button>
-                                    <button type="button" onClick={() => setIsModalVisible(false)} className="ant-btn ant-btn-primary RequestSteps_btnDark__3gAJB"><span>Закрыть</span></button>
-                                </div>
-                            </div>
-                        </Modal>
-                    </>
-                }
-                <div className="payment-link">
-                    <IconPayment/>
-                    <span>Вы еще не внесли оплату</span>
-                </div>
-            </div>
+							</div>
+							<div className={s.upLoadWrap}>
+								<Dragger {...props} listType="picture">
+									<p className="ant-upload-hint">
+										Перетащите сюда файл в формате pdf или
+									</p>
+									<p className="ant-upload-text">
+										<img src="img/upLoad.svg" alt="" />
+										Загрузить файл с компьютера</p>
+								</Dragger>
+							</div>
+							<div className="buttons">
+								<Button loading={saveAllIsLoading} className="MyBtn_myBtn__nNQdk" onClick={tryUpdate}>Сохранить</Button>
+								<button type="button" onClick={() => setIsModalVisible(false)} className="ant-btn ant-btn-primary RequestSteps_btnDark__3gAJB"><span>Закрыть</span></button>
+							</div>
+						</div>
+					</Modal>
+				</>
+				}
+				<div className="payment-link">
+					<IconPayment/>
+					<span>Вы еще не внесли оплату</span>
+				</div>
+			</div>
+			}
         </div>
     );
 };

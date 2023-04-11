@@ -174,6 +174,12 @@
     color: #1D1D1D;
     margin-bottom: 1.9rem;
 }
+.title2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1D1D1D;
+    margin-bottom: 1.9rem;
+}
 
 .aboutquizeTitle {
     font-size: 1.8rem;
@@ -568,7 +574,7 @@
         cursor: pointer;
         transition: 0.3s;
         margin-bottom: 3.5rem;
-
+		color: #FFC443;
         span {
             border-bottom: 0.1rem solid #1D1D1D;
         }

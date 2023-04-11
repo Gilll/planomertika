@@ -7,5 +7,6 @@ export const RequestSteps = {
     'CHAT': 5,
     'WAITING': 6,
     'RESULT': 7,
-    'HISTORY': 8
+    'HISTORY': 8,
+	'WAITING_ROOM': 9
 }

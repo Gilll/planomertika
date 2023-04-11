@@ -1,12 +1,69 @@
 import React from 'react';
 import s from './Header.module.scss';
 import {RouteNames} from "../router/routeNames";
-import {Link, NavLink} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {Link, NavLink, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import Dropdown from "antd/es/dropdown";
+import Button from "antd/es/button";
+import {redActions} from "../reducer/actions";
 
 
 const Header = () => {
     const isAuth = useSelector(state => state.isAuth)
+	const isAdmin = useSelector(state => state.isAdmin)
+
+	const items = [
+		{
+			key: '1',
+			label: (
+				<a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+					1st menu item
+				</a>
+			),
+		},
+		{
+			key: '2',
+			label: (
+				<a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+					2nd menu item
+				</a>
+			),
+		},
+		{
+			key: '3',
+			label: (
+				<a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+					3rd menu item
+				</a>
+			),
+		},
+	];
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+    const logOut = () => {
+		localStorage.removeItem('token')
+		localStorage.removeItem('name')
+		localStorage.removeItem('surname')
+		localStorage.removeItem('email')
+		localStorage.removeItem('userId')
+		localStorage.removeItem('phoneNumber')
+		localStorage.removeItem('uuid')
+		localStorage.removeItem('jwtToken')
+		localStorage.removeItem('chatUserId')
+		localStorage.removeItem('exchangeName')
+		localStorage.removeItem('isAdmin')
+		dispatch({ type: redActions.setIsAuth, payload: false });
+		dispatch({ type: redActions.setIsAdmin, payload: false });
+		dispatch({ type: redActions.setUser, payload: {
+				name: '',
+				email: '',
+				phone: '',
+				id: ''
+			} });
+		navigate(RouteNames.LOGIN)
+	}
 
     return (
         <header className={s.header}>
@@ -35,7 +92,37 @@ const Header = () => {
                                 <div className={s.header__itemImg}>
                                     <img src={process.env.PUBLIC_URL + "/img/user.svg"} alt="" />
                                 </div>
-                                <NavLink to={RouteNames.REQUEST} className="link">Заявка</NavLink>
+								{isAdmin ?
+									<div className="admin-top-menu">
+										<span>Администратор</span>
+										<div className="admin-tm-dropdown">
+											<div className="admin-tm-dropdown-item">
+												<NavLink to={RouteNames.REQUEST} className="link">Активные чаты</NavLink>
+											</div>
+											<div className="admin-tm-dropdown-item">
+												<NavLink to="/requests" className="link">Заказы</NavLink>
+											</div>
+											<div className="admin-tm-dropdown-item">
+												<span onClick={logOut}>Выйти</span>
+											</div>
+										</div>
+									</div>
+								:
+									<div className="admin-top-menu">
+										<span>Профиль</span>
+										<div className="admin-tm-dropdown">
+											<div className="admin-tm-dropdown-item">
+												<NavLink to={RouteNames.REQUEST} className="link">Текущая заявка</NavLink>
+											</div>
+											<div className="admin-tm-dropdown-item">
+												<NavLink to={RouteNames.HISTORY} className="link">История заказов</NavLink>
+											</div>
+											<div className="admin-tm-dropdown-item">
+												<span onClick={logOut}>Выйти</span>
+											</div>
+										</div>
+									</div>
+								}
                             </li>
                         :
                             <li className={s.header__item}>

@@ -9,19 +9,19 @@ import {useApi} from "../../hooks/useApi";
 
 const Rate = ({ nextStep, form, setForm }) => {
     const [payment, paymentIsLoading] = useApi({
-        url: '/orders/transaction',
+        url: '/clientOrders/transaction',
         data: {
             id: form.order.id
         }
     });
 
 	const [skipPayment, skipPaymentIsLoading] = useApi({
-		url: '/orders/changeStateOfOrderCreateDialog/' + form.order.id,
+		url: '/clientOrders/changeStateOfOrderCreateDialog/' + form.order.id,
 	});
 
 	const trySkipPayment = () => {
 		skipPayment().then(() => {
-			nextStep(RequestSteps.CHAT)
+			nextStep(RequestSteps.WAITING_ROOM)
 			console.log('payment skiped')
 		})
 	}
@@ -42,7 +42,7 @@ const Rate = ({ nextStep, form, setForm }) => {
                         <div className={s.selectRate}>
                             <div className={s.rateWrap}>
                                 <Checkbox checked={true}>С чатом с архитектором</Checkbox>
-                                <div className={s.price}>4000 <sup>₽</sup></div>
+                                <div className={s.price}>{form.amount} <sup>₽</sup></div>
                             </div>
                             <div className={s.aboutRate}>
                                 Без проекта перепланировки нельзя приступать к ремонту квартир:
@@ -53,9 +53,9 @@ const Rate = ({ nextStep, form, setForm }) => {
                             <div className={s.videoWrap}>
                                 <div className={s.videoTitle}>Пример работы</div>
                                 <div className={s.video}>
-                                    <img src="img/video.png" alt="" />
+                                    <img src="/img/video.png" alt="" />
                                     <button>
-                                        <img src="img/play.png" alt="" />
+                                        <img src="/img/play.png" alt="" />
                                     </button>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@ const Rate = ({ nextStep, form, setForm }) => {
 								let newWin = window.open(resp.formUrl, "_self");
 							}).catch((err) => console.log(err))}>Перейти к оплате</Button>
                             <div className={s.logoBank}>
-                                <img src="img/logoBank.png" alt="" />
+                                <img src="/img/logoBank.png" alt="" />
                             </div>
                         </div>
                     </div>
