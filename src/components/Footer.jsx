@@ -13,8 +13,8 @@ const Footer = () => {
                         <img src={process.env.PUBLIC_URL + "/img/logoWhite.svg"} alt="" />
                     </Link>
                     <div className={s.addressWrap}>
-                        <div className={s.addressItem}>Г.Москва, ул. Зорге 22А</div>
-                        <Link to="#" className={s.addressItem}>+7 499 504 3679</Link>
+                        <div className={s.addressItem}>г.Москва, Берсеневская наб., 20, 119072</div>
+						<a href="tel:+79153370855" className={s.addressItem}>+7 (915) 337-08-55</a>
                         <Link to="#" className={s.addressItem}>info@lichtschneider.ru</Link>
                     </div>
                     <ul className={s.navList}>
