@@ -21,7 +21,11 @@ export const useApi = (settings) => {
             resp = await response.json();
             if (!response.ok) {
                 setIsLoading(false);
-                throw new Error(resp.error.description);
+                if (resp.error.message) {
+					throw new Error(resp.error.message);
+				} else {
+					throw new Error(resp.error.description);
+				}
             }
         } catch (e) {
             setIsLoading(false);
