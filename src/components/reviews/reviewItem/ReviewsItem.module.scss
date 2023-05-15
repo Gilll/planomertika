@@ -54,3 +54,31 @@
     color: #1D1D1D;
 	min-height: 22rem;
 }
+
+@media (max-width: 48em) {
+	.item {
+		display: block;
+		position: relative;
+	}
+	.imgBlock {
+		width: auto;
+		height: 13rem;
+		position: absolute;
+		right: 2rem;
+		top: 2rem;
+	}
+	.textBlock {
+		width: auto;
+	}
+	.author {
+		font-size: 2.6rem;
+		font-weight: 500;
+	}
+	.date {
+		font-size: 2rem;
+	}
+	.text {
+		font-size: 1.8rem;
+		min-height: 42rem;
+	}
+}

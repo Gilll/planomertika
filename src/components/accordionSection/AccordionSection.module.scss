@@ -28,3 +28,19 @@
 .accordionBlock {
     width: 84.6rem;
 }
+
+@media (max-width: 48em) {
+	.inner {
+		display: block;
+	}
+	.subtitle {
+		font-size: 2rem;
+	}
+	.titleBlock {
+		width: 57rem;
+		margin-bottom: 5rem;
+	}
+	.accordionBlock {
+		width: auto;
+	}
+}

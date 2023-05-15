@@ -50,5 +50,17 @@
     }
 }
 
+@media (max-width: 48em) {
+	.content {
+		height: auto;
+		margin-bottom: 5rem;
+	}
+	.title {
+		font-size: 4rem;
+		font-weight: 500;
+	}
+	.titleWrap {
+		margin-bottom: 0;
+	}
+}
 
-  

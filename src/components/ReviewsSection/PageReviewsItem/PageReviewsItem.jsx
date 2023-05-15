@@ -54,13 +54,13 @@ const PageReviewsItem = (props) => {
                     </div>
                     <div className={s.date}>{props.date}</div>
                 </div>
-                <EllipsisMiddle suffixCount={20} className={s.textReview}>
+                <div className={s.textReview}>
                     {props.textReview}
-                </EllipsisMiddle>
+                </div>
                 {/* <div className={s.textReview}>{props.textReview}</div> */}
                 <button className={s.more} onClick={showModal}>Читать полностью</button>
             </div>
-            
+
             <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
             <div className={s.modalReviewItem}>
                     <div className={s.avatarBlock}>

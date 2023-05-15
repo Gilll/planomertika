@@ -10,7 +10,7 @@
     font-size: 1.6rem;
     font-weight: 300;
     color: #ACACAC;
-    
+
     grid-column: 1/2;
 }
 
@@ -48,8 +48,21 @@
         margin-bottom: 3rem;
         line-height: 1.2;
     }
-    
+
     .text {
         font-size: 1.6rem;
     }
+}
+
+@media (max-width: 48em) {
+	.questionItem {
+		grid-template-columns: 9.2rem 1fr;
+		row-gap: 3rem;
+	}
+	.subtitle {
+		font-size: 2.4rem;
+	}
+	.title {
+		font-size: 2.4rem;
+	}
 }

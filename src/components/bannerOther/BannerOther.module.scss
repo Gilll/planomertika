@@ -27,3 +27,9 @@
     padding: 3rem 5rem;
     border: 1px solid #C4C4C4;
 }
+
+@media (max-width: 48em) {
+	.content {
+		padding: 5rem 3rem 3rem;
+	}
+}

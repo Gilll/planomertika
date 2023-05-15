@@ -34,7 +34,7 @@
         }
     }
 
-    
+
 
     &__itemUser {
         display: flex;
@@ -99,5 +99,24 @@
             margin-left: 1.8rem;
         }
     }
+}
+
+@media (max-width: 48em) {
+	.header {
+		&__inner {
+			height: auto;
+			padding: 3rem 0;
+			nav {
+				display: none;
+			}
+		}
+		&__contact {
+			display: none;
+		}
+		&__logo {
+			width: 35rem;
+			height: 6.5rem;
+		}
+	}
 }
 

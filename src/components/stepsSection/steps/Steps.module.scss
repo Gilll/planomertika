@@ -14,3 +14,12 @@
         left: 0;
     }
 }
+
+@media (max-width: 48em) {
+	.stepSection {
+		display: block;
+		&::before {
+			width: 0;
+		}
+	}
+}

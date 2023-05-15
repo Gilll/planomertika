@@ -37,3 +37,40 @@
         color: #1D1D1D;
     }
 }
+
+@media (max-width: 48em) {
+	.stepItem {
+		width: auto;
+		display: flex;
+		align-items: center;
+		margin-bottom: 4rem;
+		position: relative;
+		&::before {
+			content: "";
+			width: 80%;
+			height: 0.1rem;
+			border-top: 0.1rem dashed  #C4C4C4;
+
+			position: absolute;
+			top: 3.5rem;
+			left: 0;
+		}
+		&__img {
+			margin-bottom: 0;
+			flex-shrink: 0;
+			margin-right: 3rem;
+			width: 10rem;
+			height: 10rem;
+			img {
+				width: 4rem;
+				height: 4rem;
+			}
+		}
+		&__title {
+			font-size: 2.6rem;
+		}
+		&__subtitle {
+			font-size: 2.2rem;
+		}
+	}
+}

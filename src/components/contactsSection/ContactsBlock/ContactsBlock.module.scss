@@ -108,3 +108,35 @@
     font-weight: 300;
     color: #0645AD;
 }
+
+@media (max-width: 48em) {
+	.contacts {
+		width: auto;
+		padding: 4rem 0;
+		position: relative;
+		top: 0;
+		left: 0;
+		z-index: 1;
+	}
+	.top {
+		display: none;
+	}
+	.info {
+		padding-top: 4rem;
+		border-top: 0.1rem solid #C4C4C4;
+	}
+	.key {
+		font-size: 2.2rem;
+	}
+	.value {
+		width: 40rem;
+		font-size: 2.2rem;
+	}
+	.bottomTitle {
+		font-size: 2.5rem;
+		margin-bottom: 2rem;
+	}
+	.bottomInfo {
+		font-size: 2.2rem;
+	}
+}

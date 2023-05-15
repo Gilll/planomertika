@@ -36,3 +36,9 @@
     align-items: center;
     justify-content: space-between;
 }
+
+@media (max-width: 48em) {
+	.input {
+		height: 8rem;
+	}
+}

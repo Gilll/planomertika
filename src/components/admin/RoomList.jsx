@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import {RouteNames} from "../../router/routeNames";
 
-const RoomList = ({rooms, setRooms}) => {
+const RoomList = ({rooms, setRooms, openRoom}) => {
 	const [hideUnread, setHideUnread] = useState(rooms.map(() => true))
 
 	return (
@@ -22,6 +22,7 @@ const RoomList = ({rooms, setRooms}) => {
 							return el;
 						}
 					}))
+					openRoom()
 				}} className={hideUnread[index] ? "room-list__item" : "room-list__item hide-unread"} key={index}>
 					<div className="room-list__info">
 						{room.orderLoading ?

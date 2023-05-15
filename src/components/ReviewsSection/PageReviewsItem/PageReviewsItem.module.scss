@@ -93,3 +93,56 @@
         height: 30rem;
     }
 }
+
+@media (max-width: 48em) {
+	.reviewsItem {
+		margin-bottom: 6rem;
+	}
+	.avatarBlock {
+		width: 16rem;
+		height: 16rem;
+		margin-right: 2rem;
+	}
+	.author {
+		font-size: 2.8rem;
+		font-weight: 500;
+		margin-bottom: 1rem;
+	}
+	.place {
+		font-size: 2.4rem;
+		font-weight: 300;
+		margin-bottom: 1rem;
+	}
+
+	.description {
+		font-size: 2.4rem;
+		font-weight: 500;
+		margin-bottom:1rem;
+		min-height: 4.5rem;
+	}
+	.rangeWrap {
+		margin-bottom: 2rem;
+		img {
+			width: 3rem;
+			height: 3rem;
+		}
+	}
+	.textReview  {
+		font-size: 2.4rem;
+		margin-left: -17rem !important;
+		margin-bottom: 1rem;
+	}
+	.more {
+		font-size: 2rem;
+		margin-left: 21rem;
+	}
+	.modalReviewItem {
+		.avatarBlock {
+			width: 15rem;
+			height: 15rem;
+		}
+		.date {
+			font-size: 2.2rem;
+		}
+	}
+}

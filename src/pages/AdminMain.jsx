@@ -21,6 +21,7 @@ const AdminMain = () => {
 	const [getChatAuth, getChatAuthIsLoading] = useApi({
 		url: '/api/chat/signIn',
 	});
+	const [isMobRoomOpen, setIsMobRoomOpen] = useState(false)
 	const [dId, setDialogId] = useState();
 
 	const hostname = 'https://chatdev.mayabiorobotics.ru'
@@ -181,7 +182,6 @@ const AdminMain = () => {
 			//stomp.disconnect();
 			stomp = null;
 			setSockConnected(false);
-			setTimeout( () => {notificationConnect()}, 5000);
 			console.log('STOMP: Reconecting in 5 seconds');
 			console.log("try");
 		}
@@ -292,12 +292,12 @@ const AdminMain = () => {
 		<div className="admin-container">
 			<div className="admin-title">Активные чаты</div>
 			<div className="admin-text">Выберите пользователя, чтобы начать переписку</div>
-			<div className="admin-chat">
+			<div className={ isMobRoomOpen ? "admin-chat mobIsOpen" : "admin-chat"}>
 				<div className="admin-chat-rooms">
 					{roomsPages.length > 0 ?
 						<Scrollbars onScrollFrame={(val) => infiniteScroll(val)} autoHide>
 							{roomsPages.map((rs, index) =>
-								<RoomList key={index} rooms={roomsPages[index]} setRooms={(val) => {
+								<RoomList key={index} rooms={roomsPages[index]} openRoom={() => setIsMobRoomOpen(true)} setRooms={(val) => {
 									setRoomPages(roomsPages.map((rm,ind) => {
 										if (index === ind) {
 											return val;
@@ -317,7 +317,7 @@ const AdminMain = () => {
 					}
 				</div>
 				<div className="admin-chat-room">
-					<Outlet  context={[stomp, newMess, setNewMess, dId, setDialogId]}/>
+					<Outlet  context={[stomp, newMess, setNewMess, dId, setDialogId, setIsMobRoomOpen]}/>
 				</div>
 			</div>
 		</div>

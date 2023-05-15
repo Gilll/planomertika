@@ -629,3 +629,148 @@
         }
     }
 }
+
+@media (max-width: 48em) {
+	.btnColor, .btnDark {
+		height: 7rem;
+		font-size: 2.2rem;
+		padding: 0 7rem;
+	}
+	.done {
+		span {
+			font-size: 3rem;
+		}
+	}
+	.loginBlock {
+		margin-bottom: 4rem;
+	}
+	.aboutRate {
+		font-size: 2rem;
+	}
+	.videoTitle {
+		font-size: 2.4rem;
+	}
+	.bottomBlock {
+		margin-bottom: 6rem;
+	}
+	.logoBank {
+		height: 3rem;
+		width: 15rem;
+	}
+	.chat {
+		margin-bottom: 10rem;
+	}
+	.results {
+		.messageBox {
+			font-size: 2.2rem;
+			&::placeholder {
+				font-size: 2.2rem;
+			}
+		}
+		.download {
+			font-size: 2.4rem;
+			img {
+				width: 3.2rem;
+				height: 3.8rem;
+			}
+		}
+		.subtitle {
+			font-size: 2.5rem;
+			font-weight: 500;
+		}
+		.raitingTitle, .messageTitle {
+			font-size: 2.2rem;
+		}
+		.quizeBlock {
+			margin-bottom: 6rem;
+		}
+	}
+	.userText {
+		.title {
+			font-size: 2rem;
+		}
+		textarea {
+			font-size: 2.2rem;
+			&::placeholder {
+				font-size: 2.2rem;
+			}
+		}
+	}
+	.aboutquizeTitle {
+		font-size: 3rem;
+		margin-bottom: 0.5rem;
+		&::before {
+			height: 0.3rem;
+			top: 60%;
+		}
+	}
+	.selectTitle {
+		font-size: 2.2rem;
+		margin-bottom: 1rem;
+	}
+	.nextItem {
+		font-size: 3rem;
+		&::before {
+			width: 1.2rem;
+			height: 1.2rem;
+			top: 60%;
+		}
+	}
+	.selectSubtitle {
+		font-size: 1.8rem;
+	}
+	.aboutquizeSubtitle {
+		font-size: 2rem;
+	}
+	.inner {
+		display: block;
+		padding-top: 4rem;
+	}
+	.login {
+		.socialName {
+			font-size: 2.2rem;
+		}
+		.titleItem {
+			font-weight: 500;
+			font-size: 2.5rem;
+		}
+		.subtitleItem {
+			font-size: 2.2rem;
+		}
+	}
+	.waiting {
+		margin-bottom: 10rem;
+		.inner {
+			display: block;
+		}
+	}
+	.quizeBlock {
+		width: auto;
+	}
+	.infoBlock {
+		width: auto;
+	}
+	.login {
+		margin-bottom: 17rem;
+
+		.loginBlock {
+			width: auto;
+		}
+
+		.loginSocial {
+			margin-bottom: 5rem;
+		}
+
+		.infoBlock {
+			width: auto;
+		}
+		.inner {
+			display: block;
+			justify-content: space-between;
+			padding-top: 4rem;
+		}
+	}
+	.title {
+		margin-bottom: 4rem;
+	}
+}

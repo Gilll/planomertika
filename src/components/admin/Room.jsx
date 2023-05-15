@@ -19,7 +19,7 @@ const Room = () => {
 	const [messages, setMessages] = useState([]);
 	const [roomIsLoading, setRoomIsLoading] = useState(true);
 	const userChatId = parseInt(localStorage.getItem('chatUserId'));
-	const [stomp, newMess, setNewMess, dId, setDialogId] = useOutletContext();
+	const [stomp, newMess, setNewMess, dId, setDialogId, setIsMobRoomOpen] = useOutletContext();
 	const chatHostName = 'https://chatdev.mayabiorobotics.ru';
 
 	useEffect(() => {
@@ -176,6 +176,7 @@ const Room = () => {
 								<div className="chat-room__title-email">{user.username}</div>
 							</>
 						}
+						<div className="mobCloseRoom" onClick={() => { setIsMobRoomOpen(false)}}><img src="/img/clouseIcon.svg" alt="" /></div>
 					</div>
 					<div className="mess-box">
 						<Scrollbars autoHide ref={chatScroll}>

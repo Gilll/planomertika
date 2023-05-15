@@ -17,3 +17,15 @@
     }
 
 }
+
+@media (max-width: 48em) {
+	.formSection {
+		height: auto;
+		padding-top: 0;
+		&>img {
+			position: relative;
+			width: 100%;
+			margin-bottom: 6rem;
+		}
+	}
+}

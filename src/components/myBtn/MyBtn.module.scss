@@ -21,3 +21,12 @@
         background-position: -22.6rem;
     }
 }
+
+@media (max-width: 48em) {
+	.myBtn {
+		font-size: 2.2rem;
+		font-weight: 500;
+		width: 26rem;
+		height: 6.5rem;
+	}
+}
