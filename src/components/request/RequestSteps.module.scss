@@ -323,14 +323,26 @@
 .checkboxWrap {
     display: flex;
     align-items: center;
-
-    &:not(:last-child) {
-        margin-bottom: 1.5rem;
-    }
+	&:not(:last-child) {
+		margin-bottom: 1.5rem;
+	}
+	&.sub {
+		margin-left: 2rem;
+		height: 3rem;
+		margin-bottom: 1.5rem;
+		transform: scale(1);
+		transition: 0.3s;
+		&.hid {
+			height: 0;
+			margin-bottom: 0;
+			transform: scale(0);
+			transition: 0.3s;
+		}
+	}
 }
 
 .checkboxItem {
-    width: 16rem;
+    width: 22.5rem;
     margin-right: 2.5rem;
 }
 
@@ -631,6 +643,10 @@
 }
 
 @media (max-width: 48em) {
+
+	.checkboxItem {
+		width: auto;
+	}
 	.btnColor, .btnDark {
 		height: 7rem;
 		font-size: 2.2rem;

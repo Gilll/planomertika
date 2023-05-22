@@ -361,7 +361,7 @@ body .ant-checkbox-wrapper {
   display: flex;
   margin-bottom: 2.5rem;
   &__col {
-    width: 15rem;
+    width: 28rem;
   }
 }
 
@@ -1449,8 +1449,11 @@ html .ant-upload-list-picture .ant-upload-list-item-thumbnail img {
 	body .ant-checkbox-wrapper {
 		font-size: 2.2rem;
 	}
+	.room-list {
+		display: block;
+	}
 	.room-list__col {
-		width: 25rem;
+		width: auto
 	}
 	.ant-checkbox-checked .ant-checkbox-inner:after {
 		border: 1px solid #1d1d1d !important;

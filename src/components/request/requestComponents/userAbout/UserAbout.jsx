@@ -61,13 +61,6 @@ const UserAbout = ({ user, setUser, modal, setModal, noOrder }) => {
 		}
 	})
 
-	const [changeEmail, changeEmailIsLoading] = useApi({
-		url: '/users/email',
-		data: {
-			email: emailTMP
-		}
-	})
-
 	const tryCHangePhone = () => {
 		changePhone().then(() => {
 			setUser({...user, phone: phoneTMP });
