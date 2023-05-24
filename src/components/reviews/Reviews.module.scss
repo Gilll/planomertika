@@ -48,7 +48,7 @@
     position: absolute;
 
     bottom: 3.7rem;
-    left: 47%;
+    left: 50%;
     z-index: 1;
     cursor: pointer;
 
@@ -82,7 +82,7 @@
     width: max-content;
     position: absolute;
     bottom: 4rem;
-    left: 51%;
+    left: 55%;
     padding: 0;
     margin: 0;
     display: flex;
@@ -123,9 +123,9 @@
 
 @media (max-width: 48em) {
 	.arPrev {
-		left: 34%;
+		left: 28%;
 	}
 	.dots {
-		left: 47%;
+		left: 37%;
 	}
 }

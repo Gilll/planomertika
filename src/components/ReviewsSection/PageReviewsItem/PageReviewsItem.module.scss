@@ -1,5 +1,6 @@
 .reviewsItem {
     display: flex;
+	position: relative;
 }
 
 .avatarBlock {
@@ -16,6 +17,7 @@
 .infoBlock {
     display: flex;
     flex-direction: column;
+	width: 52rem;
 }
 
 .author {
@@ -98,10 +100,20 @@
 	.reviewsItem {
 		margin-bottom: 6rem;
 	}
+	.infoBlock {
+		width: auto;
+		margin-left: 2rem;
+	}
 	.avatarBlock {
 		width: 16rem;
 		height: 16rem;
 		margin-right: 2rem;
+		flex-shrink: 0;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
 	}
 	.author {
 		font-size: 2.8rem;
@@ -129,7 +141,7 @@
 	}
 	.textReview  {
 		font-size: 2.4rem;
-		margin-left: -17rem !important;
+		margin-left: -21rem !important;
 		margin-bottom: 1rem;
 	}
 	.more {
