@@ -8,6 +8,13 @@ import {v4 as uuidv4} from "uuid";
 import {hostName} from "../API/config";
 import LoadingIcon from "antd/es/button/LoadingIcon";
 import Loading from "./Loading";
+import {Modal} from "antd";
+import FormQuest from "../components/request/FormQuest";
+import FormRooms from "../components/request/FormRooms";
+import Dragger from "antd/es/upload/Dragger";
+import Button from "antd/es/button";
+import s from "../components/request/RequestSteps.module.scss";
+import TextAnket from "../components/admin/TextAnket";
 
 let stomp;
 
@@ -23,6 +30,9 @@ const AdminMain = () => {
 	});
 	const [isMobRoomOpen, setIsMobRoomOpen] = useState(false)
 	const [dId, setDialogId] = useState();
+	const [orders, setOrders] = useState([])
+	const [modalAnket, setModalAnket] = useState(false)
+	const [curOrder, setCurOrder] = useState({})
 
 	const hostname = 'https://chatdev.mayabiorobotics.ru'
 
@@ -119,6 +129,7 @@ const AdminMain = () => {
 					let ids = originalRooms[indd].arr.map((el) => { return JSON.parse(el.meta).orderId; })
 					if (ids) { getOrdersById(ids).then((resp) => {
 						let orderList = resp.orderResponseList;
+						setOrders([...orders, ...orderList])
 						setRoomPages(roomsPages.map((curRM, curInd) => {
 							if (indd === curInd) {
 								return or.arr.map((elt, eltIndex) => {
@@ -297,7 +308,10 @@ const AdminMain = () => {
 					{roomsPages.length > 0 ?
 						<Scrollbars onScrollFrame={(val) => infiniteScroll(val)} autoHide>
 							{roomsPages.map((rs, index) =>
-								<RoomList key={index} rooms={roomsPages[index]} openRoom={() => setIsMobRoomOpen(true)} setRooms={(val) => {
+								<RoomList key={index} rooms={roomsPages[index]} callModal={(id) => {
+									setCurOrder(orders.filter((el) => el.id === id)[0])
+									setModalAnket(true)
+								}} orders={orders} openRoom={() => setIsMobRoomOpen(true)} setRooms={(val) => {
 									setRoomPages(roomsPages.map((rm,ind) => {
 										if (index === ind) {
 											return val;
@@ -320,6 +334,9 @@ const AdminMain = () => {
 					<Outlet  context={[stomp, newMess, setNewMess, dId, setDialogId, setIsMobRoomOpen]}/>
 				</div>
 			</div>
+			<Modal className='modalAnket' visible={modalAnket} onCancel={() => setModalAnket(false)}>
+				<TextAnket form={curOrder}/>
+			</Modal>
 		</div>
 	);
 };

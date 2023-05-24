@@ -16,6 +16,7 @@ import {CSSTransition, TransitionGroup} from "react-transition-group";
 import UserMessage from "../components/request/requestComponents/UserMessage";
 import Upload from "antd/es/upload";
 import Mentions from "antd/es/mentions";
+import TextAnket from "../components/admin/TextAnket";
 
 let stomp;
 
@@ -466,10 +467,16 @@ const Requists = () => {
 		chatScrollUpdate();
 	},[messages])
 
+	const [modalAnket, setModalAnket] = useState(false)
+	const [curOrder, setCurOrder] = useState({})
+
 	return (
 		<div className="admin-container">
 			<div className="admin-title">Заказы</div>
 			<div className="admin-text">Выполняемые и завершенные заказы</div>
+			<Modal className='modalAnket' visible={modalAnket} onCancel={() => setModalAnket(false)}>
+				<TextAnket form={curOrder}/>
+			</Modal>
 			<Tabs className="admin-tabs" defaultActiveKey="1">
 				<Tabs.TabPane tab={ordersCount.inWork !== null ? "В работе " + ordersCount.inWork : 'В работе' } key="1">
 					{getRuquestsIsLoading ?
@@ -478,7 +485,10 @@ const Requists = () => {
 						<>
 							{orders.length ?
 									<div className="preview-list">
-										{orders.map((item, index) => <RequestPreview openChat={(id) => callModalChat(id)} dt={item} key={item.id} openModal={() => {
+										{orders.map((item, index) => <RequestPreview showModalAnket={(order) => {
+											setCurOrder(order)
+											setModalAnket(true)
+										}} openChat={(id) => callModalChat(id)} dt={item} key={item.id} openModal={() => {
 											setIsModalOpen(true);
 											setActiveOrder(item.id);
 										}}/>)}
@@ -496,7 +506,10 @@ const Requists = () => {
 						<>
 							{ordersConv.length ?
 								<div className="preview-list">
-									{ordersConv.map((item, index) => <RequestPreview openChat={(id) => callModalChat(id)} dt={item} key={item.id} openModal={() => {
+									{ordersConv.map((item, index) => <RequestPreview showModalAnket={(order) => {
+										setCurOrder(order)
+										setModalAnket(true)
+									}} openChat={(id) => callModalChat(id)} dt={item} key={item.id} openModal={() => {
 										setIsModalOpen(true);
 										setActiveOrder(item.id);
 									}}/>)}
@@ -515,7 +528,10 @@ const Requists = () => {
 							{ordersLate.length ?
 								<>
 									<div className="preview-list">
-										{ordersLate.map((item, index) => <RequestPreview openChat={(id) => callModalChat(id)} dt={item} key={item.id} openModal={() => {
+										{ordersLate.map((item, index) => <RequestPreview showModalAnket={(order) => {
+											setCurOrder(order)
+											setModalAnket(true)
+										}} openChat={(id) => callModalChat(id)} dt={item} key={item.id} openModal={() => {
 											setIsModalOpen(true);
 											setActiveOrder(item.id);
 										}}/>)}
@@ -540,7 +556,10 @@ const Requists = () => {
 							{ordersReady .length ?
 								<>
 									<div className="preview-list">
-										{ordersReady .map((item, index) => <RequestPreview openChat={(id) => callModalChat(id)} dt={item} key={item.id} openModal={() => {
+										{ordersReady .map((item, index) => <RequestPreview showModalAnket={(order) => {
+											setCurOrder(order)
+											setModalAnket(true)
+										}} openChat={(id) => callModalChat(id)} dt={item} key={item.id} openModal={() => {
 											setIsModalOpen(true);
 											setActiveOrder(item.id);
 										}}/>)}

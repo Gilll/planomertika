@@ -858,6 +858,12 @@ select:-webkit-autofill:focus {
 .room-list {
 	margin-top: 4rem;
 	flex-grow: 1;
+	&__anket {
+		position: absolute;
+		right: 7rem;
+		top: 1rem;
+		font-size: 2.5rem;
+	}
 	&__unread {
 		position: absolute;
 		bottom: 2rem;
@@ -976,6 +982,19 @@ select:-webkit-autofill:focus {
 	}
 }
 
+.dl-link {
+	&s {
+		margin-top: 2rem;
+	}
+	img {
+		margin-right: 1rem;
+	}
+	margin-bottom: 1rem;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
 html .ant-upload-list-picture .ant-upload-list-item-thumbnail img {
 	object-fit: contain;
 }
@@ -1067,6 +1086,13 @@ html .ant-upload-list-picture .ant-upload-list-item-thumbnail img {
 			top: -0.1rem;
 			margin-right: 1rem;
 		}
+	}
+	&__anket {
+		position: absolute;
+		top: 0.5rem;
+		right: 5.5rem;
+		font-size: 3rem;
+		cursor: pointer;
 	}
 	&__dl {
 		position: absolute;

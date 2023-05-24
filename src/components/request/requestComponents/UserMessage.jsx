@@ -22,7 +22,7 @@ const UserMessage = ({message, userId, admin, prev, update}) => {
 				<>
 					<div className={admin ? "user-message user-message--self" : "user-message user-message--self na"}>
 						{(prev.time !== new Date(message.timestamp).getMinutes() || prev.id !== message.sender.userId) && <div className="user-message__status">
-							<span className="user-message__date">{new Date(message.timestamp).getHours()} : {(new Date(message.timestamp).getMinutes()).toString().padStart(2, '0')}</span>
+							<span className="user-message__date">{(new Date(message.timestamp).getHours()).toString().padStart(2, '0')} : {(new Date(message.timestamp).getMinutes()).toString().padStart(2, '0')}</span>
 							<span className="user-message__user-name">Вы</span>
 							{admin && <img src={ava}/>}
 						</div>

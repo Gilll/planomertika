@@ -2,8 +2,9 @@ import React from 'react';
 import conv from '../asetss/img/conv.png';
 import download from '../asetss/img/dl.png';
 import {NavLink} from "react-router-dom";
+import SnippetsOutlined from "@ant-design/icons/lib/icons/SnippetsOutlined";
 
-const RequestPreview = ({dt, openModal, openChat}) => {
+const RequestPreview = ({dt, openModal, showModalAnket, openChat}) => {
 	const translateState = (st) => {
 		switch (st) {
 			case 'LATE': return 'Просрочен';
@@ -18,6 +19,9 @@ const RequestPreview = ({dt, openModal, openChat}) => {
 		<div className="preview-list__item">
 			<div className="preview-list__dl" onClick={openModal}>
 				<img src={download}/>
+			</div>
+			<div className="preview-list__anket" onClick={() => showModalAnket(dt)}>
+				<SnippetsOutlined />
 			</div>
 			<div className="preview-list__id">№ {dt.id}</div>
 			<div className="preview-list__status">{translateState(dt.state.state)}</div>

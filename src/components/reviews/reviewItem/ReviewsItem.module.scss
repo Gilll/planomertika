@@ -5,12 +5,13 @@
 
 .imgBlock {
     width: 56.6rem;
-    height: 43.2rem;
+    height: 46rem;
     background: #F7F7F7;
 
     img {
         height: 100%;
-        object-fit: contain;
+		width: 100%;
+        object-fit: cover;
     }
 }
 
@@ -33,7 +34,7 @@
     font-size: 1.6rem;
     font-weight: 500;
     color: #1D1D1D;
-    margin-bottom: 6.3rem;
+    margin-bottom: 3.3rem;
     position: relative;
 
     &:before {
@@ -44,7 +45,7 @@
 
         position: absolute;
         left: 0;
-        bottom: -3rem;
+        bottom: -2rem;
     }
 }
 
