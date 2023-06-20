@@ -139,7 +139,7 @@ const TextAnket = ({form}) => {
 						<div className={s.item}>
 							<div className={s.selectTitle}>Комментарий клиента</div>
 							<div className={s.selectItem}>
-								<div className={s.selectSubtitle}>{form.orderPageOneResponse.wish}</div>
+								<div className={s.selectSubtitle}>{form.orderPageTwoResponse.wish}</div>
 							</div>
 						</div>
 					}

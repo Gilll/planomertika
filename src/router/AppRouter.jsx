@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Route, Routes} from "react-router";
 import {RouteNames} from "./routeNames";
 import Landing from "../pages/Landing";
