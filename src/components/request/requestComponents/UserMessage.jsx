@@ -32,19 +32,19 @@ const UserMessage = ({message, userId, admin, prev, update}) => {
 								<div className="user-message__text">{message.content}</div>
 							</div>
 						}
-					</div>
-					<>
 						{message.files.length > 0 && message.files.map(file =>
 							file.contentType.includes('image') ?
-							<div className="user-message__img user-message__img--self">
-								<img onLoad={() => {if (update) {update()}}} src={file.uri} alt=""/>
-							</div>
-								:
 								<div className="user-message__img user-message__img--self">
-									<a target="_blank" href={file.uri}>{file.originalName}</a>
+									<img onLoad={() => {if (update) {update()}}} src={file.uri} alt=""/>
+								</div>
+								:
+								<div className="user-message__text-wrapper">
+									<div className="user-message__text">
+										<a target="_blank" href={file.uri}>{file.originalName}</a>
+									</div>
 								</div>
 						)}
-					</>
+					</div>
 				</>
 				:
 				<>
@@ -60,14 +60,19 @@ const UserMessage = ({message, userId, admin, prev, update}) => {
 								</div>
 							</div>
 						}
+						{message.files.length > 0 && message.files.map(file =>
+							file.contentType.includes('image') ?
+								<div className="user-message__img">
+									<img onLoad={() => {if (update) {update()}}} src={file.uri} alt=""/>
+								</div>
+								:
+								<div className="user-message__text-wrapper">
+									<div className="user-message__text">
+										<a target="_blank" href={file.uri}>{file.originalName}</a>
+									</div>
+								</div>
+						)}
 					</div>
-					<>
-						{message.files.length > 0 &&
-							<div className="user-message__img">
-								<img onLoad={() => {if (update) {update()}}} src={message.files[0].uri} alt=""/>
-							</div>
-						}
-					</>
 				</>
 			}
 		</>
